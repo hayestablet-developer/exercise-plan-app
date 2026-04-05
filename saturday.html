@@ -14,10 +14,143 @@
           <h1>Saturday — Sprint #3 + Core</h1>
           <p>Conditioning and trunk work</p>
         </section>
-        <div class="card">
-          <div class="note">Sprints: 5–8 rounds of 20–30 sec hard + 90 sec walk. Core: dead bugs, planks, cable crunches.</div>
-        </div>
 
+        <section class="card">
+          <div class="controls"><button class="btn" onclick="resetDay()">Reset this day</button></div>
+          <div class="summary" style="margin-top:14px;">
+            <div class="mini"><strong>Completed</strong><div id="completedCount">0 / 0</div></div>
+            <div class="mini"><strong>Avg effort</strong><div id="avgEffort">—</div></div>
+            <div class="mini"><strong>Avg energy</strong><div id="avgEnergy">—</div></div>
+          </div>
+        </section>
+
+        <section class="card" style="margin-top:16px;">
+          <h2>Workout</h2>
+          
+            <div class="exercise">
+              <div class="checkline">
+                <input type="checkbox" class="exercise-checkbox" data-day="Saturday — Sprint #3 + Core" data-exercise="Sprint Intervals">
+                <span>Mark completed</span>
+              </div>
+              <div class="exercise-top">
+                <div class="exercise-name">Sprint Intervals</div>
+                <div class="exercise-meta">5–8 rounds • 20–30 sec hard + 90 sec walk</div>
+              </div>
+              <div class="entry-grid">
+                <label>
+                  <span>Reps</span>
+                  <input type="text" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Sprint Intervals" data-field="reps" placeholder="10 / 9 / 8">
+                </label>
+                <label>
+                  <span>Weight used</span>
+                  <input type="text" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Sprint Intervals" data-field="weight" placeholder="50 lb">
+                </label>
+                <label>
+                  <span>Effort (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Sprint Intervals" data-field="effort" placeholder="8">
+                </label>
+                <label>
+                  <span>Energy (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Sprint Intervals" data-field="energy" placeholder="7">
+                </label>
+              </div>
+            </div>
+            
+            <div class="exercise">
+              <div class="checkline">
+                <input type="checkbox" class="exercise-checkbox" data-day="Saturday — Sprint #3 + Core" data-exercise="Dead Bugs">
+                <span>Mark completed</span>
+              </div>
+              <div class="exercise-top">
+                <div class="exercise-name">Dead Bugs</div>
+                <div class="exercise-meta">3 rounds</div>
+              </div>
+              <div class="entry-grid">
+                <label>
+                  <span>Reps</span>
+                  <input type="text" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Dead Bugs" data-field="reps" placeholder="10 / 9 / 8">
+                </label>
+                <label>
+                  <span>Weight used</span>
+                  <input type="text" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Dead Bugs" data-field="weight" placeholder="50 lb">
+                </label>
+                <label>
+                  <span>Effort (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Dead Bugs" data-field="effort" placeholder="8">
+                </label>
+                <label>
+                  <span>Energy (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Dead Bugs" data-field="energy" placeholder="7">
+                </label>
+              </div>
+            </div>
+            
+            <div class="exercise">
+              <div class="checkline">
+                <input type="checkbox" class="exercise-checkbox" data-day="Saturday — Sprint #3 + Core" data-exercise="Planks">
+                <span>Mark completed</span>
+              </div>
+              <div class="exercise-top">
+                <div class="exercise-name">Planks</div>
+                <div class="exercise-meta">3 rounds</div>
+              </div>
+              <div class="entry-grid">
+                <label>
+                  <span>Reps</span>
+                  <input type="text" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Planks" data-field="reps" placeholder="10 / 9 / 8">
+                </label>
+                <label>
+                  <span>Weight used</span>
+                  <input type="text" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Planks" data-field="weight" placeholder="50 lb">
+                </label>
+                <label>
+                  <span>Effort (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Planks" data-field="effort" placeholder="8">
+                </label>
+                <label>
+                  <span>Energy (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Planks" data-field="energy" placeholder="7">
+                </label>
+              </div>
+            </div>
+            
+            <div class="exercise">
+              <div class="checkline">
+                <input type="checkbox" class="exercise-checkbox" data-day="Saturday — Sprint #3 + Core" data-exercise="Cable Crunches">
+                <span>Mark completed</span>
+              </div>
+              <div class="exercise-top">
+                <div class="exercise-name">Cable Crunches</div>
+                <div class="exercise-meta">3 rounds</div>
+              </div>
+              <div class="entry-grid">
+                <label>
+                  <span>Reps</span>
+                  <input type="text" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Cable Crunches" data-field="reps" placeholder="10 / 9 / 8">
+                </label>
+                <label>
+                  <span>Weight used</span>
+                  <input type="text" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Cable Crunches" data-field="weight" placeholder="50 lb">
+                </label>
+                <label>
+                  <span>Effort (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Cable Crunches" data-field="effort" placeholder="8">
+                </label>
+                <label>
+                  <span>Energy (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Cable Crunches" data-field="energy" placeholder="7">
+                </label>
+              </div>
+            </div>
+            
+        </section>
+
+        <section class="card" style="margin-top:16px;">
+          <h2>Finisher / Notes</h2>
+          <div class="note">Conditioning + core only.</div>
+        </section>
+        
 </div>
+<script src="app.js"></script>
 </body>
 </html>
