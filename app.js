@@ -1,5 +1,5 @@
 
-const STORAGE_KEY = "monikisa-fitness-app-v1";
+const STORAGE_KEY = "monikita-fitness-app-v1";
 
 function loadState(){
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); }
