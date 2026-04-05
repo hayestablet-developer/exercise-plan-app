@@ -14,60 +14,172 @@
           <h1>Thursday — Lower Body B + Sprint #2</h1>
           <p>Quad and glute focus</p>
         </section>
-        <div class="card">
+
+        <section class="card">
+          <div class="controls"><button class="btn" onclick="resetDay()">Reset this day</button></div>
+          <div class="summary" style="margin-top:14px;">
+            <div class="mini"><strong>Completed</strong><div id="completedCount">0 / 0</div></div>
+            <div class="mini"><strong>Avg effort</strong><div id="avgEffort">—</div></div>
+            <div class="mini"><strong>Avg energy</strong><div id="avgEnergy">—</div></div>
+          </div>
+        </section>
+
+        <section class="card" style="margin-top:16px;">
           <h2>Workout</h2>
-
+          
             <div class="exercise">
-              <div class="exercise-name">Dead Hang</div>
-              <div class="exercise-meta">30 seconds • pull-up goal</div>
-              <div class="links">
-                <a href="https://www.youtube.com/results?search_query=dead+hang+pull+up+grip+proper+form" target="_blank" rel="noopener">🎥 Video</a>
-                <a href="https://www.google.com/search?tbm=isch&q=dead+hang+pull+up+grip+form" target="_blank" rel="noopener">🖼️ Images</a>
+              <div class="checkline">
+                <input type="checkbox" class="exercise-checkbox" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Dead Hang">
+                <span>Mark completed</span>
+              </div>
+              <div class="exercise-top">
+                <div class="exercise-name">Dead Hang</div>
+                <div class="exercise-meta">30 seconds • pull-up goal</div>
+              </div>
+              <div class="entry-grid">
+                <label>
+                  <span>Reps</span>
+                  <input type="text" class="log-input" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Dead Hang" data-field="reps" placeholder="10 / 9 / 8">
+                </label>
+                <label>
+                  <span>Weight used</span>
+                  <input type="text" class="log-input" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Dead Hang" data-field="weight" placeholder="50 lb">
+                </label>
+                <label>
+                  <span>Effort (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Dead Hang" data-field="effort" placeholder="8">
+                </label>
+                <label>
+                  <span>Energy (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Dead Hang" data-field="energy" placeholder="7">
+                </label>
               </div>
             </div>
-
+            
             <div class="exercise">
-              <div class="exercise-name">Goblet Squat</div>
-              <div class="exercise-meta">3 sets • 8–12 reps</div>
-              <div class="links">
-                <a href="https://www.youtube.com/results?search_query=goblet+squat+proper+form+knee+friendly" target="_blank" rel="noopener">🎥 Video</a>
-                <a href="https://www.google.com/search?tbm=isch&q=goblet+squat+form" target="_blank" rel="noopener">🖼️ Images</a>
+              <div class="checkline">
+                <input type="checkbox" class="exercise-checkbox" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Goblet Squat">
+                <span>Mark completed</span>
+              </div>
+              <div class="exercise-top">
+                <div class="exercise-name">Goblet Squat</div>
+                <div class="exercise-meta">3 sets • 8–12 reps</div>
+              </div>
+              <div class="entry-grid">
+                <label>
+                  <span>Reps</span>
+                  <input type="text" class="log-input" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Goblet Squat" data-field="reps" placeholder="10 / 9 / 8">
+                </label>
+                <label>
+                  <span>Weight used</span>
+                  <input type="text" class="log-input" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Goblet Squat" data-field="weight" placeholder="50 lb">
+                </label>
+                <label>
+                  <span>Effort (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Goblet Squat" data-field="effort" placeholder="8">
+                </label>
+                <label>
+                  <span>Energy (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Goblet Squat" data-field="energy" placeholder="7">
+                </label>
               </div>
             </div>
-
+            
             <div class="exercise">
-              <div class="exercise-name">Split Squat</div>
-              <div class="exercise-meta">3 sets/side • 8–10 reps</div>
-              <div class="links">
-                <a href="https://www.youtube.com/results?search_query=split+squat+proper+form" target="_blank" rel="noopener">🎥 Video</a>
-                <a href="https://www.google.com/search?tbm=isch&q=split+squat+form" target="_blank" rel="noopener">🖼️ Images</a>
+              <div class="checkline">
+                <input type="checkbox" class="exercise-checkbox" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Split Squat">
+                <span>Mark completed</span>
+              </div>
+              <div class="exercise-top">
+                <div class="exercise-name">Split Squat</div>
+                <div class="exercise-meta">3 sets/side • 8–10 reps</div>
+              </div>
+              <div class="entry-grid">
+                <label>
+                  <span>Reps</span>
+                  <input type="text" class="log-input" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Split Squat" data-field="reps" placeholder="10 / 9 / 8">
+                </label>
+                <label>
+                  <span>Weight used</span>
+                  <input type="text" class="log-input" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Split Squat" data-field="weight" placeholder="50 lb">
+                </label>
+                <label>
+                  <span>Effort (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Split Squat" data-field="effort" placeholder="8">
+                </label>
+                <label>
+                  <span>Energy (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Split Squat" data-field="energy" placeholder="7">
+                </label>
               </div>
             </div>
-
+            
             <div class="exercise">
-              <div class="exercise-name">Glute Bridge</div>
-              <div class="exercise-meta">3 sets • 12–20 reps</div>
-              <div class="links">
-                <a href="https://www.youtube.com/results?search_query=glute+bridge+proper+form" target="_blank" rel="noopener">🎥 Video</a>
-                <a href="https://www.google.com/search?tbm=isch&q=glute+bridge+form" target="_blank" rel="noopener">🖼️ Images</a>
+              <div class="checkline">
+                <input type="checkbox" class="exercise-checkbox" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Glute Bridge">
+                <span>Mark completed</span>
+              </div>
+              <div class="exercise-top">
+                <div class="exercise-name">Glute Bridge</div>
+                <div class="exercise-meta">3 sets • 12–20 reps</div>
+              </div>
+              <div class="entry-grid">
+                <label>
+                  <span>Reps</span>
+                  <input type="text" class="log-input" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Glute Bridge" data-field="reps" placeholder="10 / 9 / 8">
+                </label>
+                <label>
+                  <span>Weight used</span>
+                  <input type="text" class="log-input" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Glute Bridge" data-field="weight" placeholder="50 lb">
+                </label>
+                <label>
+                  <span>Effort (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Glute Bridge" data-field="effort" placeholder="8">
+                </label>
+                <label>
+                  <span>Energy (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Glute Bridge" data-field="energy" placeholder="7">
+                </label>
               </div>
             </div>
-
+            
             <div class="exercise">
-              <div class="exercise-name">Cable Kickbacks</div>
-              <div class="exercise-meta">3 sets/side • 12–18 reps</div>
-              <div class="links">
-                <a href="https://www.youtube.com/results?search_query=cable+kickback+glute+proper+form" target="_blank" rel="noopener">🎥 Video</a>
-                <a href="https://www.google.com/search?tbm=isch&q=cable+kickback+glute+form" target="_blank" rel="noopener">🖼️ Images</a>
+              <div class="checkline">
+                <input type="checkbox" class="exercise-checkbox" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Cable Kickbacks">
+                <span>Mark completed</span>
+              </div>
+              <div class="exercise-top">
+                <div class="exercise-name">Cable Kickbacks</div>
+                <div class="exercise-meta">3 sets/side • 12–18 reps</div>
+              </div>
+              <div class="entry-grid">
+                <label>
+                  <span>Reps</span>
+                  <input type="text" class="log-input" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Cable Kickbacks" data-field="reps" placeholder="10 / 9 / 8">
+                </label>
+                <label>
+                  <span>Weight used</span>
+                  <input type="text" class="log-input" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Cable Kickbacks" data-field="weight" placeholder="50 lb">
+                </label>
+                <label>
+                  <span>Effort (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Cable Kickbacks" data-field="effort" placeholder="8">
+                </label>
+                <label>
+                  <span>Energy (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Thursday — Lower Body B + Sprint #2" data-exercise="Cable Kickbacks" data-field="energy" placeholder="7">
+                </label>
               </div>
             </div>
+            
+        </section>
 
-        </div>
-        <div class="card" style="margin-top:16px;">
+        <section class="card" style="margin-top:16px;">
           <h2>Finisher / Notes</h2>
           <div class="note">Sprints: 5–6 rounds of 30 sec hard + 90 sec walk.</div>
-        </div>
-
+        </section>
+        
 </div>
+<script src="app.js"></script>
 </body>
 </html>

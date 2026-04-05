@@ -14,78 +14,230 @@
           <h1>Tuesday — Upper Push + Pull-Up Work</h1>
           <p>Push day plus pull-up progression</p>
         </section>
-        <div class="card">
+
+        <section class="card">
+          <div class="controls"><button class="btn" onclick="resetDay()">Reset this day</button></div>
+          <div class="summary" style="margin-top:14px;">
+            <div class="mini"><strong>Completed</strong><div id="completedCount">0 / 0</div></div>
+            <div class="mini"><strong>Avg effort</strong><div id="avgEffort">—</div></div>
+            <div class="mini"><strong>Avg energy</strong><div id="avgEnergy">—</div></div>
+          </div>
+        </section>
+
+        <section class="card" style="margin-top:16px;">
           <h2>Workout</h2>
-
+          
             <div class="exercise">
-              <div class="exercise-name">Dead Hang</div>
-              <div class="exercise-meta">30 seconds • pull-up goal</div>
-              <div class="links">
-                <a href="https://www.youtube.com/results?search_query=dead+hang+pull+up+grip+proper+form" target="_blank" rel="noopener">🎥 Video</a>
-                <a href="https://www.google.com/search?tbm=isch&q=dead+hang+pull+up+grip+form" target="_blank" rel="noopener">🖼️ Images</a>
+              <div class="checkline">
+                <input type="checkbox" class="exercise-checkbox" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Dead Hang">
+                <span>Mark completed</span>
+              </div>
+              <div class="exercise-top">
+                <div class="exercise-name">Dead Hang</div>
+                <div class="exercise-meta">30 seconds • pull-up goal</div>
+              </div>
+              <div class="entry-grid">
+                <label>
+                  <span>Reps</span>
+                  <input type="text" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Dead Hang" data-field="reps" placeholder="10 / 9 / 8">
+                </label>
+                <label>
+                  <span>Weight used</span>
+                  <input type="text" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Dead Hang" data-field="weight" placeholder="50 lb">
+                </label>
+                <label>
+                  <span>Effort (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Dead Hang" data-field="effort" placeholder="8">
+                </label>
+                <label>
+                  <span>Energy (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Dead Hang" data-field="energy" placeholder="7">
+                </label>
               </div>
             </div>
-
+            
             <div class="exercise">
-              <div class="exercise-name">Band-Assisted Pull-Up</div>
-              <div class="exercise-meta">3 sets • 5–8 reps</div>
-              <div class="links">
-                <a href="https://www.youtube.com/results?search_query=band+assisted+pull+up+proper+form" target="_blank" rel="noopener">🎥 Video</a>
-                <a href="https://www.google.com/search?tbm=isch&q=band+assisted+pull+up+form" target="_blank" rel="noopener">🖼️ Images</a>
+              <div class="checkline">
+                <input type="checkbox" class="exercise-checkbox" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Band-Assisted Pull-Up">
+                <span>Mark completed</span>
+              </div>
+              <div class="exercise-top">
+                <div class="exercise-name">Band-Assisted Pull-Up</div>
+                <div class="exercise-meta">3 sets • 5–8 reps</div>
+              </div>
+              <div class="entry-grid">
+                <label>
+                  <span>Reps</span>
+                  <input type="text" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Band-Assisted Pull-Up" data-field="reps" placeholder="10 / 9 / 8">
+                </label>
+                <label>
+                  <span>Weight used</span>
+                  <input type="text" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Band-Assisted Pull-Up" data-field="weight" placeholder="50 lb">
+                </label>
+                <label>
+                  <span>Effort (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Band-Assisted Pull-Up" data-field="effort" placeholder="8">
+                </label>
+                <label>
+                  <span>Energy (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Band-Assisted Pull-Up" data-field="energy" placeholder="7">
+                </label>
               </div>
             </div>
-
+            
             <div class="exercise">
-              <div class="exercise-name">Scapular Pull-Up</div>
-              <div class="exercise-meta">2–3 sets • 6–10 reps</div>
-              <div class="links">
-                <a href="https://www.youtube.com/results?search_query=scapular+pull+up+proper+form" target="_blank" rel="noopener">🎥 Video</a>
-                <a href="https://www.google.com/search?tbm=isch&q=scapular+pull+up+form" target="_blank" rel="noopener">🖼️ Images</a>
+              <div class="checkline">
+                <input type="checkbox" class="exercise-checkbox" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Scapular Pull-Up">
+                <span>Mark completed</span>
+              </div>
+              <div class="exercise-top">
+                <div class="exercise-name">Scapular Pull-Up</div>
+                <div class="exercise-meta">2–3 sets • 6–10 reps</div>
+              </div>
+              <div class="entry-grid">
+                <label>
+                  <span>Reps</span>
+                  <input type="text" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Scapular Pull-Up" data-field="reps" placeholder="10 / 9 / 8">
+                </label>
+                <label>
+                  <span>Weight used</span>
+                  <input type="text" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Scapular Pull-Up" data-field="weight" placeholder="50 lb">
+                </label>
+                <label>
+                  <span>Effort (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Scapular Pull-Up" data-field="effort" placeholder="8">
+                </label>
+                <label>
+                  <span>Energy (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Scapular Pull-Up" data-field="energy" placeholder="7">
+                </label>
               </div>
             </div>
-
+            
             <div class="exercise">
-              <div class="exercise-name">Incline Dumbbell Press</div>
-              <div class="exercise-meta">3 sets • 8–12 reps</div>
-              <div class="links">
-                <a href="https://www.youtube.com/results?search_query=incline+dumbbell+press+proper+form" target="_blank" rel="noopener">🎥 Video</a>
-                <a href="https://www.google.com/search?tbm=isch&q=incline+dumbbell+press+form" target="_blank" rel="noopener">🖼️ Images</a>
+              <div class="checkline">
+                <input type="checkbox" class="exercise-checkbox" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Incline Dumbbell Press">
+                <span>Mark completed</span>
+              </div>
+              <div class="exercise-top">
+                <div class="exercise-name">Incline Dumbbell Press</div>
+                <div class="exercise-meta">3 sets • 8–12 reps</div>
+              </div>
+              <div class="entry-grid">
+                <label>
+                  <span>Reps</span>
+                  <input type="text" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Incline Dumbbell Press" data-field="reps" placeholder="10 / 9 / 8">
+                </label>
+                <label>
+                  <span>Weight used</span>
+                  <input type="text" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Incline Dumbbell Press" data-field="weight" placeholder="50 lb">
+                </label>
+                <label>
+                  <span>Effort (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Incline Dumbbell Press" data-field="effort" placeholder="8">
+                </label>
+                <label>
+                  <span>Energy (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Incline Dumbbell Press" data-field="energy" placeholder="7">
+                </label>
               </div>
             </div>
-
+            
             <div class="exercise">
-              <div class="exercise-name">Dumbbell Shoulder Press</div>
-              <div class="exercise-meta">3 sets • 8–10 reps</div>
-              <div class="links">
-                <a href="https://www.youtube.com/results?search_query=dumbbell+shoulder+press+seated+proper+form" target="_blank" rel="noopener">🎥 Video</a>
-                <a href="https://www.google.com/search?tbm=isch&q=dumbbell+shoulder+press+form" target="_blank" rel="noopener">🖼️ Images</a>
+              <div class="checkline">
+                <input type="checkbox" class="exercise-checkbox" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Dumbbell Shoulder Press">
+                <span>Mark completed</span>
+              </div>
+              <div class="exercise-top">
+                <div class="exercise-name">Dumbbell Shoulder Press</div>
+                <div class="exercise-meta">3 sets • 8–10 reps</div>
+              </div>
+              <div class="entry-grid">
+                <label>
+                  <span>Reps</span>
+                  <input type="text" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Dumbbell Shoulder Press" data-field="reps" placeholder="10 / 9 / 8">
+                </label>
+                <label>
+                  <span>Weight used</span>
+                  <input type="text" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Dumbbell Shoulder Press" data-field="weight" placeholder="50 lb">
+                </label>
+                <label>
+                  <span>Effort (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Dumbbell Shoulder Press" data-field="effort" placeholder="8">
+                </label>
+                <label>
+                  <span>Energy (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Dumbbell Shoulder Press" data-field="energy" placeholder="7">
+                </label>
               </div>
             </div>
-
+            
             <div class="exercise">
-              <div class="exercise-name">Lateral Raise</div>
-              <div class="exercise-meta">3 sets • 12–18 reps</div>
-              <div class="links">
-                <a href="https://www.youtube.com/results?search_query=lateral+raise+proper+form" target="_blank" rel="noopener">🎥 Video</a>
-                <a href="https://www.google.com/search?tbm=isch&q=lateral+raise+form" target="_blank" rel="noopener">🖼️ Images</a>
+              <div class="checkline">
+                <input type="checkbox" class="exercise-checkbox" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Lateral Raise">
+                <span>Mark completed</span>
+              </div>
+              <div class="exercise-top">
+                <div class="exercise-name">Lateral Raise</div>
+                <div class="exercise-meta">3 sets • 12–18 reps</div>
+              </div>
+              <div class="entry-grid">
+                <label>
+                  <span>Reps</span>
+                  <input type="text" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Lateral Raise" data-field="reps" placeholder="10 / 9 / 8">
+                </label>
+                <label>
+                  <span>Weight used</span>
+                  <input type="text" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Lateral Raise" data-field="weight" placeholder="50 lb">
+                </label>
+                <label>
+                  <span>Effort (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Lateral Raise" data-field="effort" placeholder="8">
+                </label>
+                <label>
+                  <span>Energy (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Lateral Raise" data-field="energy" placeholder="7">
+                </label>
               </div>
             </div>
-
+            
             <div class="exercise">
-              <div class="exercise-name">Triceps Pushdown</div>
-              <div class="exercise-meta">3 sets • 10–15 reps</div>
-              <div class="links">
-                <a href="https://www.youtube.com/results?search_query=triceps+pushdown+proper+form" target="_blank" rel="noopener">🎥 Video</a>
-                <a href="https://www.google.com/search?tbm=isch&q=triceps+pushdown+form" target="_blank" rel="noopener">🖼️ Images</a>
+              <div class="checkline">
+                <input type="checkbox" class="exercise-checkbox" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Triceps Pushdown">
+                <span>Mark completed</span>
+              </div>
+              <div class="exercise-top">
+                <div class="exercise-name">Triceps Pushdown</div>
+                <div class="exercise-meta">3 sets • 10–15 reps</div>
+              </div>
+              <div class="entry-grid">
+                <label>
+                  <span>Reps</span>
+                  <input type="text" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Triceps Pushdown" data-field="reps" placeholder="10 / 9 / 8">
+                </label>
+                <label>
+                  <span>Weight used</span>
+                  <input type="text" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Triceps Pushdown" data-field="weight" placeholder="50 lb">
+                </label>
+                <label>
+                  <span>Effort (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Triceps Pushdown" data-field="effort" placeholder="8">
+                </label>
+                <label>
+                  <span>Energy (1–10)</span>
+                  <input type="number" min="1" max="10" class="log-input" data-day="Tuesday — Upper Push + Pull-Up Work" data-exercise="Triceps Pushdown" data-field="energy" placeholder="7">
+                </label>
               </div>
             </div>
+            
+        </section>
 
-        </div>
-        <div class="card" style="margin-top:16px;">
+        <section class="card" style="margin-top:16px;">
           <h2>Finisher / Notes</h2>
           <div class="note">No sprints today. Focus on quality pull-up work.</div>
-        </div>
-
+        </section>
+        
 </div>
+<script src="app.js"></script>
 </body>
 </html>
