@@ -46,3 +46,108 @@ button.btn{border:none;border-radius:999px;padding:10px 14px;font-weight:700;cur
   .wrap{padding:16px}
   h1{font-size:28px}
 }
+
+
+/* Unified premium form styling across all pages */
+.entry-grid input,
+.form-grid input,
+.form-grid select,
+.form-grid textarea,
+.swap-grid select,
+.swap-grid input,
+.swap-grid textarea,
+select,
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  min-height: 56px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 2px solid #d8dfeb;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 18px;
+  line-height: 1.2;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+}
+
+select {
+  background-image:
+    linear-gradient(45deg, transparent 50%, #475569 50%),
+    linear-gradient(135deg, #475569 50%, transparent 50%);
+  background-position:
+    calc(100% - 22px) calc(50% - 3px),
+    calc(100% - 16px) calc(50% - 3px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 42px;
+}
+
+.entry-grid input::placeholder,
+.form-grid input::placeholder,
+.form-grid textarea::placeholder,
+.swap-grid input::placeholder,
+textarea::placeholder {
+  color: #94a3b8;
+}
+
+.entry-grid input:focus,
+.form-grid input:focus,
+.form-grid select:focus,
+.form-grid textarea:focus,
+.swap-grid select:focus,
+.swap-grid input:focus,
+.swap-grid textarea:focus,
+select:focus,
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #818cf8;
+  box-shadow: 0 0 0 4px rgba(99,102,241,.12);
+}
+
+.swap-btn,
+button.btn,
+button.secondary {
+  min-height: 56px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  font-size: 17px;
+}
+
+.checkline input[type="checkbox"]{
+  width: 28px;
+  height: 28px;
+  min-height: 28px;
+  border-radius: 8px;
+}
+
+.entry-grid label,
+.form-grid label,
+.swap-grid label {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+@media (max-width:900px){
+  .entry-grid input,
+  .form-grid input,
+  .form-grid select,
+  .form-grid textarea,
+  .swap-grid select,
+  .swap-grid input,
+  .swap-grid textarea,
+  select,
+  input[type="text"],
+  input[type="number"],
+  input[type="date"],
+  textarea {
+    font-size: 17px;
+  }
+}
