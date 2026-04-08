@@ -1,10 +1,157 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Monikita’s Fitness App — Friday</title><link rel="stylesheet" href="style.css"></head><body><div class="wrap"><div class="topnav"><a class="pill-link" href="index.html">Home</a><a class="pill-link" href="advisor.html">What should I do today?</a><a class="pill-link" href="shoulders-triceps.html">Shoulders + Triceps</a></div><a class="back" href="index.html">← Back to main page</a><section class="hero"><h1>Monikita’s Fitness App 💪</h1><p>Friday — Upper Pull + Pull-Up Work</p><p>Back, biceps, and pull-up progress</p></section><section class="card" style="margin-top:16px;"><h2>Move this workout around 🔄</h2><div class="note warn">If this day no longer makes sense for your body, swap into a better session. Example: Sunday can shift into Upper Pull or Shoulders + Triceps.</div><div class="swap-grid" style="margin-top:14px;"><label><span>Do this workout instead today</span><select id="swapSelect" data-daykey="Friday — Upper Pull + Pull-Up Work"><option value="">Choose a workout</option>
-<option value="monday.html">Lower Body A</option>
-<option value="thursday.html">Lower Body B</option>
-<option value="tuesday.html">Upper Push</option>
-<option value="friday.html">Upper Pull</option>
-<option value="shoulders-triceps.html">Shoulders + Triceps</option>
-<option value="saturday.html">Sprint + Core</option>
-<option value="wednesday.html">Recovery</option>
-<option value="advisor.html">Ask the advisor first</option>
-</select></label><button id="swapGo" class="swap-btn">Open selection</button><button id="swapSave" class="swap-btn">Save my choice</button></div><div id="swapSaved" class="small" style="margin-top:10px;"></div><div class="links" style="margin-top:12px;"><a href="advisor.html">Not sure? Ask the advisor</a></div></section><section class="card" style="margin-top:16px;"><div class="controls"><button class="btn" onclick="resetDay()">Reset this day</button></div><div class="summary" style="margin-top:14px;"><div class="mini"><strong>Completed</strong><div id="completedCount">0 / 0</div></div><div class="mini"><strong>Avg effort</strong><div id="avgEffort">—</div></div><div class="mini"><strong>Avg energy</strong><div id="avgEnergy">—</div></div></div></section><section class="card" style="margin-top:16px;"><h2>Workout</h2><div class="exercise"><div class="checkline"><input type="checkbox" class="exercise-checkbox" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Dead Hang"><span>Mark completed</span></div><div class="exercise-name">Dead Hang</div><div class="exercise-meta">30 seconds • pull-up goal</div><div class="entry-grid"><label><span>Reps</span><input type="text" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Dead Hang" data-field="reps" placeholder="10 / 9 / 8"></label><label><span>Weight used</span><input type="text" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Dead Hang" data-field="weight" placeholder="50 lb"></label><label><span>Effort (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Dead Hang" data-field="effort" placeholder="8"></label><label><span>Energy (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Dead Hang" data-field="energy" placeholder="7"></label></div><div class="links"><a href="https://www.youtube.com/results?search_query=dead+hang+pull+up+grip+proper+form" target="_blank" rel="noopener">🎥 Video</a><a href="https://www.google.com/search?tbm=isch&q=dead+hang+pull+up+grip+form" target="_blank" rel="noopener">🖼️ Images</a></div></div><div class="exercise"><div class="checkline"><input type="checkbox" class="exercise-checkbox" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Assisted Pull-Up Machine"><span>Mark completed</span></div><div class="exercise-name">Assisted Pull-Up Machine</div><div class="exercise-meta">3 sets • 5–8 reps</div><div class="entry-grid"><label><span>Reps</span><input type="text" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Assisted Pull-Up Machine" data-field="reps" placeholder="10 / 9 / 8"></label><label><span>Weight used</span><input type="text" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Assisted Pull-Up Machine" data-field="weight" placeholder="50 lb"></label><label><span>Effort (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Assisted Pull-Up Machine" data-field="effort" placeholder="8"></label><label><span>Energy (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Assisted Pull-Up Machine" data-field="energy" placeholder="7"></label></div><div class="links"><a href="https://www.youtube.com/results?search_query=assisted+pull+up+machine+proper+form" target="_blank" rel="noopener">🎥 Video</a><a href="https://www.google.com/search?tbm=isch&q=assisted+pull+up+machine+form" target="_blank" rel="noopener">🖼️ Images</a></div></div><div class="exercise"><div class="checkline"><input type="checkbox" class="exercise-checkbox" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Scapular Pull-Up"><span>Mark completed</span></div><div class="exercise-name">Scapular Pull-Up</div><div class="exercise-meta">2–3 sets • 6–10 reps</div><div class="entry-grid"><label><span>Reps</span><input type="text" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Scapular Pull-Up" data-field="reps" placeholder="10 / 9 / 8"></label><label><span>Weight used</span><input type="text" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Scapular Pull-Up" data-field="weight" placeholder="50 lb"></label><label><span>Effort (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Scapular Pull-Up" data-field="effort" placeholder="8"></label><label><span>Energy (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Scapular Pull-Up" data-field="energy" placeholder="7"></label></div><div class="links"><a href="https://www.youtube.com/results?search_query=scapular+pull+up+proper+form" target="_blank" rel="noopener">🎥 Video</a><a href="https://www.google.com/search?tbm=isch&q=scapular+pull+up+form" target="_blank" rel="noopener">🖼️ Images</a></div></div><div class="exercise"><div class="checkline"><input type="checkbox" class="exercise-checkbox" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Lat Pulldown"><span>Mark completed</span></div><div class="exercise-name">Lat Pulldown</div><div class="exercise-meta">3 sets • 8–12 reps</div><div class="entry-grid"><label><span>Reps</span><input type="text" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Lat Pulldown" data-field="reps" placeholder="10 / 9 / 8"></label><label><span>Weight used</span><input type="text" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Lat Pulldown" data-field="weight" placeholder="50 lb"></label><label><span>Effort (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Lat Pulldown" data-field="effort" placeholder="8"></label><label><span>Energy (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Lat Pulldown" data-field="energy" placeholder="7"></label></div><div class="links"><a href="https://www.youtube.com/results?search_query=lat+pulldown+proper+form+female" target="_blank" rel="noopener">🎥 Video</a><a href="https://www.google.com/search?tbm=isch&q=lat+pulldown+proper+form" target="_blank" rel="noopener">🖼️ Images</a></div></div><div class="exercise"><div class="checkline"><input type="checkbox" class="exercise-checkbox" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Seated Cable Row"><span>Mark completed</span></div><div class="exercise-name">Seated Cable Row</div><div class="exercise-meta">3 sets • 8–12 reps</div><div class="entry-grid"><label><span>Reps</span><input type="text" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Seated Cable Row" data-field="reps" placeholder="10 / 9 / 8"></label><label><span>Weight used</span><input type="text" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Seated Cable Row" data-field="weight" placeholder="50 lb"></label><label><span>Effort (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Seated Cable Row" data-field="effort" placeholder="8"></label><label><span>Energy (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Seated Cable Row" data-field="energy" placeholder="7"></label></div><div class="links"><a href="https://www.youtube.com/results?search_query=seated+cable+row+proper+form" target="_blank" rel="noopener">🎥 Video</a><a href="https://www.google.com/search?tbm=isch&q=seated+cable+row+proper+form" target="_blank" rel="noopener">🖼️ Images</a></div></div><div class="exercise"><div class="checkline"><input type="checkbox" class="exercise-checkbox" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Single-Arm Dumbbell Row"><span>Mark completed</span></div><div class="exercise-name">Single-Arm Dumbbell Row</div><div class="exercise-meta">3 sets/side • 10–12 reps</div><div class="entry-grid"><label><span>Reps</span><input type="text" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Single-Arm Dumbbell Row" data-field="reps" placeholder="10 / 9 / 8"></label><label><span>Weight used</span><input type="text" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Single-Arm Dumbbell Row" data-field="weight" placeholder="50 lb"></label><label><span>Effort (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Single-Arm Dumbbell Row" data-field="effort" placeholder="8"></label><label><span>Energy (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Single-Arm Dumbbell Row" data-field="energy" placeholder="7"></label></div><div class="links"><a href="https://www.youtube.com/results?search_query=single+arm+dumbbell+row+proper+form" target="_blank" rel="noopener">🎥 Video</a><a href="https://www.google.com/search?tbm=isch&q=single+arm+dumbbell+row+form" target="_blank" rel="noopener">🖼️ Images</a></div></div><div class="exercise"><div class="checkline"><input type="checkbox" class="exercise-checkbox" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Hammer Curl"><span>Mark completed</span></div><div class="exercise-name">Hammer Curl</div><div class="exercise-meta">3 sets • 10–14 reps</div><div class="entry-grid"><label><span>Reps</span><input type="text" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Hammer Curl" data-field="reps" placeholder="10 / 9 / 8"></label><label><span>Weight used</span><input type="text" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Hammer Curl" data-field="weight" placeholder="50 lb"></label><label><span>Effort (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Hammer Curl" data-field="effort" placeholder="8"></label><label><span>Energy (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Hammer Curl" data-field="energy" placeholder="7"></label></div><div class="links"><a href="https://www.youtube.com/results?search_query=hammer+curl+proper+form" target="_blank" rel="noopener">🎥 Video</a><a href="https://www.google.com/search?tbm=isch&q=hammer+curl+form" target="_blank" rel="noopener">🖼️ Images</a></div></div><div class="exercise"><div class="checkline"><input type="checkbox" class="exercise-checkbox" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Cable Curl"><span>Mark completed</span></div><div class="exercise-name">Cable Curl</div><div class="exercise-meta">3 sets • 10–15 reps</div><div class="entry-grid"><label><span>Reps</span><input type="text" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Cable Curl" data-field="reps" placeholder="10 / 9 / 8"></label><label><span>Weight used</span><input type="text" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Cable Curl" data-field="weight" placeholder="50 lb"></label><label><span>Effort (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Cable Curl" data-field="effort" placeholder="8"></label><label><span>Energy (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Friday — Upper Pull + Pull-Up Work" data-exercise="Cable Curl" data-field="energy" placeholder="7"></label></div><div class="links"><a href="https://www.youtube.com/results?search_query=cable+curl+proper+form" target="_blank" rel="noopener">🎥 Video</a><a href="https://www.google.com/search?tbm=isch&q=cable+curl+form" target="_blank" rel="noopener">🖼️ Images</a></div></div></section><section class="card" style="margin-top:16px;"><h2>Finisher / Notes</h2><div class="note">No sprints today. Keep pull-up mechanics clean.</div></section></div><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friday — Upper Pull + Shoulders/Triceps — Monikita’s Fitness App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body data-day-slot="friday">
+  <header>
+    <h1>Monikita’s Fitness App 💪</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="advisor.html">What should I do today?</a>
+    </nav>
+  </header>
+  <main>
+    <h2 data-page-title="Friday — Upper Pull + Shoulders & Triceps">Friday — Upper Pull + Shoulders & Triceps</h2>
+    <p>Train back, biceps and shoulders, with triceps accessory work and pull‑up progressions.</p>
+    <!-- Move workout section -->
+    
+    <div class="move-workout">
+      <label for="swap-friday">Do this workout instead today</label>
+      <select id="swap-friday" class="swap-select">
+        
+        <option value="">--Select--</option>
+        <option value="monday.html">Monday (Lower A)</option>
+        <option value="tuesday.html">Tuesday (Upper Push)</option>
+        <option value="wednesday.html">Wednesday (Recovery)</option>
+        <option value="thursday.html">Thursday (Lower B)</option>
+        <option value="saturday.html">Saturday (Sprints & Core)</option>
+        <option value="shoulders-triceps.html">Shoulders & Triceps</option>
+        <option value="featured.html">Featured Workouts</option>
+      
+      </select>
+      <div class="move-workout-actions">
+        <button type="button" class="swap-open-btn">Open selection</button>
+        <button type="button" class="swap-save-btn">Save my choice</button>
+        <button type="button" class="swap-clear-btn">Clear saved swap</button>
+      </div>
+      <div class="swap-status"></div>
+    </div>
+    <div class="original-workout">
+<!-- Exercises -->
+    <div class="exercise">
+      <h4>Dead Hang (30&nbsp;sec)</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="fri-deadhang-complete"> Completed</label>
+        <label>Time (sec): <input type="number" data-key="fri-deadhang-time"></label>
+        <label>Energy (1–10): <input type="number" data-key="fri-deadhang-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="fri-deadhang-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=dead+hang+exercise" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=dead+hang" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Assisted Pull‑Up Machine</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="fri-assist-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="fri-assist-reps"></label>
+        <label>Assistance (lbs): <input type="number" data-key="fri-assist-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="fri-assist-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="fri-assist-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=assisted+pull+up+machine" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=assisted+pull+up+machine" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Scapular Pull‑Up</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="fri-scap-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="fri-scap-reps"></label>
+        <label>Energy (1–10): <input type="number" data-key="fri-scap-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="fri-scap-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=scapular+pull+up" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=scapular+pull+up" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Seated Cable Row</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="fri-row-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="fri-row-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="fri-row-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="fri-row-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="fri-row-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=seated+cable+row" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=seated+cable+row" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Single Arm Dumbbell Row</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="fri-dumbrow-complete"> Completed</label>
+        <label>Reps (per arm): <input type="number" data-key="fri-dumbrow-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="fri-dumbrow-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="fri-dumbrow-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="fri-dumbrow-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=single+arm+dumbbell+row" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=single+arm+dumbbell+row" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Dumbbell Shoulder Press</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="fri-shoulderpress-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="fri-shoulderpress-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="fri-shoulderpress-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="fri-shoulderpress-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="fri-shoulderpress-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=dumbbell+shoulder+press" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=dumbbell+shoulder+press" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Lateral Raise</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="fri-lateral-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="fri-lateral-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="fri-lateral-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="fri-lateral-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="fri-lateral-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=lateral+raise+exercise" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=lateral+raise" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Hammer Curl</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="fri-hammer-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="fri-hammer-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="fri-hammer-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="fri-hammer-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="fri-hammer-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=hammer+curls" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=hammer+curl" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Overhead Triceps Extension</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="fri-overheadtri-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="fri-overheadtri-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="fri-overheadtri-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="fri-overheadtri-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="fri-overheadtri-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=overhead+tricep+extension" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=overhead+triceps+extension" target="_blank">🖼️ Images</a>
+    </div>
+    <!-- Summary -->
+    <div id="daily-summary" class="summary"></div>
+</div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pilates Core & Mobility — Monikita’s Fitness App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Monikita’s Fitness App 💪</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="advisor.html">What should I do today?</a>
+      <a href="featured.html">Featured</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Pilates Core & Mobility</h2>
+    <p>Pilates‑style core training emphasises controlled movement, balance and flexibility. The American College of Sports Medicine lists balance and core training as one of the top fitness trends for 2026【195468859020706†L84-L168】. This session improves posture, coordination and mental focus.</p>
+    <!-- Exercises -->
+    <div class="exercise">
+      <h4>Hundred (Pilates)</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="pilates-hundred-complete"> Completed</label>
+        <label>Duration (seconds): <input type="number" data-key="pilates-hundred-duration"></label>
+        <label>Energy (1–10): <input type="number" data-key="pilates-hundred-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="pilates-hundred-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=pilates+hundred+exercise" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=pilates+hundred" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Single Leg Stretch</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="pilates-single-complete"> Completed</label>
+        <label>Reps (per side): <input type="number" data-key="pilates-single-reps"></label>
+        <label>Energy (1–10): <input type="number" data-key="pilates-single-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="pilates-single-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=pilates+single+leg+stretch" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=pilates+single+leg+stretch" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Cat‑Cow & Downward Dog Flow</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="pilates-flow-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="pilates-flow-reps"></label>
+        <label>Energy (1–10): <input type="number" data-key="pilates-flow-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="pilates-flow-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=cat+cow+downward+dog+flow" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=cat+cow+downward+dog" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Swimming (Prone opposite limb lift)</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="pilates-swimming-complete"> Completed</label>
+        <label>Duration (seconds): <input type="number" data-key="pilates-swimming-duration"></label>
+        <label>Energy (1–10): <input type="number" data-key="pilates-swimming-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="pilates-swimming-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=pilates+swimming+exercise" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=pilates+swimming" target="_blank">🖼️ Images</a>
+    </div>
+    <!-- Summary -->
+    <div id="daily-summary" class="summary"></div>
+  </main>
+</body>
+</html>

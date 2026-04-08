@@ -1,153 +1,295 @@
-
-:root{
-  --ink:#0f172a; --muted:#475569; --line:#dbe4f0; --card:#fff; --soft:#eef2ff;
-  --shadow:0 12px 28px rgba(2,6,23,.08); --ok:#dcfce7; --okline:#86efac;
-  --warn:#fef3c7; --warnline:#f59e0b; --accent:#4338ca;
-}
-*{box-sizing:border-box}
-body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:linear-gradient(180deg,#eef4ff,#f8fafc);color:var(--ink)}
-.wrap{max-width:1180px;margin:0 auto;padding:20px}
-.hero{background:linear-gradient(135deg,#0f172a,#1f2a44 55%,#111827);color:#fff;border-radius:28px;padding:28px;box-shadow:var(--shadow);margin-bottom:20px}
-h1{margin:0 0 8px;font-size:34px;line-height:1.1}
-h2{margin:0 0 12px;font-size:24px}
-h3{margin:0;font-size:19px}
-p{margin:0 0 10px}
-.small{color:var(--muted);font-size:14px}
-.grid{display:grid;gap:16px}
-.days-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow)}
-.day-link{text-decoration:none;color:inherit}
-.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--soft);color:#4338ca;font-size:12px;font-weight:700;margin-bottom:10px}
-.back{display:inline-block;margin-bottom:16px;text-decoration:none;font-weight:700;color:#4338ca}
-.note{padding:14px;border-radius:16px;background:var(--soft);border:1px solid var(--line)}
-.note.ok{background:var(--ok);border-color:var(--okline)}
-.note.warn{background:var(--warn);border-color:var(--warnline)}
-.exercise{border:1px solid var(--line);border-radius:16px;padding:14px;background:#fcfdff;margin-top:12px}
-.exercise-name{font-weight:800;font-size:17px}
-.exercise-meta{color:var(--muted);font-size:14px}
-.checkline{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:14px;margin-bottom:6px}
-.links{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-.links a,.pill-link,.swap-btn{text-decoration:none;padding:8px 10px;border-radius:999px;background:var(--soft);color:#4338ca;font-weight:700;font-size:13px;display:inline-block;border:none;cursor:pointer}
-.entry-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}
-.entry-grid label,.form-grid label,.swap-grid label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
-.entry-grid input,.form-grid input,.form-grid select,.form-grid textarea,.swap-grid select{width:100%;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:#fff;font:inherit;color:var(--ink)}
-.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.summary .mini{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
-.footer{margin:24px 0 8px;color:var(--muted);font-size:13px;text-align:center}
-button.btn{border:none;border-radius:999px;padding:10px 14px;font-weight:700;cursor:pointer;background:#0f172a;color:#fff}
-.controls{display:flex;gap:10px;flex-wrap:wrap}
-.topnav{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 16px}
-.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.swap-grid{display:grid;grid-template-columns:1.2fr auto auto;gap:10px;align-items:end}
-.result-title{font-size:22px;font-weight:800;margin-bottom:6px}
-.checklist{margin:8px 0 0 18px}
-@media (max-width:900px){
-  .days-grid,.summary,.entry-grid,.form-grid,.swap-grid{grid-template-columns:1fr}
-  .wrap{padding:16px}
-  h1{font-size:28px}
+/* Global styling for Monikita’s Fitness App */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #333;
 }
 
-
-/* Unified premium form styling across all pages */
-.entry-grid input,
-.form-grid input,
-.form-grid select,
-.form-grid textarea,
-.swap-grid select,
-.swap-grid input,
-.swap-grid textarea,
-select,
-input[type="text"],
-input[type="number"],
-input[type="date"],
-textarea {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 100%;
-  min-height: 56px;
-  padding: 14px 16px;
-  border-radius: 18px;
-  border: 2px solid #d8dfeb;
-  background: #ffffff;
-  color: #0f172a;
-  font-size: 18px;
-  line-height: 1.2;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+header {
+  background-color: #0d6efd;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-select {
-  background-image:
-    linear-gradient(45deg, transparent 50%, #475569 50%),
-    linear-gradient(135deg, #475569 50%, transparent 50%);
-  background-position:
-    calc(100% - 22px) calc(50% - 3px),
-    calc(100% - 16px) calc(50% - 3px);
-  background-size: 6px 6px, 6px 6px;
-  background-repeat: no-repeat;
-  padding-right: 42px;
+header h1 {
+  margin: 0;
+  font-size: 1.25rem;
 }
 
-.entry-grid input::placeholder,
-.form-grid input::placeholder,
-.form-grid textarea::placeholder,
-.swap-grid input::placeholder,
-textarea::placeholder {
-  color: #94a3b8;
+nav a {
+  color: white;
+  margin-left: 1rem;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-.entry-grid input:focus,
-.form-grid input:focus,
-.form-grid select:focus,
-.form-grid textarea:focus,
-.swap-grid select:focus,
-.swap-grid input:focus,
-.swap-grid textarea:focus,
-select:focus,
-input[type="text"]:focus,
-input[type="number"]:focus,
-input[type="date"]:focus,
-textarea:focus {
-  outline: none;
-  border-color: #818cf8;
-  box-shadow: 0 0 0 4px rgba(99,102,241,.12);
+nav a:hover {
+  text-decoration: underline;
 }
 
-.swap-btn,
-button.btn,
-button.secondary {
-  min-height: 56px;
-  padding: 14px 18px;
-  border-radius: 18px;
-  font-size: 17px;
+main {
+  padding: 1rem;
 }
 
-.checkline input[type="checkbox"]{
-  width: 28px;
-  height: 28px;
-  min-height: 28px;
+/* Card layout for home page */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.card {
+  background-color: white;
+  border: 1px solid #ddd;
   border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: center;
 }
 
-.entry-grid label,
-.form-grid label,
-.swap-grid label {
-  font-size: 15px;
-  font-weight: 600;
+.card h3 {
+  margin-top: 0;
 }
 
-@media (max-width:900px){
-  .entry-grid input,
-  .form-grid input,
-  .form-grid select,
-  .form-grid textarea,
-  .swap-grid select,
-  .swap-grid input,
-  .swap-grid textarea,
-  select,
-  input[type="text"],
-  input[type="number"],
-  input[type="date"],
-  textarea {
-    font-size: 17px;
+.card a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #0d6efd;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.card a:hover {
+  background-color: #0b5ed7;
+}
+
+/* Workout page styling */
+.exercise {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  background-color: white;
+}
+
+.exercise h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.fields label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+}
+
+.fields input[type="number"],
+.fields input[type="text"],
+.fields input[type="date"],
+.fields select {
+  padding: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  min-width: 80px;
+}
+
+.fields input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+.exercise a {
+  margin-right: 0.5rem;
+  font-size: 0.85rem;
+}
+
+/* Summary section */
+.summary {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.summary span {
+  font-weight: bold;
+}
+
+/* Move workout section */
+.move-workout {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  border: 1px dashed #6c757d;
+  border-radius: 8px;
+  background-color: #e9ecef;
+}
+
+.move-workout select {
+  padding: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.move-workout button {
+  margin-left: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.move-workout button:hover {
+  background-color: #0b5ed7;
+}
+
+/* Advisor page */
+.advisor-form {
+  max-width: 600px;
+  margin: auto;
+}
+
+.advisor-form label {
+  display: block;
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+.advisor-form input,
+.advisor-form select,
+.advisor-form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-top: 0.25rem;
+}
+
+.advisor-form button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.advisor-form button:hover {
+  background-color: #0b5ed7;
+}
+
+.advisor-result {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border: 1px solid #28a745;
+  border-radius: 8px;
+  background-color: #d4edda;
+  color: #155724;
+}
+
+/* Swap assignment fixes */
+.move-workout-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+.primary-link,
+.secondary-btn,
+.swap-open-btn,
+.swap-save-btn,
+.swap-clear-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:48px;
+  padding:0.75rem 1rem;
+  border-radius:14px;
+  border:none;
+  text-decoration:none;
+  cursor:pointer;
+  font-weight:700;
+}
+.swap-open-btn,
+.primary-link{
+  background:#4338ca;
+  color:#fff;
+}
+.swap-save-btn{
+  background:#e0e7ff;
+  color:#4338ca;
+}
+.swap-clear-btn,
+.secondary-btn{
+  background:#fff;
+  color:#333;
+  border:1px solid #d0d7e2;
+}
+.swap-status{
+  margin-top:12px;
+}
+.swap-inline-note{
+  font-size:0.95rem;
+  color:#475569;
+}
+.swap-banner{
+  background:#ecfdf5;
+  border:1px solid #86efac;
+  color:#14532d;
+  padding:1rem;
+  border-radius:16px;
+}
+.swap-banner h3{
+  margin:0.35rem 0;
+}
+.swap-banner-label{
+  font-size:0.85rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.04em;
+}
+.swap-banner-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+.card-swapped{
+  border-color:#818cf8;
+  box-shadow:0 4px 14px rgba(67,56,202,.12);
+}
+.card-swapped h3{
+  color:#312e81;
+}
+@media (max-width: 640px){
+  .move-workout-actions,
+  .swap-banner-actions{
+    flex-direction:column;
+  }
+  .primary-link,
+  .secondary-btn,
+  .swap-open-btn,
+  .swap-save-btn,
+  .swap-clear-btn{
+    width:100%;
   }
 }

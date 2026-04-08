@@ -1,10 +1,107 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Monikita’s Fitness App — Saturday</title><link rel="stylesheet" href="style.css"></head><body><div class="wrap"><div class="topnav"><a class="pill-link" href="index.html">Home</a><a class="pill-link" href="advisor.html">What should I do today?</a><a class="pill-link" href="shoulders-triceps.html">Shoulders + Triceps</a></div><a class="back" href="index.html">← Back to main page</a><section class="hero"><h1>Monikita’s Fitness App 💪</h1><p>Saturday — Sprint #3 + Core</p><p>Conditioning and trunk work</p></section><section class="card" style="margin-top:16px;"><h2>Move this workout around 🔄</h2><div class="note warn">If this day no longer makes sense for your body, swap into a better session. Example: Sunday can shift into Upper Pull or Shoulders + Triceps.</div><div class="swap-grid" style="margin-top:14px;"><label><span>Do this workout instead today</span><select id="swapSelect" data-daykey="Saturday — Sprint #3 + Core"><option value="">Choose a workout</option>
-<option value="monday.html">Lower Body A</option>
-<option value="thursday.html">Lower Body B</option>
-<option value="tuesday.html">Upper Push</option>
-<option value="friday.html">Upper Pull</option>
-<option value="shoulders-triceps.html">Shoulders + Triceps</option>
-<option value="saturday.html">Sprint + Core</option>
-<option value="wednesday.html">Recovery</option>
-<option value="advisor.html">Ask the advisor first</option>
-</select></label><button id="swapGo" class="swap-btn">Open selection</button><button id="swapSave" class="swap-btn">Save my choice</button></div><div id="swapSaved" class="small" style="margin-top:10px;"></div><div class="links" style="margin-top:12px;"><a href="advisor.html">Not sure? Ask the advisor</a></div></section><section class="card" style="margin-top:16px;"><div class="controls"><button class="btn" onclick="resetDay()">Reset this day</button></div><div class="summary" style="margin-top:14px;"><div class="mini"><strong>Completed</strong><div id="completedCount">0 / 0</div></div><div class="mini"><strong>Avg effort</strong><div id="avgEffort">—</div></div><div class="mini"><strong>Avg energy</strong><div id="avgEnergy">—</div></div></div></section><section class="card" style="margin-top:16px;"><h2>Workout</h2><div class="exercise"><div class="checkline"><input type="checkbox" class="exercise-checkbox" data-day="Saturday — Sprint #3 + Core" data-exercise="Sprint Intervals"><span>Mark completed</span></div><div class="exercise-name">Sprint Intervals</div><div class="exercise-meta">5–8 rounds • 20–30 sec hard + 90 sec walk</div><div class="entry-grid"><label><span>Reps</span><input type="text" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Sprint Intervals" data-field="reps" placeholder="10 / 9 / 8"></label><label><span>Weight used</span><input type="text" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Sprint Intervals" data-field="weight" placeholder="50 lb"></label><label><span>Effort (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Sprint Intervals" data-field="effort" placeholder="8"></label><label><span>Energy (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Sprint Intervals" data-field="energy" placeholder="7"></label></div><div class="links"><a href="https://www.youtube.com/results?search_query=treadmill+sprint+intervals+proper+form" target="_blank" rel="noopener">🎥 Video</a><a href="https://www.google.com/search?tbm=isch&q=treadmill+sprint+intervals" target="_blank" rel="noopener">🖼️ Images</a></div></div><div class="exercise"><div class="checkline"><input type="checkbox" class="exercise-checkbox" data-day="Saturday — Sprint #3 + Core" data-exercise="Dead Bugs"><span>Mark completed</span></div><div class="exercise-name">Dead Bugs</div><div class="exercise-meta">3 rounds</div><div class="entry-grid"><label><span>Reps</span><input type="text" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Dead Bugs" data-field="reps" placeholder="10 / 9 / 8"></label><label><span>Weight used</span><input type="text" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Dead Bugs" data-field="weight" placeholder="50 lb"></label><label><span>Effort (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Dead Bugs" data-field="effort" placeholder="8"></label><label><span>Energy (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Dead Bugs" data-field="energy" placeholder="7"></label></div><div class="links"><a href="https://www.youtube.com/results?search_query=dead+bug+exercise+proper+form" target="_blank" rel="noopener">🎥 Video</a><a href="https://www.google.com/search?tbm=isch&q=dead+bug+exercise+form" target="_blank" rel="noopener">🖼️ Images</a></div></div><div class="exercise"><div class="checkline"><input type="checkbox" class="exercise-checkbox" data-day="Saturday — Sprint #3 + Core" data-exercise="Planks"><span>Mark completed</span></div><div class="exercise-name">Planks</div><div class="exercise-meta">3 rounds</div><div class="entry-grid"><label><span>Reps</span><input type="text" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Planks" data-field="reps" placeholder="10 / 9 / 8"></label><label><span>Weight used</span><input type="text" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Planks" data-field="weight" placeholder="50 lb"></label><label><span>Effort (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Planks" data-field="effort" placeholder="8"></label><label><span>Energy (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Planks" data-field="energy" placeholder="7"></label></div><div class="links"><a href="https://www.youtube.com/results?search_query=front+plank+proper+form" target="_blank" rel="noopener">🎥 Video</a><a href="https://www.google.com/search?tbm=isch&q=front+plank+form" target="_blank" rel="noopener">🖼️ Images</a></div></div><div class="exercise"><div class="checkline"><input type="checkbox" class="exercise-checkbox" data-day="Saturday — Sprint #3 + Core" data-exercise="Cable Crunches"><span>Mark completed</span></div><div class="exercise-name">Cable Crunches</div><div class="exercise-meta">3 rounds</div><div class="entry-grid"><label><span>Reps</span><input type="text" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Cable Crunches" data-field="reps" placeholder="10 / 9 / 8"></label><label><span>Weight used</span><input type="text" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Cable Crunches" data-field="weight" placeholder="50 lb"></label><label><span>Effort (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Cable Crunches" data-field="effort" placeholder="8"></label><label><span>Energy (1–10)</span><input type="number" min="1" max="10" class="log-input" data-day="Saturday — Sprint #3 + Core" data-exercise="Cable Crunches" data-field="energy" placeholder="7"></label></div><div class="links"><a href="https://www.youtube.com/results?search_query=cable+crunch+proper+form" target="_blank" rel="noopener">🎥 Video</a><a href="https://www.google.com/search?tbm=isch&q=cable+crunch+form" target="_blank" rel="noopener">🖼️ Images</a></div></div></section><section class="card" style="margin-top:16px;"><h2>Finisher / Notes</h2><div class="note">Conditioning + core only.</div></section></div><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saturday — Sprints & Core — Monikita’s Fitness App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body data-day-slot="saturday">
+  <header>
+    <h1>Monikita’s Fitness App 💪</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="advisor.html">What should I do today?</a>
+    </nav>
+  </header>
+  <main>
+    <h2 data-page-title="Saturday — Sprints & Core">Saturday — Sprints & Core</h2>
+    <p>Get your conditioning work in with sprint intervals and finish with a core circuit.</p>
+    <!-- Move workout section -->
+    
+    <div class="move-workout">
+      <label for="swap-saturday">Do this workout instead today</label>
+      <select id="swap-saturday" class="swap-select">
+        
+        <option value="">--Select--</option>
+        <option value="monday.html">Monday (Lower A)</option>
+        <option value="tuesday.html">Tuesday (Upper Push)</option>
+        <option value="wednesday.html">Wednesday (Recovery)</option>
+        <option value="thursday.html">Thursday (Lower B)</option>
+        <option value="friday.html">Friday (Upper Pull)</option>
+        <option value="shoulders-triceps.html">Shoulders & Triceps</option>
+        <option value="featured.html">Featured Workouts</option>
+      
+      </select>
+      <div class="move-workout-actions">
+        <button type="button" class="swap-open-btn">Open selection</button>
+        <button type="button" class="swap-save-btn">Save my choice</button>
+        <button type="button" class="swap-clear-btn">Clear saved swap</button>
+      </div>
+      <div class="swap-status"></div>
+    </div>
+    <div class="original-workout">
+<!-- Exercises -->
+    <div class="exercise">
+      <h4>Dead Hang (30&nbsp;sec)</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="sat-deadhang-complete"> Completed</label>
+        <label>Time (sec): <input type="number" data-key="sat-deadhang-time"></label>
+        <label>Energy (1–10): <input type="number" data-key="sat-deadhang-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="sat-deadhang-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=dead+hang+exercise" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=dead+hang+exercise" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Sprints (30&nbsp;sec on / 90&nbsp;sec off × 5–6)</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="sat-sprint-complete"> Completed</label>
+        <label>Intervals completed: <input type="number" data-key="sat-sprint-intervals"></label>
+        <label>Energy (1–10): <input type="number" data-key="sat-sprint-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="sat-sprint-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=treadmill+sprint+interval+workout" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=treadmill+sprint+workout" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Plank Variations</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="sat-plank-complete"> Completed</label>
+        <label>Time (sec): <input type="number" data-key="sat-plank-time"></label>
+        <label>Energy (1–10): <input type="number" data-key="sat-plank-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="sat-plank-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=plank+variations" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=plank+variations" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Hanging Knee Raise</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="sat-knee-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="sat-knee-reps"></label>
+        <label>Energy (1–10): <input type="number" data-key="sat-knee-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="sat-knee-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=hanging+knee+raise" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=hanging+knee+raise" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Cable Crunch or Reverse Crunch</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="sat-crunch-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="sat-crunch-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="sat-crunch-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="sat-crunch-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="sat-crunch-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=cable+crunch+exercise" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=cable+crunch" target="_blank">🖼️ Images</a>
+    </div>
+    <!-- Summary -->
+    <div id="daily-summary" class="summary"></div>
+</div>
+  </main>
+</body>
+</html>

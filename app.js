@@ -1,79 +1,272 @@
 
-const STORAGE_KEY = "monikita-fitness-app-v3";
-function loadState(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}");}catch(e){return {};}}
-function saveState(state){localStorage.setItem(STORAGE_KEY, JSON.stringify(state));}
-function ensureState(){const s=loadState(); s.exerciseChecks=s.exerciseChecks||{}; s.exerciseLogs=s.exerciseLogs||{}; s.advisorHistory=s.advisorHistory||[]; s.daySwapHistory=s.daySwapHistory||{}; return s;}
-function exKey(el){return (el.dataset.day||"unknown")+"|"+(el.dataset.exercise||"unknown");}
-function applyExerciseState(){
-  const s=ensureState();
-  document.querySelectorAll(".exercise-checkbox").forEach(cb=>{const k=exKey(cb); if(s.exerciseChecks[k]===true) cb.checked=true;});
-  document.querySelectorAll(".log-input").forEach(inp=>{const k=exKey(inp), f=inp.dataset.field; if(s.exerciseLogs[k]&&s.exerciseLogs[k][f]!==undefined) inp.value=s.exerciseLogs[k][f];});
-  const swapSelect=document.getElementById("swapSelect"), swapSaved=document.getElementById("swapSaved");
-  if(swapSelect){
-    const dayKey=swapSelect.dataset.daykey;
-    if(s.daySwapHistory[dayKey]) swapSelect.value=s.daySwapHistory[dayKey];
-    if(s.daySwapHistory[dayKey] && swapSaved) swapSaved.textContent="Saved swap choice: "+swapSelect.options[swapSelect.selectedIndex].text;
+const STORAGE_PREFIX = "monikitaFitnessApp:";
+const SWAP_KEY = STORAGE_PREFIX + "dayAssignments";
+
+function safeJsonParse(value, fallback) {
+  try { return JSON.parse(value); } catch (e) { return fallback; }
+}
+
+function getAssignments() {
+  return safeJsonParse(localStorage.getItem(SWAP_KEY), {});
+}
+
+function saveAssignments(assignments) {
+  localStorage.setItem(SWAP_KEY, JSON.stringify(assignments));
+}
+
+function saveFormValue(input) {
+  const key = input.dataset.key;
+  if (!key) return;
+  const value = input.type === "checkbox" ? input.checked : input.value;
+  localStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(value));
+}
+
+function loadFormValue(input) {
+  const key = input.dataset.key;
+  if (!key) return;
+  const raw = localStorage.getItem(STORAGE_PREFIX + key);
+  if (raw === null) return;
+  const value = safeJsonParse(raw, null);
+  if (value === null) return;
+  if (input.type === "checkbox") input.checked = Boolean(value);
+  else input.value = value;
+}
+
+function updateSummary() {
+  const summaryEl = document.getElementById("daily-summary");
+  if (!summaryEl) return;
+  const checkboxInputs = document.querySelectorAll('input[type="checkbox"][data-key]');
+  const total = checkboxInputs.length;
+  let completed = 0;
+  checkboxInputs.forEach(cb => { if (cb.checked) completed++; });
+
+  let energySum = 0, energyCount = 0, effortSum = 0, effortCount = 0;
+  document.querySelectorAll('input[data-type="energy"]').forEach(input => {
+    const val = parseFloat(input.value);
+    if (!isNaN(val)) { energySum += val; energyCount++; }
+  });
+  document.querySelectorAll('input[data-type="effort"]').forEach(input => {
+    const val = parseFloat(input.value);
+    if (!isNaN(val)) { effortSum += val; effortCount++; }
+  });
+
+  const energyAvg = energyCount ? (energySum / energyCount).toFixed(1) : "—";
+  const effortAvg = effortCount ? (effortSum / effortCount).toFixed(1) : "—";
+  summaryEl.innerHTML = `
+    <div><strong>Completed exercises:</strong> <span>${completed}/${total}</span></div>
+    <div><strong>Average energy:</strong> <span>${energyAvg}</span></div>
+    <div><strong>Average effort:</strong> <span>${effortAvg}</span></div>
+  `;
+}
+
+function getCurrentFileName() {
+  const path = window.location.pathname.split("/").pop();
+  return path || "index.html";
+}
+
+function slotLabel(slot) {
+  const map = {
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
+    "shoulders-triceps": "Shoulders + Triceps"
+  };
+  return map[slot] || slot;
+}
+
+function currentDaySlot() {
+  const bodySlot = document.body.dataset.daySlot;
+  if (bodySlot) return bodySlot;
+  return null;
+}
+
+function currentSelectOption(select) {
+  if (!select) return null;
+  const opt = select.options[select.selectedIndex];
+  if (!opt || !opt.value) return null;
+  return {
+    page: opt.value,
+    label: opt.dataset.label || opt.textContent.trim()
+  };
+}
+
+function syncSelectFromSavedAssignment() {
+  const slot = currentDaySlot();
+  const select = document.querySelector(".swap-select");
+  if (!slot || !select) return;
+  const assignments = getAssignments();
+  const saved = assignments[slot];
+  if (saved) select.value = saved.page;
+}
+
+function updateSwapStatusUI() {
+  const slot = currentDaySlot();
+  const statusEl = document.querySelector(".swap-status");
+  const originalSections = document.querySelectorAll(".original-workout");
+  const titleEl = document.querySelector("[data-page-title]");
+  const assignments = getAssignments();
+  const currentPage = getCurrentFileName();
+
+  if (!slot || !statusEl) return;
+  const saved = assignments[slot];
+  const baseTitle = titleEl ? titleEl.dataset.pageTitle : "";
+
+  if (saved && saved.page && saved.page !== currentPage) {
+    document.body.classList.add("has-swap-assignment");
+    statusEl.innerHTML = `
+      <div class="swap-banner">
+        <div class="swap-banner-label">Current assignment for ${slotLabel(slot)}</div>
+        <h3>${saved.label}</h3>
+        <p>You reassigned this day. The original workout is hidden so the screen matches your saved choice.</p>
+        <div class="swap-banner-actions">
+          <a class="primary-link" href="${saved.page}">Open ${saved.label}</a>
+          <button type="button" class="secondary-btn" onclick="clearDaySwap('${slot}')">Clear swap</button>
+        </div>
+      </div>
+    `;
+    originalSections.forEach(el => el.style.display = "none");
+    if (titleEl && baseTitle) titleEl.textContent = `${baseTitle} → ${saved.label}`;
+  } else {
+    document.body.classList.remove("has-swap-assignment");
+    statusEl.innerHTML = saved
+      ? `<div class="swap-inline-note">Saved choice: <strong>${saved.label}</strong></div>`
+      : `<div class="swap-inline-note">No saved swap for this day yet.</div>`;
+    originalSections.forEach(el => el.style.display = "");
+    if (titleEl && baseTitle) titleEl.textContent = baseTitle;
   }
-  updatePageSummary();
 }
-function updatePageSummary(){
-  const checks=[...document.querySelectorAll(".exercise-checkbox")];
-  const done=checks.filter(x=>x.checked).length, total=checks.length;
-  const c=document.getElementById("completedCount"); if(c) c.textContent=done+" / "+total;
-  const efforts=[...document.querySelectorAll('.log-input[data-field="effort"]')].map(x=>parseFloat(x.value)).filter(x=>!isNaN(x));
-  const energy=[...document.querySelectorAll('.log-input[data-field="energy"]')].map(x=>parseFloat(x.value)).filter(x=>!isNaN(x));
-  const ae=document.getElementById("avgEffort"); if(ae) ae.textContent=efforts.length?(efforts.reduce((a,b)=>a+b,0)/efforts.length).toFixed(1):"—";
-  const ag=document.getElementById("avgEnergy"); if(ag) ag.textContent=energy.length?(energy.reduce((a,b)=>a+b,0)/energy.length).toFixed(1):"—";
+
+function saveCurrentDaySwap() {
+  const slot = currentDaySlot();
+  const select = document.querySelector(".swap-select");
+  if (!slot || !select) return;
+  const selected = currentSelectOption(select);
+  if (!selected) {
+    clearDaySwap(slot);
+    return;
+  }
+  const assignments = getAssignments();
+  assignments[slot] = selected;
+  saveAssignments(assignments);
+  updateSwapStatusUI();
+  updateHomeAssignments();
 }
-function resetDay(){
-  if(!confirm("Reset this day's tracking?")) return;
-  const s=ensureState();
-  document.querySelectorAll(".exercise-checkbox,.log-input").forEach(el=>{const k=exKey(el); delete s.exerciseChecks[k]; delete s.exerciseLogs[k]; if(el.type==="checkbox") el.checked=false; else el.value="";});
-  saveState(s); updatePageSummary();
+
+function openCurrentDaySwap() {
+  const select = document.querySelector(".swap-select");
+  const selected = currentSelectOption(select);
+  if (!selected) return;
+  window.location.href = selected.page;
 }
-function recommendationLink(dayName){
-  const m={"Monday":"monday.html","Tuesday":"tuesday.html","Wednesday":"wednesday.html","Thursday":"thursday.html","Friday":"friday.html","Saturday":"saturday.html","Sunday":"sunday.html","Upper Push":"tuesday.html","Upper Pull":"friday.html","Lower Body A":"monday.html","Lower Body B":"thursday.html","Sprint + Core":"saturday.html","Recovery":"wednesday.html","Rest":"sunday.html","Shoulders + Triceps":"shoulders-triceps.html"};
-  return m[dayName]||"index.html";
+
+function clearDaySwap(slotOverride) {
+  const slot = slotOverride || currentDaySlot();
+  if (!slot) return;
+  const assignments = getAssignments();
+  delete assignments[slot];
+  saveAssignments(assignments);
+  const select = document.querySelector(".swap-select");
+  if (select) select.value = "";
+  updateSwapStatusUI();
+  updateHomeAssignments();
 }
-function buildRecommendation(data){
-  const energy=Number(data.energy||0), soreness=data.soreness||"none", sick=data.sick, last=data.lastWorkout||"", fresh=data.upperLowerFresh||"", time=Number(data.timeAvailable||0);
-  let title="", reason="", day="", intensity="Normal", modifications=[];
-  if(sick==="yes"||energy<=3){day="Recovery"; title="Recovery day is the smart move"; reason="You either still feel sick or your energy is too low for quality training. Forcing a hard workout here usually backfires."; intensity="Low"; modifications=["20–30 minute walk","Mobility only","Dead hang optional if it feels good","Skip hard intervals"];}
-  else if(last.includes("Lower")||last.includes("Glute")||fresh==="upper"){day="Upper Pull"; title="Do an upper-body day today"; reason="You recently hit lower body, so the best practice is to avoid stacking leg fatigue and use your fresher upper body instead."; if(time>0&&time<40){day="Shoulders + Triceps"; reason+=" Since time is tight, shoulders + triceps is an easier focused session to complete well.";} if(soreness==="high"){intensity="Moderate"; modifications.push("Keep 1–2 reps in reserve on compounds");}}
-  else if(last.includes("Upper")||fresh==="lower"){day="Lower Body B"; title="Lower body is the best fit today"; reason="Your upper body was hit more recently, so a lower day balances the week better."; if(soreness==="high"){day="Recovery"; title="Recovery beats forced lower body today"; reason="High soreness plus recent training is a bad combo. Recover now so your next lower session is actually productive."; intensity="Low"; modifications=["Walk","Mobility","Glute activation only if it feels easy"];}}
-  else if(energy>=8&&soreness==="low"&&time>=30){day="Sprint + Core"; title="Good day for conditioning and core"; reason="Energy is solid and soreness is low, so a sprint/core day can fit well without derailing the week.";}
-  else {day="Shoulders + Triceps"; title="Shoulders + triceps is the safe default"; reason="When the picture is mixed, shoulders + triceps gives you a productive upper session without overloading sore legs.";}
-  if(time>0&&time<25&&day!=="Recovery"&&day!=="Rest"){modifications.push("Trim to the first 3–4 exercises only"); modifications.push("Skip optional finisher"); intensity=intensity==="Low"?"Low":"Efficient";}
-  if(data.missedWorkouts&&data.missedWorkouts.trim()) modifications.push("Do not try to cram every missed workout into one day");
-  return {title,reason,day,intensity,modifications};
+
+function updateHomeAssignments() {
+  const cards = document.querySelectorAll("[data-slot-card]");
+  if (!cards.length) return;
+  const assignments = getAssignments();
+  cards.forEach(card => {
+    const slot = card.dataset.slotCard;
+    const assigned = assignments[slot];
+    const labelEl = card.querySelector("[data-slot-label]");
+    const noteEl = card.querySelector("[data-slot-note]");
+    const openLink = card.querySelector("[data-slot-open]");
+    if (!labelEl || !noteEl || !openLink) return;
+    const defaultLabel = labelEl.dataset.defaultLabel || labelEl.textContent;
+    const defaultNote = noteEl.dataset.defaultNote || noteEl.textContent;
+    if (assigned && assigned.page) {
+      labelEl.textContent = `${slotLabel(slot)}: ${assigned.label}`;
+      noteEl.textContent = "Saved swap active";
+      openLink.href = assigned.page;
+      card.classList.add("card-swapped");
+    } else {
+      labelEl.textContent = defaultLabel;
+      noteEl.textContent = defaultNote;
+      openLink.href = openLink.dataset.defaultHref || openLink.getAttribute("href");
+      card.classList.remove("card-swapped");
+    }
+  });
 }
-function saveAdvisorResult(entry){const s=ensureState(); s.advisorHistory.unshift(entry); s.advisorHistory=s.advisorHistory.slice(0,10); saveState(s);}
-function renderAdvisorHistory(){
-  const box=document.getElementById("advisorHistory"); if(!box) return;
-  const s=ensureState();
-  if(!s.advisorHistory.length){box.innerHTML='<div class="note">No saved recommendations yet.</div>'; return;}
-  box.innerHTML=s.advisorHistory.map(item=>'<div class="note" style="margin-top:10px;"><strong>'+item.date+'</strong><br>Recommended: '+item.day+'<br>Why: '+item.title+'</div>').join("");
+
+function moveWorkout(selectEl) {
+  // Kept for backward compatibility if any onchange remains
+  if (!selectEl || !selectEl.value) return;
+  window.location.href = selectEl.value;
 }
-function runAdvisor(){
-  const form=document.getElementById("advisorForm"); if(!form) return;
-  const data=Object.fromEntries(new FormData(form).entries()); const rec=buildRecommendation(data); const result=document.getElementById("advisorResult"); const href=recommendationLink(rec.day);
-  result.innerHTML='<div class="note ok" style="margin-top:16px;"><div class="result-title">'+rec.title+'</div><p><strong>Recommended workout:</strong> '+rec.day+'</p><p><strong>Suggested intensity:</strong> '+rec.intensity+'</p><p>'+rec.reason+'</p>'+(rec.modifications.length?'<ul class="checklist">'+rec.modifications.map(x=>'<li>'+x+'</li>').join("")+'</ul>':'')+'<div class="links"><a href="'+href+'">Open recommended workout</a></div></div>';
-  saveAdvisorResult({date:new Date().toLocaleString(),day:rec.day,title:rec.title}); renderAdvisorHistory();
+
+function recommendWorkout() {
+  const resultContainer = document.getElementById('advisor-result');
+  if (!resultContainer) return;
+  const today = document.getElementById('advisor-today').value;
+  const last = document.getElementById('advisor-last').value;
+  const missed = document.getElementById('advisor-missed').value;
+  const time = document.getElementById('advisor-time').value;
+  const energy = parseInt(document.getElementById('advisor-energy').value, 10);
+  const effort = parseInt(document.getElementById('advisor-effort').value, 10);
+  const sick = document.getElementById('advisor-sick').value;
+  const fresh = document.getElementById('advisor-fresh').value;
+
+  let recommendation = '';
+  let page = '';
+  let note = '';
+  const isSick = sick === 'yes';
+
+  if (isSick || energy <= 4) {
+    recommendation = 'Recovery and Mobility';
+    page = 'wednesday.html';
+    note = 'Because you are sick or low energy, the best move is recovery, mobility, and a light walk.';
+  } else if (last.includes('Lower') || last.includes('Glute')) {
+    recommendation = fresh === 'upper' ? 'Upper Push (Chest / Shoulders / Triceps)' : 'Upper Pull (Back / Biceps / Shoulders)';
+    page = fresh === 'upper' ? 'tuesday.html' : 'friday.html';
+    note = 'You recently hit lower body, so give your legs more recovery and train upper body today.';
+  } else if (last.includes('Upper') || last.includes('Shoulder')) {
+    recommendation = fresh === 'lower' ? 'Lower Body A (Glutes / Hamstrings)' : 'Lower Body B (Quads / Glutes)';
+    page = fresh === 'lower' ? 'monday.html' : 'thursday.html';
+    note = 'Your upper body worked recently, so shifting to lower body keeps the week balanced.';
+  } else {
+    recommendation = 'Featured Workout';
+    page = 'featured.html';
+    note = 'You can plug in one of the featured trend-based workouts this week without replacing your main split.';
+  }
+
+  resultContainer.innerHTML = `<p><strong>Recommended workout:</strong> ${recommendation}</p><p>${note}</p><p><a href="${page}">Open workout</a></p>`;
+  resultContainer.style.display = 'block';
 }
-function openSwapTarget(){const select=document.getElementById("swapSelect"); if(!select||!select.value) return; window.location.href=select.value;}
-function saveSwapChoice(){const select=document.getElementById("swapSelect"), saved=document.getElementById("swapSaved"); if(!select) return; const s=ensureState(); const dayKey=select.dataset.daykey; s.daySwapHistory[dayKey]=select.value; saveState(s); if(saved) saved.textContent="Saved swap choice: "+select.options[select.selectedIndex].text;}
-document.addEventListener("change", function(e){
-  const t=e.target, s=ensureState();
-  if(t.matches(".exercise-checkbox")){s.exerciseChecks[exKey(t)]=t.checked; saveState(s); updatePageSummary();}
-  if(t.matches(".log-input")){const k=exKey(t), f=t.dataset.field; s.exerciseLogs[k]=s.exerciseLogs[k]||{}; s.exerciseLogs[k][f]=t.value; saveState(s); updatePageSummary();}
-});
-document.addEventListener("input", function(e){
-  const t=e.target; if(!t.matches(".log-input")) return;
-  const s=ensureState(), k=exKey(t), f=t.dataset.field; s.exerciseLogs[k]=s.exerciseLogs[k]||{}; s.exerciseLogs[k][f]=t.value; saveState(s); updatePageSummary();
-});
-document.addEventListener("DOMContentLoaded", function(){
-  applyExerciseState(); renderAdvisorHistory();
-  const btn=document.getElementById("advisorRun"); if(btn) btn.addEventListener("click", runAdvisor);
-  const swapGo=document.getElementById("swapGo"); if(swapGo) swapGo.addEventListener("click", openSwapTarget);
-  const swapSave=document.getElementById("swapSave"); if(swapSave) swapSave.addEventListener("click", saveSwapChoice);
-});
+
+function initialiseStorage() {
+  document.querySelectorAll('[data-key]').forEach(input => {
+    loadFormValue(input);
+    input.addEventListener('change', () => {
+      saveFormValue(input);
+      updateSummary();
+    });
+  });
+
+  const saveBtn = document.querySelector(".swap-save-btn");
+  const openBtn = document.querySelector(".swap-open-btn");
+  const clearBtn = document.querySelector(".swap-clear-btn");
+  if (saveBtn) saveBtn.addEventListener("click", saveCurrentDaySwap);
+  if (openBtn) openBtn.addEventListener("click", openCurrentDaySwap);
+  if (clearBtn) clearBtn.addEventListener("click", () => clearDaySwap());
+
+  syncSelectFromSavedAssignment();
+  updateSwapStatusUI();
+  updateHomeAssignments();
+  updateSummary();
+}
+
+document.addEventListener('DOMContentLoaded', initialiseStorage);

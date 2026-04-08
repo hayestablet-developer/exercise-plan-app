@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Long‑Length Glute Sculpt — Monikita’s Fitness App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Monikita’s Fitness App 💪</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="advisor.html">What should I do today?</a>
+      <a href="featured.html">Featured</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Long‑Length Glute Sculpt</h2>
+    <p>This featured session focuses on glute exercises that challenge the muscle in its lengthened position. Research suggests that deep hip‑flexion moves like Romanian deadlifts, Bulgarian split squats and deficit reverse lunges can stimulate more glute growth than short‑range movements【573209784149885†L493-L569】.</p>
+    <!-- Exercises -->
+    <div class="exercise">
+      <h4>Bulgarian Split Squat (each leg)</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="glute-bulg-complete"> Completed</label>
+        <label>Reps (per leg): <input type="number" data-key="glute-bulg-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="glute-bulg-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="glute-bulg-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="glute-bulg-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=bulgarian+split+squat+form" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=bulgarian+split+squat+form" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Romanian Deadlift</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="glute-rdl-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="glute-rdl-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="glute-rdl-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="glute-rdl-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="glute-rdl-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=romanian+deadlift+proper+form" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=romanian+deadlift+form" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Deficit Reverse Lunge</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="glute-deficit-complete"> Completed</label>
+        <label>Reps (per leg): <input type="number" data-key="glute-deficit-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="glute-deficit-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="glute-deficit-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="glute-deficit-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=deficit+reverse+lunge" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=deficit+reverse+lunge" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Hip Thrust (accessory)</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="glute-thrust-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="glute-thrust-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="glute-thrust-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="glute-thrust-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="glute-thrust-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=hip+thrust+exercise+form" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=hip+thrust+exercise+form" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Side‑lying Hip Abduction (Glute Medius)</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="glute-medius-complete"> Completed</label>
+        <label>Reps (per side): <input type="number" data-key="glute-medius-reps"></label>
+        <label>Weight (band/weights): <input type="text" data-key="glute-medius-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="glute-medius-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="glute-medius-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=side+lying+hip+abduction+glute+medius" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=side+lying+hip+abduction" target="_blank">🖼️ Images</a>
+    </div>
+    <!-- Summary -->
+    <div id="daily-summary" class="summary"></div>
+  </main>
+</body>
+</html>

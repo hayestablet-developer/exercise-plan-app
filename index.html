@@ -1,1 +1,66 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Monikita’s Fitness App</title><link rel="stylesheet" href="style.css"></head><body><div class="wrap"><div class="topnav"><a class="pill-link" href="index.html">Home</a><a class="pill-link" href="advisor.html">What should I do today?</a><a class="pill-link" href="shoulders-triceps.html">Shoulders + Triceps</a></div><section class="hero"><h1>Monikita’s Fitness App 💪</h1><p>Tap a day to open that workout. Each exercise has tracking plus video and image links. Use the advisor when real life scrambles the plan, or swap into shoulders + triceps when that is the best fit.</p></section><section class="grid days-grid"><a class="day-link" href="advisor.html"><div class="card"><div class="badge">Smart Flexibility</div><h3>What should I do today?</h3><p class="small">Tell the app what happened this week and get a best-practice recommendation.</p></div></a><a class="day-link" href="monday.html"><div class="card"><div class="badge">Workout Day</div><h3>Monday</h3><p class="small">Dead hang + glute and hamstring focus</p></div></a><a class="day-link" href="tuesday.html"><div class="card"><div class="badge">Workout Day</div><h3>Tuesday</h3><p class="small">Chest, shoulders, and triceps emphasis</p></div></a><a class="day-link" href="wednesday.html"><div class="card"><div class="badge">Recovery</div><h3>Wednesday</h3><p class="small">Reset day</p></div></a><a class="day-link" href="thursday.html"><div class="card"><div class="badge">Workout Day</div><h3>Thursday</h3><p class="small">Quad and glute focus</p></div></a><a class="day-link" href="friday.html"><div class="card"><div class="badge">Workout Day</div><h3>Friday</h3><p class="small">Back, biceps, and pull-up progress</p></div></a><a class="day-link" href="saturday.html"><div class="card"><div class="badge">Workout Day</div><h3>Saturday</h3><p class="small">Conditioning and trunk work</p></div></a><a class="day-link" href="sunday.html"><div class="card"><div class="badge">Recovery</div><h3>Sunday</h3><p class="small">Recovery matters</p></div></a><a class="day-link" href="shoulders-triceps.html"><div class="card"><div class="badge">Workout Day</div><h3>Shoulders + Triceps</h3><p class="small">Focused upper-body session for days you need a clean swap</p></div></a></section><div class="footer">Local phone/browser storage is enabled across pages.</div></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monikita’s Fitness App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Monikita’s Fitness App 💪</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="advisor.html">What should I do today?</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Weekly Plan</h2>
+    <div class="card-container">
+      <!-- Daily workouts -->
+      <div class="card" data-slot-card="monday">
+        <h3 data-slot-label data-default-label="Monday: Lower A + Sprint">Monday: Lower A + Sprint</h3>
+        <p data-slot-note data-default-note="Glutes & Hamstrings">Glutes & Hamstrings</p>
+        <a data-slot-open data-default-href="monday.html" href="monday.html">Open</a>
+      </div>
+      <div class="card" data-slot-card="tuesday">
+        <h3 data-slot-label data-default-label="Tuesday: Upper Push">Tuesday: Upper Push</h3>
+        <p data-slot-note data-default-note="Chest, Shoulders & Triceps + Pull‑Up Work">Chest, Shoulders & Triceps + Pull‑Up Work</p>
+        <a data-slot-open data-default-href="tuesday.html" href="tuesday.html">Open</a>
+      </div>
+      <div class="card" data-slot-card="wednesday">
+        <h3 data-slot-label data-default-label="Wednesday: Recovery & Mobility">Wednesday: Recovery & Mobility</h3>
+        <p data-slot-note data-default-note="Active Recovery & Pilates">Active Recovery & Pilates</p>
+        <a data-slot-open data-default-href="wednesday.html" href="wednesday.html">Open</a>
+      </div>
+      <div class="card" data-slot-card="thursday">
+        <h3 data-slot-label data-default-label="Thursday: Lower B + Sprint">Thursday: Lower B + Sprint</h3>
+        <p data-slot-note data-default-note="Quads & Glutes">Quads & Glutes</p>
+        <a data-slot-open data-default-href="thursday.html" href="thursday.html">Open</a>
+      </div>
+      <div class="card" data-slot-card="friday">
+        <h3 data-slot-label data-default-label="Friday: Upper Pull + Shoulders/Triceps">Friday: Upper Pull + Shoulders/Triceps</h3>
+        <p data-slot-note data-default-note="Back, Biceps & Shoulders">Back, Biceps & Shoulders</p>
+        <a data-slot-open data-default-href="friday.html" href="friday.html">Open</a>
+      </div>
+      <div class="card" data-slot-card="saturday">
+        <h3 data-slot-label data-default-label="Saturday: Sprints & Core">Saturday: Sprints & Core</h3>
+        <p data-slot-note data-default-note="Conditioning & Core">Conditioning & Core</p>
+        <a data-slot-open data-default-href="saturday.html" href="saturday.html">Open</a>
+      </div>
+      <div class="card" data-slot-card="sunday">
+        <h3 data-slot-label data-default-label="Sunday: Rest">Sunday: Rest</h3>
+        <p data-slot-note data-default-note="Full rest day">Full rest day</p>
+        <a data-slot-open data-default-href="sunday.html" href="sunday.html">Open</a>
+      </div>
+      <!-- Featured workouts section -->
+      <div class="card">
+        <h3>Featured Workouts</h3>
+        <p>Trending fitness sessions for this week</p>
+        <a href="featured.html">View</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
