@@ -206,90 +206,78 @@ main {
   color: #155724;
 }
 
-/* Swap assignment fixes */
-.move-workout-actions{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:12px;
+/* Saved swap fixes */
+.move-workout {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px dashed #cbd5e1;
+  border-radius: 16px;
+  background: #fff;
 }
-.primary-link,
-.secondary-btn,
-.swap-open-btn,
-.swap-save-btn,
-.swap-clear-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:48px;
-  padding:0.75rem 1rem;
-  border-radius:14px;
-  border:none;
-  text-decoration:none;
-  cursor:pointer;
-  font-weight:700;
+.swap-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #d8dfeb;
+  border-radius: 18px;
+  background: #fff;
+  font-size: 1.05rem;
+  margin-top: 0.5rem;
 }
-.swap-open-btn,
-.primary-link{
-  background:#4338ca;
-  color:#fff;
+.swap-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.9rem;
 }
-.swap-save-btn{
-  background:#e0e7ff;
-  color:#4338ca;
+.swap-open-btn, .swap-save-btn, .swap-clear-btn,
+.action-primary, .action-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0.85rem 1.15rem;
+  border-radius: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
 }
-.swap-clear-btn,
-.secondary-btn{
-  background:#fff;
-  color:#333;
-  border:1px solid #d0d7e2;
+.swap-open-btn, .action-primary {
+  background: #4338ca;
+  color: #fff;
 }
-.swap-status{
-  margin-top:12px;
+.swap-save-btn {
+  background: #e0e7ff;
+  color: #4338ca;
 }
-.swap-inline-note{
-  font-size:0.95rem;
-  color:#475569;
+.swap-clear-btn, .action-secondary {
+  background: #fff;
+  color: #334155;
+  border: 1px solid #cbd5e1;
 }
-.swap-banner{
-  background:#ecfdf5;
-  border:1px solid #86efac;
-  color:#14532d;
-  padding:1rem;
-  border-radius:16px;
+.swap-status { margin-top: 0.75rem; }
+.swap-note { color: #475569; font-size: 0.95rem; }
+.swap-banner {
+  background: #ecfdf5;
+  color: #14532d;
+  border: 1px solid #86efac;
+  border-radius: 16px;
+  padding: 1rem;
 }
-.swap-banner h3{
-  margin:0.35rem 0;
+.swap-banner-kicker {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
-.swap-banner-label{
-  font-size:0.85rem;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:0.04em;
+.card-swapped {
+  border-color: #818cf8;
+  box-shadow: 0 6px 18px rgba(67,56,202,.14);
 }
-.swap-banner-actions{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:12px;
-}
-.card-swapped{
-  border-color:#818cf8;
-  box-shadow:0 4px 14px rgba(67,56,202,.12);
-}
-.card-swapped h3{
-  color:#312e81;
-}
-@media (max-width: 640px){
-  .move-workout-actions,
-  .swap-banner-actions{
-    flex-direction:column;
-  }
-  .primary-link,
-  .secondary-btn,
-  .swap-open-btn,
-  .swap-save-btn,
-  .swap-clear-btn{
-    width:100%;
+.card-swapped h3 { color: #312e81; }
+
+@media (max-width: 640px) {
+  .swap-actions {
+    flex-direction: column;
   }
 }

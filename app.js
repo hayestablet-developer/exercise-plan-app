@@ -1,42 +1,54 @@
 
 const STORAGE_PREFIX = "monikitaFitnessApp:";
-const SWAP_KEY = STORAGE_PREFIX + "dayAssignments";
+const ASSIGNMENTS_KEY = STORAGE_PREFIX + "assignments";
 
-function safeJsonParse(value, fallback) {
-  try { return JSON.parse(value); } catch (e) { return fallback; }
-}
+const DAY_TITLES = {
+  "monday": "Monday — Lower Body A + Sprint",
+  "tuesday": "Tuesday — Upper Push + Pull‑Up Work",
+  "wednesday": "Wednesday — Recovery & Mobility",
+  "thursday": "Thursday — Lower Body B + Sprint",
+  "friday": "Friday — Upper Pull + Shoulders & Triceps",
+  "saturday": "Saturday — Sprints & Core",
+  "sunday": "Sunday — Rest Day",
+  "shoulders-triceps": "Shoulders & Triceps"
+};
 
-function getAssignments() {
-  return safeJsonParse(localStorage.getItem(SWAP_KEY), {});
+function loadAssignments() {
+  try {
+    return JSON.parse(localStorage.getItem(ASSIGNMENTS_KEY) || "{}");
+  } catch (e) {
+    return {};
+  }
 }
 
 function saveAssignments(assignments) {
-  localStorage.setItem(SWAP_KEY, JSON.stringify(assignments));
+  localStorage.setItem(ASSIGNMENTS_KEY, JSON.stringify(assignments));
 }
 
-function saveFormValue(input) {
+function saveInputValue(input) {
   const key = input.dataset.key;
   if (!key) return;
   const value = input.type === "checkbox" ? input.checked : input.value;
   localStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(value));
 }
 
-function loadFormValue(input) {
+function loadInputValue(input) {
   const key = input.dataset.key;
   if (!key) return;
   const raw = localStorage.getItem(STORAGE_PREFIX + key);
   if (raw === null) return;
-  const value = safeJsonParse(raw, null);
-  if (value === null) return;
-  if (input.type === "checkbox") input.checked = Boolean(value);
-  else input.value = value;
+  try {
+    const value = JSON.parse(raw);
+    if (input.type === "checkbox") input.checked = Boolean(value);
+    else input.value = value;
+  } catch (e) {}
 }
 
 function updateSummary() {
   const summaryEl = document.getElementById("daily-summary");
   if (!summaryEl) return;
+
   const checkboxInputs = document.querySelectorAll('input[type="checkbox"][data-key]');
-  const total = checkboxInputs.length;
   let completed = 0;
   checkboxInputs.forEach(cb => { if (cb.checked) completed++; });
 
@@ -53,194 +65,185 @@ function updateSummary() {
   const energyAvg = energyCount ? (energySum / energyCount).toFixed(1) : "—";
   const effortAvg = effortCount ? (effortSum / effortCount).toFixed(1) : "—";
   summaryEl.innerHTML = `
-    <div><strong>Completed exercises:</strong> <span>${completed}/${total}</span></div>
+    <div><strong>Completed exercises:</strong> <span>${completed}</span></div>
     <div><strong>Average energy:</strong> <span>${energyAvg}</span></div>
     <div><strong>Average effort:</strong> <span>${effortAvg}</span></div>
   `;
 }
 
-function getCurrentFileName() {
-  const path = window.location.pathname.split("/").pop();
-  return path || "index.html";
+function getPageFile() {
+  return window.location.pathname.split("/").pop() || "index.html";
 }
 
-function slotLabel(slot) {
-  const map = {
-    "monday": "Monday",
-    "tuesday": "Tuesday",
-    "wednesday": "Wednesday",
-    "thursday": "Thursday",
-    "friday": "Friday",
-    "saturday": "Saturday",
-    "sunday": "Sunday",
-    "shoulders-triceps": "Shoulders + Triceps"
-  };
-  return map[slot] || slot;
+function getDaySlot() {
+  return document.body.dataset.daySlot || "";
 }
 
-function currentDaySlot() {
-  const bodySlot = document.body.dataset.daySlot;
-  if (bodySlot) return bodySlot;
-  return null;
-}
-
-function currentSelectOption(select) {
-  if (!select) return null;
+function getCurrentSelection() {
+  const select = document.querySelector(".swap-select");
+  if (!select || !select.value) return null;
   const opt = select.options[select.selectedIndex];
-  if (!opt || !opt.value) return null;
   return {
     page: opt.value,
     label: opt.dataset.label || opt.textContent.trim()
   };
 }
 
-function syncSelectFromSavedAssignment() {
-  const slot = currentDaySlot();
-  const select = document.querySelector(".swap-select");
-  if (!slot || !select) return;
-  const assignments = getAssignments();
-  const saved = assignments[slot];
-  if (saved) select.value = saved.page;
+function getBaseTitle() {
+  const titleEl = document.querySelector("[data-page-title]");
+  if (!titleEl) return "";
+  return titleEl.dataset.pageTitle || titleEl.textContent.trim();
 }
 
-function updateSwapStatusUI() {
-  const slot = currentDaySlot();
-  const statusEl = document.querySelector(".swap-status");
-  const originalSections = document.querySelectorAll(".original-workout");
-  const titleEl = document.querySelector("[data-page-title]");
-  const assignments = getAssignments();
-  const currentPage = getCurrentFileName();
-
-  if (!slot || !statusEl) return;
+function applySavedSelectionToSelect() {
+  const slot = getDaySlot();
+  const select = document.querySelector(".swap-select");
+  if (!slot || !select) return;
+  const assignments = loadAssignments();
   const saved = assignments[slot];
-  const baseTitle = titleEl ? titleEl.dataset.pageTitle : "";
+  if (saved && saved.page) {
+    select.value = saved.page;
+  }
+}
 
-  if (saved && saved.page && saved.page !== currentPage) {
-    document.body.classList.add("has-swap-assignment");
-    statusEl.innerHTML = `
+function refreshAssignedUI() {
+  const slot = getDaySlot();
+  if (!slot) return;
+
+  const assignments = loadAssignments();
+  const saved = assignments[slot];
+  const pageFile = getPageFile();
+  const status = document.querySelector(".swap-status");
+  const titleEl = document.querySelector("[data-page-title]");
+  const baseTitle = getBaseTitle();
+  const original = document.querySelectorAll(".original-workout");
+
+  if (!status) return;
+
+  if (saved && saved.page && saved.page !== pageFile) {
+    status.innerHTML = `
       <div class="swap-banner">
-        <div class="swap-banner-label">Current assignment for ${slotLabel(slot)}</div>
+        <div class="swap-banner-kicker">Saved assignment</div>
         <h3>${saved.label}</h3>
-        <p>You reassigned this day. The original workout is hidden so the screen matches your saved choice.</p>
-        <div class="swap-banner-actions">
-          <a class="primary-link" href="${saved.page}">Open ${saved.label}</a>
-          <button type="button" class="secondary-btn" onclick="clearDaySwap('${slot}')">Clear swap</button>
+        <p>This day is currently assigned to <strong>${saved.label}</strong>. The original workout is hidden so the screen matches what you saved.</p>
+        <div class="swap-actions">
+          <a class="action-primary" href="${saved.page}">Open ${saved.label}</a>
+          <button type="button" class="action-secondary" onclick="clearSavedAssignment()">Clear saved swap</button>
         </div>
       </div>
     `;
-    originalSections.forEach(el => el.style.display = "none");
-    if (titleEl && baseTitle) titleEl.textContent = `${baseTitle} → ${saved.label}`;
+    original.forEach(el => el.style.display = "none");
+    if (titleEl) titleEl.textContent = `${baseTitle} → ${saved.label}`;
   } else {
-    document.body.classList.remove("has-swap-assignment");
-    statusEl.innerHTML = saved
-      ? `<div class="swap-inline-note">Saved choice: <strong>${saved.label}</strong></div>`
-      : `<div class="swap-inline-note">No saved swap for this day yet.</div>`;
-    originalSections.forEach(el => el.style.display = "");
-    if (titleEl && baseTitle) titleEl.textContent = baseTitle;
+    if (saved && saved.page === pageFile) {
+      status.innerHTML = `<div class="swap-note">Saved choice: <strong>${saved.label}</strong></div>`;
+      if (titleEl) titleEl.textContent = saved.label;
+    } else {
+      status.innerHTML = `<div class="swap-note">No saved swap for this day yet.</div>`;
+      if (titleEl) titleEl.textContent = baseTitle;
+    }
+    original.forEach(el => el.style.display = "");
   }
+
+  updateHomeCards();
 }
 
-function saveCurrentDaySwap() {
-  const slot = currentDaySlot();
-  const select = document.querySelector(".swap-select");
-  if (!slot || !select) return;
-  const selected = currentSelectOption(select);
-  if (!selected) {
-    clearDaySwap(slot);
-    return;
-  }
-  const assignments = getAssignments();
-  assignments[slot] = selected;
-  saveAssignments(assignments);
-  updateSwapStatusUI();
-  updateHomeAssignments();
-}
-
-function openCurrentDaySwap() {
-  const select = document.querySelector(".swap-select");
-  const selected = currentSelectOption(select);
-  if (!selected) return;
-  window.location.href = selected.page;
-}
-
-function clearDaySwap(slotOverride) {
-  const slot = slotOverride || currentDaySlot();
+function saveCurrentAssignment() {
+  const slot = getDaySlot();
   if (!slot) return;
-  const assignments = getAssignments();
+  const selection = getCurrentSelection();
+  const assignments = loadAssignments();
+  if (selection) {
+    assignments[slot] = selection;
+  } else {
+    delete assignments[slot];
+  }
+  saveAssignments(assignments);
+  refreshAssignedUI();
+}
+
+function clearSavedAssignment() {
+  const slot = getDaySlot();
+  if (!slot) return;
+  const assignments = loadAssignments();
   delete assignments[slot];
   saveAssignments(assignments);
   const select = document.querySelector(".swap-select");
   if (select) select.value = "";
-  updateSwapStatusUI();
-  updateHomeAssignments();
+  refreshAssignedUI();
 }
 
-function updateHomeAssignments() {
+function openSelection() {
+  const selection = getCurrentSelection();
+  if (selection && selection.page) {
+    window.location.href = selection.page;
+  }
+}
+
+function updateHomeCards() {
   const cards = document.querySelectorAll("[data-slot-card]");
   if (!cards.length) return;
-  const assignments = getAssignments();
+  const assignments = loadAssignments();
+
   cards.forEach(card => {
     const slot = card.dataset.slotCard;
-    const assigned = assignments[slot];
-    const labelEl = card.querySelector("[data-slot-label]");
+    const saved = assignments[slot];
+    const titleEl = card.querySelector("[data-slot-label]");
     const noteEl = card.querySelector("[data-slot-note]");
-    const openLink = card.querySelector("[data-slot-open]");
-    if (!labelEl || !noteEl || !openLink) return;
-    const defaultLabel = labelEl.dataset.defaultLabel || labelEl.textContent;
-    const defaultNote = noteEl.dataset.defaultNote || noteEl.textContent;
-    if (assigned && assigned.page) {
-      labelEl.textContent = `${slotLabel(slot)}: ${assigned.label}`;
+    const linkEl = card.querySelector("[data-slot-open]");
+    if (!titleEl || !noteEl || !linkEl) return;
+
+    const defaultTitle = titleEl.dataset.defaultLabel;
+    const defaultNote = noteEl.dataset.defaultNote;
+    const defaultHref = linkEl.dataset.defaultHref;
+
+    if (saved && saved.page) {
+      titleEl.textContent = `${slot.charAt(0).toUpperCase() + slot.slice(1).replace("-", " ")}: ${saved.label}`;
       noteEl.textContent = "Saved swap active";
-      openLink.href = assigned.page;
+      linkEl.href = saved.page;
       card.classList.add("card-swapped");
     } else {
-      labelEl.textContent = defaultLabel;
+      titleEl.textContent = defaultTitle;
       noteEl.textContent = defaultNote;
-      openLink.href = openLink.dataset.defaultHref || openLink.getAttribute("href");
+      linkEl.href = defaultHref;
       card.classList.remove("card-swapped");
     }
   });
 }
 
 function moveWorkout(selectEl) {
-  // Kept for backward compatibility if any onchange remains
-  if (!selectEl || !selectEl.value) return;
-  window.location.href = selectEl.value;
+  if (selectEl && selectEl.value) {
+    window.location.href = selectEl.value;
+  }
 }
 
 function recommendWorkout() {
   const resultContainer = document.getElementById('advisor-result');
   if (!resultContainer) return;
-  const today = document.getElementById('advisor-today').value;
   const last = document.getElementById('advisor-last').value;
-  const missed = document.getElementById('advisor-missed').value;
-  const time = document.getElementById('advisor-time').value;
   const energy = parseInt(document.getElementById('advisor-energy').value, 10);
-  const effort = parseInt(document.getElementById('advisor-effort').value, 10);
   const sick = document.getElementById('advisor-sick').value;
   const fresh = document.getElementById('advisor-fresh').value;
 
   let recommendation = '';
   let page = '';
   let note = '';
-  const isSick = sick === 'yes';
-
-  if (isSick || energy <= 4) {
+  if (sick === 'yes' || energy <= 4) {
     recommendation = 'Recovery and Mobility';
     page = 'wednesday.html';
     note = 'Because you are sick or low energy, the best move is recovery, mobility, and a light walk.';
   } else if (last.includes('Lower') || last.includes('Glute')) {
     recommendation = fresh === 'upper' ? 'Upper Push (Chest / Shoulders / Triceps)' : 'Upper Pull (Back / Biceps / Shoulders)';
     page = fresh === 'upper' ? 'tuesday.html' : 'friday.html';
-    note = 'You recently hit lower body, so give your legs more recovery and train upper body today.';
+    note = 'You recently hit lower body, so upper body makes more sense today.';
   } else if (last.includes('Upper') || last.includes('Shoulder')) {
     recommendation = fresh === 'lower' ? 'Lower Body A (Glutes / Hamstrings)' : 'Lower Body B (Quads / Glutes)';
     page = fresh === 'lower' ? 'monday.html' : 'thursday.html';
-    note = 'Your upper body worked recently, so shifting to lower body keeps the week balanced.';
+    note = 'Your upper body worked recently, so lower body is the better fit.';
   } else {
     recommendation = 'Featured Workout';
     page = 'featured.html';
-    note = 'You can plug in one of the featured trend-based workouts this week without replacing your main split.';
+    note = 'A featured workout is a good plug-in when the week gets messy.';
   }
 
   resultContainer.innerHTML = `<p><strong>Recommended workout:</strong> ${recommendation}</p><p>${note}</p><p><a href="${page}">Open workout</a></p>`;
@@ -249,24 +252,24 @@ function recommendWorkout() {
 
 function initialiseStorage() {
   document.querySelectorAll('[data-key]').forEach(input => {
-    loadFormValue(input);
+    loadInputValue(input);
     input.addEventListener('change', () => {
-      saveFormValue(input);
+      saveInputValue(input);
       updateSummary();
     });
   });
 
+  applySavedSelectionToSelect();
+  refreshAssignedUI();
+  updateHomeCards();
+  updateSummary();
+
   const saveBtn = document.querySelector(".swap-save-btn");
   const openBtn = document.querySelector(".swap-open-btn");
   const clearBtn = document.querySelector(".swap-clear-btn");
-  if (saveBtn) saveBtn.addEventListener("click", saveCurrentDaySwap);
-  if (openBtn) openBtn.addEventListener("click", openCurrentDaySwap);
-  if (clearBtn) clearBtn.addEventListener("click", () => clearDaySwap());
-
-  syncSelectFromSavedAssignment();
-  updateSwapStatusUI();
-  updateHomeAssignments();
-  updateSummary();
+  if (saveBtn) saveBtn.addEventListener("click", saveCurrentAssignment);
+  if (openBtn) openBtn.addEventListener("click", openSelection);
+  if (clearBtn) clearBtn.addEventListener("click", clearSavedAssignment);
 }
 
 document.addEventListener('DOMContentLoaded', initialiseStorage);
