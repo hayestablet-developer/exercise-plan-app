@@ -1,4 +1,4 @@
-/* Global styling for Monikita’s Fitness App */
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
@@ -6,7 +6,6 @@ body {
   background-color: #f8f9fa;
   color: #333;
 }
-
 header {
   background-color: #0d6efd;
   color: white;
@@ -15,35 +14,21 @@ header {
   justify-content: space-between;
   align-items: center;
 }
-
-header h1 {
-  margin: 0;
-  font-size: 1.25rem;
-}
-
+header h1 { margin: 0; font-size: 1.25rem; }
 nav a {
   color: white;
   margin-left: 1rem;
   text-decoration: none;
   font-weight: bold;
 }
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-main {
-  padding: 1rem;
-}
-
-/* Card layout for home page */
+nav a:hover { text-decoration: underline; }
+main { padding: 1rem; }
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1rem;
   margin-top: 1rem;
 }
-
 .card {
   background-color: white;
   border: 1px solid #ddd;
@@ -52,11 +37,7 @@ main {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   text-align: center;
 }
-
-.card h3 {
-  margin-top: 0;
-}
-
+.card h3 { margin-top: 0; }
 .card a {
   display: inline-block;
   margin-top: 0.5rem;
@@ -66,12 +47,13 @@ main {
   border-radius: 4px;
   text-decoration: none;
 }
-
-.card a:hover {
-  background-color: #0b5ed7;
+.card a:hover { background-color: #0b5ed7; }
+.card-swapped {
+  border-color: #818cf8;
+  box-shadow: 0 6px 18px rgba(67,56,202,.14);
 }
+.card-swapped h3 { color: #312e81; }
 
-/* Workout page styling */
 .exercise {
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -79,12 +61,11 @@ main {
   margin-bottom: 1rem;
   background-color: white;
 }
-
 .exercise h4 {
   margin-top: 0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
 }
-
+.exercise-meta { color:#475569; margin-bottom: 0.6rem; }
 .fields {
   display: flex;
   flex-wrap: wrap;
@@ -92,47 +73,22 @@ main {
   align-items: center;
   margin-bottom: 0.5rem;
 }
-
 .fields label {
   display: flex;
   flex-direction: column;
   font-size: 0.85rem;
 }
-
 .fields input[type="number"],
 .fields input[type="text"],
-.fields input[type="date"],
 .fields select {
   padding: 0.4rem;
   border: 1px solid #ccc;
   border-radius: 6px;
   min-width: 80px;
 }
+.fields input[type="checkbox"] { margin-right: 0.5rem; }
+.exercise a { margin-right: 0.5rem; font-size: 0.85rem; }
 
-.fields input[type="checkbox"] {
-  margin-right: 0.5rem;
-}
-
-.exercise a {
-  margin-right: 0.5rem;
-  font-size: 0.85rem;
-}
-
-/* Summary section */
-.summary {
-  margin-top: 1rem;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #fff3cd;
-  color: #856404;
-}
-
-.summary span {
-  font-weight: bold;
-}
-
-/* Move workout section */
 .move-workout {
   margin: 1rem 0;
   padding: 0.75rem;
@@ -140,39 +96,56 @@ main {
   border-radius: 8px;
   background-color: #e9ecef;
 }
-
 .move-workout select {
-  padding: 0.4rem;
+  display:block;
+  width:100%;
+  padding: 0.6rem;
   border: 1px solid #ccc;
   border-radius: 6px;
+  margin-top:0.5rem;
 }
-
+.move-workout-actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.5rem;
+  margin-top:0.75rem;
+}
 .move-workout button {
-  margin-left: 0.5rem;
-  padding: 0.4rem 0.75rem;
+  margin-left: 0;
+  padding: 0.6rem 0.9rem;
   background-color: #0d6efd;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
+.move-workout button:hover { background-color: #0b5ed7; }
 
-.move-workout button:hover {
-  background-color: #0b5ed7;
+.day-top-note {
+  display:inline-block;
+  margin:0.5rem 0 1rem;
+  padding:0.55rem 0.9rem;
+  border-radius:999px;
+  background:#eef2ff;
+  color:#4338ca;
+  font-weight:700;
 }
 
-/* Advisor page */
-.advisor-form {
-  max-width: 600px;
-  margin: auto;
+.summary {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1rem;
+  margin-top:1rem;
+}
+.summary-box {
+  background:#fff;
+  border:1px solid #ddd;
+  border-radius:8px;
+  padding:0.85rem;
 }
 
-.advisor-form label {
-  display: block;
-  margin-top: 0.5rem;
-  font-weight: bold;
-}
-
+.advisor-form { max-width: 600px; margin: auto; }
+.advisor-form label { display: block; margin-top: 0.5rem; font-weight: bold; }
 .advisor-form input,
 .advisor-form select,
 .advisor-form textarea {
@@ -182,7 +155,6 @@ main {
   border-radius: 6px;
   margin-top: 0.25rem;
 }
-
 .advisor-form button {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
@@ -192,11 +164,6 @@ main {
   border-radius: 4px;
   cursor: pointer;
 }
-
-.advisor-form button:hover {
-  background-color: #0b5ed7;
-}
-
 .advisor-result {
   margin-top: 1rem;
   padding: 0.75rem;
@@ -206,41 +173,6 @@ main {
   color: #155724;
 }
 
-.exercise-meta{color:#475569;margin-bottom:0.5rem;}
-.day-top-note{
-  display:inline-block;
-  margin:0.5rem 0 1rem;
-  padding:0.55rem 0.9rem;
-  border-radius:999px;
-  background:#eef2ff;
-  color:#4338ca;
-  font-weight:700;
-}
-.move-workout-actions{
-  display:flex;
-  gap:0.75rem;
-  flex-wrap:wrap;
-  margin-top:0.75rem;
-}
-.move-workout button{
-  margin-left:0;
-}
-.summary{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:1rem;
-  margin-top:1rem;
-  padding:0;
-  border:none;
-  background:transparent;
-  color:inherit;
-}
-.summary-box{
-  background:#fff;
-  border:1px solid #ddd;
-  border-radius:8px;
-  padding:0.85rem;
-}
 @media (max-width:700px){
   .summary{grid-template-columns:1fr;}
   .move-workout-actions button{width:100%;}
