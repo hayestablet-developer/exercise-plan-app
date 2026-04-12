@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shoulders + Triceps — Monikita’s Fitness App</title>
+  <title>Shoulders & Triceps — Monikita’s Fitness App</title>
   <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
 </head>
-<body data-day-slot="shoulders-triceps">
+<body>
   <header>
     <h1>Monikita’s Fitness App 💪</h1>
     <nav>
@@ -16,22 +16,114 @@
     </nav>
   </header>
   <main>
-    <h2>Shoulders + Triceps</h2>
-    <p id="workout-subtitle"></p>
-    <div id="active-workout-label" class="day-top-note"></div>
-
+    <h2>Shoulders & Triceps</h2>
+    <p>An accessory day focusing on deltoids and triceps. Use moderate weights and strict form.</p>
+    <!-- Move workout section -->
     <div class="move-workout">
-      <label for="swap-select">Do this workout instead today</label>
-      <select id="swap-select"></select>
-      <div class="move-workout-actions">
-        <button type="button" id="open-selection-btn">Open selection</button>
-        <button type="button" id="save-choice-btn">Save my choice</button>
-        <button type="button" id="clear-choice-btn">Clear saved choice</button>
-      </div>
+      <label for="move-shoulders">Move this workout to:</label>
+      <select id="move-shoulders" onchange="moveWorkout(this)">
+        <option value="">--Select--</option>
+        <option value="monday.html">Monday (Lower A)</option>
+        <option value="tuesday.html">Tuesday (Upper Push)</option>
+        <option value="wednesday.html">Wednesday (Recovery)</option>
+        <option value="thursday.html">Thursday (Lower B)</option>
+        <option value="friday.html">Friday (Upper Pull)</option>
+        <option value="saturday.html">Saturday (Sprints & Core)</option>
+        <option value="featured.html">Featured Workouts</option>
+      </select>
     </div>
-
+    <!-- Exercises -->
+    <div class="exercise">
+      <h4>Dead Hang (30&nbsp;sec)</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="shoulders-deadhang-complete"> Completed</label>
+        <label>Time (sec): <input type="number" data-key="shoulders-deadhang-time"></label>
+        <label>Energy (1–10): <input type="number" data-key="shoulders-deadhang-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="shoulders-deadhang-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=dead+hang" target="_blank">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=dead+hang&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&q=dead+hang" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Dumbbell Shoulder Press</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="shoulders-press-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="shoulders-press-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="shoulders-press-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="shoulders-press-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="shoulders-press-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=dumbbell+shoulder+press" target="_blank">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=dumbbell+shoulder+press&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&q=dumbbell+shoulder+press" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Lateral Raise</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="shoulders-lateral-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="shoulders-lateral-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="shoulders-lateral-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="shoulders-lateral-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="shoulders-lateral-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=lateral+raise+exercise" target="_blank">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=lateral+raise+exercise&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&q=lateral+raise" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Rear Delt Fly</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="shoulders-reardelt-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="shoulders-reardelt-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="shoulders-reardelt-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="shoulders-reardelt-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="shoulders-reardelt-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=rear+delt+fly" target="_blank">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=rear+delt+fly&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&q=rear+delt+fly" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Triceps Pushdown</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="shoulders-tricep-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="shoulders-tricep-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="shoulders-tricep-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="shoulders-tricep-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="shoulders-tricep-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=triceps+pushdown" target="_blank">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=triceps+pushdown&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&q=triceps+pushdown" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Overhead Triceps Extension</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="shoulders-overheadtri-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="shoulders-overheadtri-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="shoulders-overheadtri-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="shoulders-overheadtri-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="shoulders-overheadtri-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=overhead+tricep+extension" target="_blank">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=overhead+tricep+extension&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&q=overhead+triceps+extension" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Close‑Grip Push‑Up</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="shoulders-closegrip-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="shoulders-closegrip-reps"></label>
+        <label>Energy (1–10): <input type="number" data-key="shoulders-closegrip-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="shoulders-closegrip-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=close+grip+push+up" target="_blank">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=close+grip+push+up&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&q=close+grip+push+up" target="_blank">🖼️ Images</a>
+    </div>
+    <!-- Summary -->
     <div id="daily-summary" class="summary"></div>
-    <div id="workout-container"></div>
   </main>
 </body>
 </html>
