@@ -1,219 +1,171 @@
 
-const STORAGE_PREFIX = "monikitaFitnessApp:";
-const ASSIGNMENTS_KEY = STORAGE_PREFIX + "assignments";
+const STORAGE_PREFIX = "monikita-app:";
+const ASSIGN_KEY = STORAGE_PREFIX + "assignments";
+const WORKOUTS = {"monday": {"label": "Lower Body A + Sprint", "subtitle": "Dead hang + glute and hamstring focus", "exercises": [{"name": "Dead Hang", "slug": "dead-hang", "meta": "30 seconds \u2022 pull-up goal", "fields": [["time", "Time (sec)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=dead+hang+exercise", "images": "https://www.google.com/search?tbm=isch&q=dead+hang+exercise"}, {"name": "Romanian Deadlift", "slug": "romanian-deadlift", "meta": "3 sets \u2022 6\u201310 reps", "fields": [["reps", "Reps", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=romanian+deadlift+proper+form", "images": "https://www.google.com/search?tbm=isch&q=romanian+deadlift+form"}, {"name": "Hip Thrust", "slug": "hip-thrust", "meta": "3 sets \u2022 8\u201312 reps", "fields": [["reps", "Reps", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=hip+thrust+exercise+form", "images": "https://www.google.com/search?tbm=isch&q=hip+thrust+exercise+form"}, {"name": "Step-Ups", "slug": "step-ups", "meta": "3 sets/side \u2022 8\u201312 reps", "fields": [["reps", "Reps (per leg)", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=step+ups+glute+focus", "images": "https://www.google.com/search?tbm=isch&q=step+up+glute+focus"}, {"name": "Cable Kickbacks", "slug": "cable-kickbacks", "meta": "3 sets/side \u2022 12\u201318 reps", "fields": [["reps", "Reps (per leg)", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=cable+kickback+glute", "images": "https://www.google.com/search?tbm=isch&q=cable+kickback+glute"}, {"name": "Abductor Machine", "slug": "abductor-machine", "meta": "3 sets \u2022 15\u201325 reps", "fields": [["reps", "Reps", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=abductor+machine", "images": "https://www.google.com/search?tbm=isch&q=abductor+machine"}, {"name": "Sprints", "slug": "sprints", "meta": "30 sec on / 90 sec off \u00d7 5", "fields": [["reps", "Intervals completed", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=treadmill+sprint+interval+workout", "images": "https://www.google.com/search?tbm=isch&q=treadmill+sprint+workout"}]}, "tuesday": {"label": "Upper Push + Pull-Up Work", "subtitle": "Chest, shoulders, and triceps plus pull-up progress", "exercises": [{"name": "Dead Hang", "slug": "dead-hang", "meta": "30 seconds \u2022 pull-up goal", "fields": [["time", "Time (sec)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=dead+hang+exercise", "images": "https://www.google.com/search?tbm=isch&q=dead+hang"}, {"name": "Band-Assisted Pull-Up", "slug": "band-assisted-pull-up", "meta": "3 sets \u2022 5\u20138 reps", "fields": [["reps", "Reps", "number"], ["weight", "Band colour/level", "text"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=band+assisted+pull+up", "images": "https://www.google.com/search?tbm=isch&q=band+assisted+pull+up"}, {"name": "Scapular Pull-Up", "slug": "scapular-pull-up", "meta": "2\u20133 sets \u2022 6\u201310 reps", "fields": [["reps", "Reps", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=scapular+pull+up", "images": "https://www.google.com/search?tbm=isch&q=scapular+pull+up"}, {"name": "Incline Dumbbell Press", "slug": "incline-dumbbell-press", "meta": "3 sets \u2022 8\u201312 reps", "fields": [["reps", "Reps", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=incline+dumbbell+press", "images": "https://www.google.com/search?tbm=isch&q=incline+dumbbell+press"}, {"name": "Dumbbell Shoulder Press", "slug": "dumbbell-shoulder-press", "meta": "3 sets \u2022 8\u201310 reps", "fields": [["reps", "Reps", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=dumbbell+shoulder+press", "images": "https://www.google.com/search?tbm=isch&q=dumbbell+shoulder+press"}, {"name": "Lateral Raise", "slug": "lateral-raise", "meta": "3 sets \u2022 12\u201318 reps", "fields": [["reps", "Reps", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=lateral+raise+exercise", "images": "https://www.google.com/search?tbm=isch&q=lateral+raise+exercise"}, {"name": "Triceps Pushdown", "slug": "triceps-pushdown", "meta": "3 sets \u2022 10\u201315 reps", "fields": [["reps", "Reps", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=triceps+pushdown", "images": "https://www.google.com/search?tbm=isch&q=triceps+pushdown"}]}, "wednesday": {"label": "Recovery & Mobility", "subtitle": "Reset day", "exercises": [{"name": "Dead Hang", "slug": "dead-hang", "meta": "30 seconds", "fields": [["time", "Time (sec)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=dead+hang+exercise", "images": "https://www.google.com/search?tbm=isch&q=dead+hang"}, {"name": "Walk", "slug": "walk", "meta": "20\u201330 minutes", "fields": [["time", "Duration (min)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=brisk+walking+benefits", "images": "https://www.google.com/search?tbm=isch&q=walking+exercise"}, {"name": "Pilates Mobility Flow", "slug": "pilates-mobility-flow", "meta": "15\u201325 minutes", "fields": [["time", "Duration (min)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=pilates+mobility+routine", "images": "https://www.google.com/search?tbm=isch&q=pilates+mobility"}, {"name": "Breathwork / Meditation", "slug": "breathwork", "meta": "5\u201310 minutes", "fields": [["time", "Duration (min)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=guided+breathwork", "images": "https://www.google.com/search?tbm=isch&q=breathwork"}]}, "thursday": {"label": "Lower Body B + Sprint", "subtitle": "Quad and glute focus", "exercises": [{"name": "Dead Hang", "slug": "dead-hang", "meta": "30 seconds", "fields": [["time", "Time (sec)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=dead+hang+exercise", "images": "https://www.google.com/search?tbm=isch&q=dead+hang"}, {"name": "Goblet Squat", "slug": "goblet-squat", "meta": "3 sets \u2022 8\u201312 reps", "fields": [["reps", "Reps", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=goblet+squat+form", "images": "https://www.google.com/search?tbm=isch&q=goblet+squat+form"}, {"name": "Reverse Lunge or Split Squat", "slug": "reverse-lunge", "meta": "3 sets/side \u2022 8\u201310 reps", "fields": [["reps", "Reps (per leg)", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=reverse+lunge+split+squat", "images": "https://www.google.com/search?tbm=isch&q=reverse+lunge+split+squat"}, {"name": "Glute Bridges", "slug": "glute-bridges", "meta": "3 sets \u2022 12\u201320 reps", "fields": [["reps", "Reps", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=glute+bridge", "images": "https://www.google.com/search?tbm=isch&q=glute+bridge"}, {"name": "Bodyweight Glute Bridge Burnout", "slug": "bodyweight-glute-bridge", "meta": "2 sets \u2022 near failure", "fields": [["reps", "Reps", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=bodyweight+glute+bridge", "images": "https://www.google.com/search?tbm=isch&q=bodyweight+glute+bridge"}, {"name": "Sprints", "slug": "sprints", "meta": "30 sec on / 90 sec off \u00d7 5", "fields": [["reps", "Intervals completed", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=treadmill+sprint+interval+workout", "images": "https://www.google.com/search?tbm=isch&q=treadmill+sprint+workout"}]}, "friday": {"label": "Upper Pull + Shoulders & Triceps", "subtitle": "Back, biceps, shoulders, and triceps accessory work", "exercises": [{"name": "Dead Hang", "slug": "dead-hang", "meta": "30 seconds", "fields": [["time", "Time (sec)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=dead+hang+exercise", "images": "https://www.google.com/search?tbm=isch&q=dead+hang"}, {"name": "Assisted Pull-Up Machine", "slug": "assisted-pull-up-machine", "meta": "3 sets \u2022 5\u20138 reps", "fields": [["reps", "Reps", "number"], ["weight", "Assistance (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=assisted+pull+up+machine", "images": "https://www.google.com/search?tbm=isch&q=assisted+pull+up+machine"}, {"name": "Scapular Pull-Up", "slug": "scapular-pull-up", "meta": "2\u20133 sets \u2022 6\u201310 reps", "fields": [["reps", "Reps", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=scapular+pull+up", "images": "https://www.google.com/search?tbm=isch&q=scapular+pull+up"}, {"name": "Seated Cable Row", "slug": "seated-cable-row", "meta": "3 sets \u2022 8\u201312 reps", "fields": [["reps", "Reps", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=seated+cable+row", "images": "https://www.google.com/search?tbm=isch&q=seated+cable+row"}, {"name": "Single Arm Dumbbell Row", "slug": "single-arm-dumbbell-row", "meta": "3 sets/arm \u2022 10\u201312 reps", "fields": [["reps", "Reps (per arm)", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=single+arm+dumbbell+row", "images": "https://www.google.com/search?tbm=isch&q=single+arm+dumbbell+row"}, {"name": "Dumbbell Shoulder Press", "slug": "dumbbell-shoulder-press", "meta": "3 sets \u2022 8\u201310 reps", "fields": [["reps", "Reps", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=dumbbell+shoulder+press", "images": "https://www.google.com/search?tbm=isch&q=dumbbell+shoulder+press"}, {"name": "Lateral Raise", "slug": "lateral-raise", "meta": "3 sets \u2022 12\u201318 reps", "fields": [["reps", "Reps", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=lateral+raise+exercise", "images": "https://www.google.com/search?tbm=isch&q=lateral+raise"}, {"name": "Hammer Curl", "slug": "hammer-curl", "meta": "3 sets \u2022 10\u201314 reps", "fields": [["reps", "Reps", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=hammer+curls", "images": "https://www.google.com/search?tbm=isch&q=hammer+curl"}, {"name": "Overhead Triceps Extension", "slug": "overhead-triceps-extension", "meta": "3 sets \u2022 10\u201315 reps", "fields": [["reps", "Reps", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=overhead+tricep+extension", "images": "https://www.google.com/search?tbm=isch&q=overhead+triceps+extension"}]}, "saturday": {"label": "Sprints & Core", "subtitle": "Conditioning and trunk work", "exercises": [{"name": "Dead Hang", "slug": "dead-hang", "meta": "30 seconds", "fields": [["time", "Time (sec)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=dead+hang+exercise", "images": "https://www.google.com/search?tbm=isch&q=dead+hang+exercise"}, {"name": "Sprints", "slug": "sprints", "meta": "30 sec on / 90 sec off \u00d7 5\u20136", "fields": [["reps", "Intervals completed", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=treadmill+sprint+interval+workout", "images": "https://www.google.com/search?tbm=isch&q=treadmill+sprint+workout"}, {"name": "Plank Variations", "slug": "planks", "meta": "3 rounds", "fields": [["time", "Time (sec)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=plank+variations", "images": "https://www.google.com/search?tbm=isch&q=plank+variations"}, {"name": "Hanging Knee Raise", "slug": "hanging-knee-raise", "meta": "3 sets \u2022 10\u201315 reps", "fields": [["reps", "Reps", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=hanging+knee+raise", "images": "https://www.google.com/search?tbm=isch&q=hanging+knee+raise"}, {"name": "Cable Crunch or Reverse Crunch", "slug": "cable-crunch", "meta": "3 sets \u2022 12\u201320 reps", "fields": [["reps", "Reps", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=cable+crunch+exercise", "images": "https://www.google.com/search?tbm=isch&q=cable+crunch"}]}, "sunday": {"label": "Rest Day", "subtitle": "Recovery matters", "exercises": [{"name": "Gentle Walk", "slug": "gentle-walk", "meta": "Optional \u2022 10\u201330 minutes", "fields": [["time", "Duration (min)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=benefits+of+walking", "images": "https://www.google.com/search?tbm=isch&q=walking+exercise"}, {"name": "Stretching & Mobility", "slug": "stretching", "meta": "Optional \u2022 10\u201320 minutes", "fields": [["time", "Duration (min)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=full+body+stretch+routine", "images": "https://www.google.com/search?tbm=isch&q=stretching+routine"}]}, "shoulders-triceps": {"label": "Shoulders & Triceps", "subtitle": "Focused upper-body session for a clean swap day", "exercises": [{"name": "Dead Hang", "slug": "dead-hang", "meta": "30 seconds", "fields": [["time", "Time (sec)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=dead+hang", "images": "https://www.google.com/search?tbm=isch&q=dead+hang"}, {"name": "Dumbbell Shoulder Press", "slug": "dumbbell-shoulder-press", "meta": "3 sets \u2022 8\u201310 reps", "fields": [["reps", "Reps", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=dumbbell+shoulder+press", "images": "https://www.google.com/search?tbm=isch&q=dumbbell+shoulder+press"}, {"name": "Lateral Raise", "slug": "lateral-raise", "meta": "3 sets \u2022 12\u201318 reps", "fields": [["reps", "Reps", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=lateral+raise+exercise", "images": "https://www.google.com/search?tbm=isch&q=lateral+raise"}, {"name": "Rear Delt Fly", "slug": "rear-delt-fly", "meta": "3 sets \u2022 12\u201318 reps", "fields": [["reps", "Reps", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=rear+delt+fly", "images": "https://www.google.com/search?tbm=isch&q=rear+delt+fly"}, {"name": "Triceps Pushdown", "slug": "triceps-pushdown", "meta": "3 sets \u2022 10\u201315 reps", "fields": [["reps", "Reps", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=triceps+pushdown", "images": "https://www.google.com/search?tbm=isch&q=triceps+pushdown"}, {"name": "Overhead Triceps Extension", "slug": "overhead-triceps-extension", "meta": "3 sets \u2022 10\u201315 reps", "fields": [["reps", "Reps", "number"], ["weight", "Weight (lbs)", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=overhead+tricep+extension", "images": "https://www.google.com/search?tbm=isch&q=overhead+triceps+extension"}, {"name": "Close-Grip Push-Up", "slug": "close-grip-push-up", "meta": "2\u20133 sets \u2022 near failure", "fields": [["reps", "Reps", "number"], ["energy", "Energy (1\u201310)", "number"], ["effort", "Effort (1\u201310)", "number"]], "video": "https://www.youtube.com/results?search_query=close+grip+push+up", "images": "https://www.google.com/search?tbm=isch&q=close+grip+push+up"}]}};
 
-const DAY_TITLES = {
-  "monday": "Monday — Lower Body A + Sprint",
-  "tuesday": "Tuesday — Upper Push + Pull‑Up Work",
-  "wednesday": "Wednesday — Recovery & Mobility",
-  "thursday": "Thursday — Lower Body B + Sprint",
-  "friday": "Friday — Upper Pull + Shoulders & Triceps",
-  "saturday": "Saturday — Sprints & Core",
-  "sunday": "Sunday — Rest Day",
-  "shoulders-triceps": "Shoulders & Triceps"
-};
-
-function loadAssignments() {
-  try {
-    return JSON.parse(localStorage.getItem(ASSIGNMENTS_KEY) || "{}");
-  } catch (e) {
-    return {};
-  }
+function getAssignments() {
+  try { return JSON.parse(localStorage.getItem(ASSIGN_KEY) || "{}"); }
+  catch (e) { return {}; }
 }
 
 function saveAssignments(assignments) {
-  localStorage.setItem(ASSIGNMENTS_KEY, JSON.stringify(assignments));
+  localStorage.setItem(ASSIGN_KEY, JSON.stringify(assignments));
 }
 
-function saveInputValue(input) {
-  const key = input.dataset.key;
-  if (!key) return;
-  const value = input.type === "checkbox" ? input.checked : input.value;
-  localStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(value));
+function getActiveWorkoutForDay(daySlot) {
+  const assignments = getAssignments();
+  return assignments[daySlot] || daySlot;
 }
 
-function loadInputValue(input) {
-  const key = input.dataset.key;
-  if (!key) return;
-  const raw = localStorage.getItem(STORAGE_PREFIX + key);
-  if (raw === null) return;
-  try {
-    const value = JSON.parse(raw);
-    if (input.type === "checkbox") input.checked = Boolean(value);
-    else input.value = value;
-  } catch (e) {}
+function storageKey(daySlot, workoutSlot, exerciseSlug, field) {
+  return `${STORAGE_PREFIX}${daySlot}__${workoutSlot}__${exerciseSlug}__${field}`;
 }
 
-function updateSummary() {
-  const summaryEl = document.getElementById("daily-summary");
-  if (!summaryEl) return;
+function fieldHtml(daySlot, workoutSlot, ex) {
+  const fields = ex.fields.map(([field, label, type]) => {
+    const dataType = field === "energy" ? ' data-type="energy"' : (field === "effort" ? ' data-type="effort"' : '');
+    return `<label>${label}: <input type="${type}" data-field="${field}" data-exercise="${ex.slug}"${dataType}></label>`;
+  }).join("");
+  return `
+    <div class="exercise">
+      <h4>${ex.name}</h4>
+      <div class="exercise-meta">${ex.meta}</div>
+      <div class="fields">
+        <label><input type="checkbox" data-field="complete" data-exercise="${ex.slug}"> Completed</label>
+        ${fields}
+      </div>
+      <a href="${ex.video}" target="_blank" rel="noopener">🎥 Video</a>
+      <a href="${ex.images}" target="_blank" rel="noopener">🖼️ Images</a>
+    </div>
+  `;
+}
 
-  const checkboxInputs = document.querySelectorAll('input[type="checkbox"][data-key]');
-  let completed = 0;
-  checkboxInputs.forEach(cb => { if (cb.checked) completed++; });
+function renderWorkout(daySlot) {
+  const activeSlot = getActiveWorkoutForDay(daySlot);
+  const workout = WORKOUTS[activeSlot];
+  const container = document.getElementById("workout-container");
+  const subtitle = document.getElementById("workout-subtitle");
+  const activeLabel = document.getElementById("active-workout-label");
+  if (!container || !workout) return;
 
-  let energySum = 0, energyCount = 0, effortSum = 0, effortCount = 0;
-  document.querySelectorAll('input[data-type="energy"]').forEach(input => {
-    const val = parseFloat(input.value);
-    if (!isNaN(val)) { energySum += val; energyCount++; }
+  subtitle.textContent = workout.subtitle;
+  activeLabel.textContent = `Currently showing: ${workout.label}`;
+  container.innerHTML = workout.exercises.map(ex => fieldHtml(daySlot, activeSlot, ex)).join("");
+
+  // restore values and bind listeners
+  container.querySelectorAll("input").forEach(input => {
+    const ex = input.dataset.exercise;
+    const field = input.dataset.field;
+    const key = storageKey(daySlot, activeSlot, ex, field);
+    const stored = localStorage.getItem(key);
+    if (stored !== null) {
+      if (input.type === "checkbox") input.checked = stored === "true";
+      else input.value = stored;
+    }
+    input.addEventListener("change", () => {
+      localStorage.setItem(key, input.type === "checkbox" ? String(input.checked) : input.value);
+      updateSummary(daySlot);
+    });
   });
-  document.querySelectorAll('input[data-type="effort"]').forEach(input => {
-    const val = parseFloat(input.value);
-    if (!isNaN(val)) { effortSum += val; effortCount++; }
+
+  const select = document.getElementById("swap-select");
+  if (select) select.value = activeSlot;
+  updateSummary(daySlot);
+}
+
+function updateSummary(daySlot) {
+  const activeSlot = getActiveWorkoutForDay(daySlot);
+  const workout = WORKOUTS[activeSlot];
+  const summaryEl = document.getElementById("daily-summary");
+  if (!summaryEl || !workout) return;
+
+  let completed = 0, total = workout.exercises.length;
+  let energySum = 0, energyCount = 0, effortSum = 0, effortCount = 0;
+
+  workout.exercises.forEach(ex => {
+    const complete = localStorage.getItem(storageKey(daySlot, activeSlot, ex.slug, "complete")) === "true";
+    if (complete) completed += 1;
+
+    ["energy", "effort"].forEach(field => {
+      const raw = localStorage.getItem(storageKey(daySlot, activeSlot, ex.slug, field));
+      const val = parseFloat(raw);
+      if (!isNaN(val)) {
+        if (field === "energy") { energySum += val; energyCount += 1; }
+        if (field === "effort") { effortSum += val; effortCount += 1; }
+      }
+    });
   });
 
   const energyAvg = energyCount ? (energySum / energyCount).toFixed(1) : "—";
   const effortAvg = effortCount ? (effortSum / effortCount).toFixed(1) : "—";
   summaryEl.innerHTML = `
-    <div><strong>Completed exercises:</strong> <span>${completed}</span></div>
-    <div><strong>Average energy:</strong> <span>${energyAvg}</span></div>
-    <div><strong>Average effort:</strong> <span>${effortAvg}</span></div>
+    <div class="summary-box"><strong>Completed</strong><div>${completed} / ${total}</div></div>
+    <div class="summary-box"><strong>Avg effort</strong><div>${effortAvg}</div></div>
+    <div class="summary-box"><strong>Avg energy</strong><div>${energyAvg}</div></div>
   `;
 }
 
-function getPageFile() {
-  return window.location.pathname.split("/").pop() || "index.html";
+function saveDayChoice(daySlot) {
+  const select = document.getElementById("swap-select");
+  if (!select) return;
+  const chosen = select.value || daySlot;
+  const assignments = getAssignments();
+  if (chosen === daySlot) delete assignments[daySlot];
+  else assignments[daySlot] = chosen;
+  saveAssignments(assignments);
+  renderWorkout(daySlot);
 }
 
-function getDaySlot() {
-  return document.body.dataset.daySlot || "";
-}
-
-function getCurrentSelection() {
-  const select = document.querySelector(".swap-select");
-  if (!select || !select.value) return null;
-  const opt = select.options[select.selectedIndex];
-  return {
-    page: opt.value,
-    label: opt.dataset.label || opt.textContent.trim()
+function openSelectedWorkout() {
+  const select = document.getElementById("swap-select");
+  if (!select || !select.value) return;
+  const pageMap = {
+    monday: "monday.html",
+    tuesday: "tuesday.html",
+    wednesday: "wednesday.html",
+    thursday: "thursday.html",
+    friday: "friday.html",
+    saturday: "saturday.html",
+    sunday: "sunday.html",
+    "shoulders-triceps": "shoulders-triceps.html"
   };
+  const dest = pageMap[select.value];
+  if (dest) window.location.href = dest;
 }
 
-function getBaseTitle() {
-  const titleEl = document.querySelector("[data-page-title]");
-  if (!titleEl) return "";
-  return titleEl.dataset.pageTitle || titleEl.textContent.trim();
-}
-
-function applySavedSelectionToSelect() {
-  const slot = getDaySlot();
-  const select = document.querySelector(".swap-select");
-  if (!slot || !select) return;
-  const assignments = loadAssignments();
-  const saved = assignments[slot];
-  if (saved && saved.page) {
-    select.value = saved.page;
-  }
-}
-
-function refreshAssignedUI() {
-  const slot = getDaySlot();
-  if (!slot) return;
-
-  const assignments = loadAssignments();
-  const saved = assignments[slot];
-  const pageFile = getPageFile();
-  const status = document.querySelector(".swap-status");
-  const titleEl = document.querySelector("[data-page-title]");
-  const baseTitle = getBaseTitle();
-  const original = document.querySelectorAll(".original-workout");
-
-  if (!status) return;
-
-  if (saved && saved.page && saved.page !== pageFile) {
-    status.innerHTML = `
-      <div class="swap-banner">
-        <div class="swap-banner-kicker">Saved assignment</div>
-        <h3>${saved.label}</h3>
-        <p>This day is currently assigned to <strong>${saved.label}</strong>. The original workout is hidden so the screen matches what you saved.</p>
-        <div class="swap-actions">
-          <a class="action-primary" href="${saved.page}">Open ${saved.label}</a>
-          <button type="button" class="action-secondary" onclick="clearSavedAssignment()">Clear saved swap</button>
-        </div>
-      </div>
-    `;
-    original.forEach(el => el.style.display = "none");
-    if (titleEl) titleEl.textContent = `${baseTitle} → ${saved.label}`;
-  } else {
-    if (saved && saved.page === pageFile) {
-      status.innerHTML = `<div class="swap-note">Saved choice: <strong>${saved.label}</strong></div>`;
-      if (titleEl) titleEl.textContent = saved.label;
-    } else {
-      status.innerHTML = `<div class="swap-note">No saved swap for this day yet.</div>`;
-      if (titleEl) titleEl.textContent = baseTitle;
-    }
-    original.forEach(el => el.style.display = "");
-  }
-
-  updateHomeCards();
-}
-
-function saveCurrentAssignment() {
-  const slot = getDaySlot();
-  if (!slot) return;
-  const selection = getCurrentSelection();
-  const assignments = loadAssignments();
-  if (selection) {
-    assignments[slot] = selection;
-  } else {
-    delete assignments[slot];
-  }
+function clearSavedChoice(daySlot) {
+  const assignments = getAssignments();
+  delete assignments[daySlot];
   saveAssignments(assignments);
-  refreshAssignedUI();
+  renderWorkout(daySlot);
 }
 
-function clearSavedAssignment() {
-  const slot = getDaySlot();
-  if (!slot) return;
-  const assignments = loadAssignments();
-  delete assignments[slot];
-  saveAssignments(assignments);
-  const select = document.querySelector(".swap-select");
-  if (select) select.value = "";
-  refreshAssignedUI();
+function populateSwapSelect(daySlot) {
+  const select = document.getElementById("swap-select");
+  if (!select) return;
+  const order = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday","shoulders-triceps"];
+  select.innerHTML = order.map(slot => `<option value="${slot}">${WORKOUTS[slot].label}</option>`).join("");
+  select.value = getActiveWorkoutForDay(daySlot);
 }
 
-function openSelection() {
-  const selection = getCurrentSelection();
-  if (selection && selection.page) {
-    window.location.href = selection.page;
-  }
+function initialiseDayPage() {
+  const daySlot = document.body.dataset.daySlot;
+  if (!daySlot) return;
+  populateSwapSelect(daySlot);
+  renderWorkout(daySlot);
+  const saveBtn = document.getElementById("save-choice-btn");
+  const openBtn = document.getElementById("open-selection-btn");
+  const clearBtn = document.getElementById("clear-choice-btn");
+  if (saveBtn) saveBtn.addEventListener("click", () => saveDayChoice(daySlot));
+  if (openBtn) openBtn.addEventListener("click", openSelectedWorkout);
+  if (clearBtn) clearBtn.addEventListener("click", () => clearSavedChoice(daySlot));
 }
 
-function updateHomeCards() {
-  const cards = document.querySelectorAll("[data-slot-card]");
-  if (!cards.length) return;
-  const assignments = loadAssignments();
-
-  cards.forEach(card => {
-    const slot = card.dataset.slotCard;
-    const saved = assignments[slot];
-    const titleEl = card.querySelector("[data-slot-label]");
-    const noteEl = card.querySelector("[data-slot-note]");
-    const linkEl = card.querySelector("[data-slot-open]");
-    if (!titleEl || !noteEl || !linkEl) return;
-
-    const defaultTitle = titleEl.dataset.defaultLabel;
-    const defaultNote = noteEl.dataset.defaultNote;
-    const defaultHref = linkEl.dataset.defaultHref;
-
-    if (saved && saved.page) {
-      titleEl.textContent = `${slot.charAt(0).toUpperCase() + slot.slice(1).replace("-", " ")}: ${saved.label}`;
-      noteEl.textContent = "Saved swap active";
-      linkEl.href = saved.page;
-      card.classList.add("card-swapped");
-    } else {
-      titleEl.textContent = defaultTitle;
-      noteEl.textContent = defaultNote;
-      linkEl.href = defaultHref;
-      card.classList.remove("card-swapped");
-    }
-  });
-}
-
-function moveWorkout(selectEl) {
-  if (selectEl && selectEl.value) {
-    window.location.href = selectEl.value;
+function initialiseStorage() {
+  initialiseDayPage();
+  const resultContainer = document.getElementById('advisor-result');
+  if (resultContainer) {
+    // advisor page present, no-op until button click
   }
 }
 
@@ -225,51 +177,22 @@ function recommendWorkout() {
   const sick = document.getElementById('advisor-sick').value;
   const fresh = document.getElementById('advisor-fresh').value;
 
-  let recommendation = '';
-  let page = '';
-  let note = '';
+  let recommendation = '', page = '', note = '';
   if (sick === 'yes' || energy <= 4) {
-    recommendation = 'Recovery and Mobility';
-    page = 'wednesday.html';
-    note = 'Because you are sick or low energy, the best move is recovery, mobility, and a light walk.';
+    recommendation = 'Recovery & Mobility'; page = 'wednesday.html'; note = 'Low energy or feeling sick: recovery wins today.';
   } else if (last.includes('Lower') || last.includes('Glute')) {
-    recommendation = fresh === 'upper' ? 'Upper Push (Chest / Shoulders / Triceps)' : 'Upper Pull (Back / Biceps / Shoulders)';
+    recommendation = fresh === 'upper' ? 'Upper Push + Pull-Up Work' : 'Upper Pull + Shoulders & Triceps';
     page = fresh === 'upper' ? 'tuesday.html' : 'friday.html';
-    note = 'You recently hit lower body, so upper body makes more sense today.';
+    note = 'You recently hit lower body, so use your fresher upper body.';
   } else if (last.includes('Upper') || last.includes('Shoulder')) {
-    recommendation = fresh === 'lower' ? 'Lower Body A (Glutes / Hamstrings)' : 'Lower Body B (Quads / Glutes)';
+    recommendation = fresh === 'lower' ? 'Lower Body A + Sprint' : 'Lower Body B + Sprint';
     page = fresh === 'lower' ? 'monday.html' : 'thursday.html';
-    note = 'Your upper body worked recently, so lower body is the better fit.';
+    note = 'Shift to lower body to keep the week balanced.';
   } else {
-    recommendation = 'Featured Workout';
-    page = 'featured.html';
-    note = 'A featured workout is a good plug-in when the week gets messy.';
+    recommendation = 'Featured Workout'; page = 'featured.html'; note = 'Plug in a featured workout if your week went sideways.';
   }
-
   resultContainer.innerHTML = `<p><strong>Recommended workout:</strong> ${recommendation}</p><p>${note}</p><p><a href="${page}">Open workout</a></p>`;
   resultContainer.style.display = 'block';
-}
-
-function initialiseStorage() {
-  document.querySelectorAll('[data-key]').forEach(input => {
-    loadInputValue(input);
-    input.addEventListener('change', () => {
-      saveInputValue(input);
-      updateSummary();
-    });
-  });
-
-  applySavedSelectionToSelect();
-  refreshAssignedUI();
-  updateHomeCards();
-  updateSummary();
-
-  const saveBtn = document.querySelector(".swap-save-btn");
-  const openBtn = document.querySelector(".swap-open-btn");
-  const clearBtn = document.querySelector(".swap-clear-btn");
-  if (saveBtn) saveBtn.addEventListener("click", saveCurrentAssignment);
-  if (openBtn) openBtn.addEventListener("click", openSelection);
-  if (clearBtn) clearBtn.addEventListener("click", clearSavedAssignment);
 }
 
 document.addEventListener('DOMContentLoaded', initialiseStorage);

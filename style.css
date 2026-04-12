@@ -206,78 +206,42 @@ main {
   color: #155724;
 }
 
-/* Saved swap fixes */
-.move-workout {
-  margin: 1rem 0;
-  padding: 1rem;
-  border: 1px dashed #cbd5e1;
-  border-radius: 16px;
-  background: #fff;
+.exercise-meta{color:#475569;margin-bottom:0.5rem;}
+.day-top-note{
+  display:inline-block;
+  margin:0.5rem 0 1rem;
+  padding:0.55rem 0.9rem;
+  border-radius:999px;
+  background:#eef2ff;
+  color:#4338ca;
+  font-weight:700;
 }
-.swap-select {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 2px solid #d8dfeb;
-  border-radius: 18px;
-  background: #fff;
-  font-size: 1.05rem;
-  margin-top: 0.5rem;
+.move-workout-actions{
+  display:flex;
+  gap:0.75rem;
+  flex-wrap:wrap;
+  margin-top:0.75rem;
 }
-.swap-actions {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  margin-top: 0.9rem;
+.move-workout button{
+  margin-left:0;
 }
-.swap-open-btn, .swap-save-btn, .swap-clear-btn,
-.action-primary, .action-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 52px;
-  padding: 0.85rem 1.15rem;
-  border-radius: 18px;
-  font-weight: 700;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
+.summary{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1rem;
+  margin-top:1rem;
+  padding:0;
+  border:none;
+  background:transparent;
+  color:inherit;
 }
-.swap-open-btn, .action-primary {
-  background: #4338ca;
-  color: #fff;
+.summary-box{
+  background:#fff;
+  border:1px solid #ddd;
+  border-radius:8px;
+  padding:0.85rem;
 }
-.swap-save-btn {
-  background: #e0e7ff;
-  color: #4338ca;
-}
-.swap-clear-btn, .action-secondary {
-  background: #fff;
-  color: #334155;
-  border: 1px solid #cbd5e1;
-}
-.swap-status { margin-top: 0.75rem; }
-.swap-note { color: #475569; font-size: 0.95rem; }
-.swap-banner {
-  background: #ecfdf5;
-  color: #14532d;
-  border: 1px solid #86efac;
-  border-radius: 16px;
-  padding: 1rem;
-}
-.swap-banner-kicker {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-}
-.card-swapped {
-  border-color: #818cf8;
-  box-shadow: 0 6px 18px rgba(67,56,202,.14);
-}
-.card-swapped h3 { color: #312e81; }
-
-@media (max-width: 640px) {
-  .swap-actions {
-    flex-direction: column;
-  }
+@media (max-width:700px){
+  .summary{grid-template-columns:1fr;}
+  .move-workout-actions button{width:100%;}
 }

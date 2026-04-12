@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Monday — Lower A + Sprint — Monikita’s Fitness App</title>
+  <title>Monday — Lower Body A + Sprint #1 — Monikita’s Fitness App</title>
   <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
 </head>
@@ -16,116 +16,22 @@
     </nav>
   </header>
   <main>
-    <h2 data-page-title="Monday — Lower Body A + Sprint">Monday — Lower Body A + Sprint</h2>
-    <p>Focus on glutes and hamstrings with heavy hip hinge movements and finish with sprints.</p>
-    <!-- Move workout section -->
+    <h2>Monday</h2>
+    <p id="workout-subtitle"></p>
+    <div id="active-workout-label" class="day-top-note"></div>
+
     <div class="move-workout">
-  <label for="swap-monday">Do this workout instead today</label>
-  <select id="swap-monday" class="swap-select">
-    <option value="">Choose a workout</option>
-    <option value="monday.html" data-label="Lower Body A">Monday / Lower Body A</option>
-    <option value="tuesday.html" data-label="Upper Push">Tuesday / Upper Push</option>
-    <option value="wednesday.html" data-label="Recovery & Mobility">Wednesday / Recovery</option>
-    <option value="thursday.html" data-label="Lower Body B">Thursday / Lower Body B</option>
-    <option value="friday.html" data-label="Upper Pull + Shoulders & Triceps">Friday / Upper Pull</option>
-    <option value="saturday.html" data-label="Sprints & Core">Saturday / Sprints & Core</option>
-    <option value="sunday.html" data-label="Rest Day">Sunday / Rest</option>
-    <option value="shoulders-triceps.html" data-label="Shoulders & Triceps">Shoulders & Triceps</option>
-    <option value="featured.html" data-label="Featured Workouts">Featured Workouts</option>
-  </select>
-  <div class="swap-actions">
-    <button type="button" class="swap-open-btn">Open selection</button>
-    <button type="button" class="swap-save-btn">Save my choice</button>
-    <button type="button" class="swap-clear-btn">Clear saved swap</button>
-  </div>
-  <div class="swap-status"></div>
-</div><div class="original-workout">
-<!-- Exercises -->
-    <div class="exercise">
-      <h4>Dead Hang (30&nbsp;sec)</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="mon-mon-deadhang-complete"> Completed</label>
-        <label>Time (sec): <input type="number" data-key="mon-mon-deadhang-time"></label>
-        <label>Energy (1–10): <input type="number" data-key="mon-mon-deadhang-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="mon-mon-deadhang-effort" data-type="effort" min="1" max="10"></label>
+      <label for="swap-select">Do this workout instead today</label>
+      <select id="swap-select"></select>
+      <div class="move-workout-actions">
+        <button type="button" id="open-selection-btn">Open selection</button>
+        <button type="button" id="save-choice-btn">Save my choice</button>
+        <button type="button" id="clear-choice-btn">Clear saved choice</button>
       </div>
-      <a href="https://www.youtube.com/results?search_query=dead+hang+exercise" target="_blank">🎥 Video</a>
-      <a href="https://www.google.com/search?tbm=isch&q=dead+hang+exercise" target="_blank">🖼️ Images</a>
     </div>
-    <div class="exercise">
-      <h4>Romanian Deadlift</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="mon-rdl-complete"> Completed</label>
-        <label>Reps: <input type="number" data-key="mon-rdl-reps"></label>
-        <label>Weight (lbs): <input type="number" data-key="mon-rdl-weight"></label>
-        <label>Energy (1–10): <input type="number" data-key="mon-rdl-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="mon-rdl-effort" data-type="effort" min="1" max="10"></label>
-      </div>
-      <a href="https://www.youtube.com/results?search_query=romanian+deadlift+proper+form" target="_blank">🎥 Video</a>
-      <a href="https://www.google.com/search?tbm=isch&q=romanian+deadlift+form" target="_blank">🖼️ Images</a>
-    </div>
-    <div class="exercise">
-      <h4>Hip Thrust</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="mon-thrust-complete"> Completed</label>
-        <label>Reps: <input type="number" data-key="mon-thrust-reps"></label>
-        <label>Weight (lbs): <input type="number" data-key="mon-thrust-weight"></label>
-        <label>Energy (1–10): <input type="number" data-key="mon-thrust-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="mon-thrust-effort" data-type="effort" min="1" max="10"></label>
-      </div>
-      <a href="https://www.youtube.com/results?search_query=hip+thrust+exercise+form" target="_blank">🎥 Video</a>
-      <a href="https://www.google.com/search?tbm=isch&q=hip+thrust+exercise+form" target="_blank">🖼️ Images</a>
-    </div>
-    <div class="exercise">
-      <h4>Step‑Ups (per leg)</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="mon-step-complete"> Completed</label>
-        <label>Reps (per leg): <input type="number" data-key="mon-step-reps"></label>
-        <label>Weight (lbs): <input type="number" data-key="mon-step-weight"></label>
-        <label>Energy (1–10): <input type="number" data-key="mon-step-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="mon-step-effort" data-type="effort" min="1" max="10"></label>
-      </div>
-      <a href="https://www.youtube.com/results?search_query=step+ups+glute+focus" target="_blank">🎥 Video</a>
-      <a href="https://www.google.com/search?tbm=isch&q=step+up+glute+focus" target="_blank">🖼️ Images</a>
-    </div>
-    <div class="exercise">
-      <h4>Cable Kickbacks (per leg)</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="mon-kick-complete"> Completed</label>
-        <label>Reps (per leg): <input type="number" data-key="mon-kick-reps"></label>
-        <label>Weight (lbs): <input type="number" data-key="mon-kick-weight"></label>
-        <label>Energy (1–10): <input type="number" data-key="mon-kick-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="mon-kick-effort" data-type="effort" min="1" max="10"></label>
-      </div>
-      <a href="https://www.youtube.com/results?search_query=cable+kickback+glute" target="_blank">🎥 Video</a>
-      <a href="https://www.google.com/search?tbm=isch&q=cable+kickback+glute" target="_blank">🖼️ Images</a>
-    </div>
-    <div class="exercise">
-      <h4>Abductor Machine</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="mon-abduct-complete"> Completed</label>
-        <label>Reps: <input type="number" data-key="mon-abduct-reps"></label>
-        <label>Weight (lbs): <input type="number" data-key="mon-abduct-weight"></label>
-        <label>Energy (1–10): <input type="number" data-key="mon-abduct-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="mon-abduct-effort" data-type="effort" min="1" max="10"></label>
-      </div>
-      <a href="https://www.youtube.com/results?search_query=abductor+machine" target="_blank">🎥 Video</a>
-      <a href="https://www.google.com/search?tbm=isch&q=abductor+machine" target="_blank">🖼️ Images</a>
-    </div>
-    <div class="exercise">
-      <h4>Sprints (30&nbsp;sec on / 90&nbsp;sec off × 5)</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="mon-sprint-complete"> Completed</label>
-        <label>Intervals completed: <input type="number" data-key="mon-sprint-intervals"></label>
-        <label>Energy (1–10): <input type="number" data-key="mon-sprint-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="mon-sprint-effort" data-type="effort" min="1" max="10"></label>
-      </div>
-      <a href="https://www.youtube.com/results?search_query=treadmill+sprint+interval+workout" target="_blank">🎥 Video</a>
-      <a href="https://www.google.com/search?tbm=isch&q=treadmill+sprint+workout" target="_blank">🖼️ Images</a>
-    </div>
-    <!-- Summary -->
+
     <div id="daily-summary" class="summary"></div>
-</div>
+    <div id="workout-container"></div>
   </main>
 </body>
 </html>
