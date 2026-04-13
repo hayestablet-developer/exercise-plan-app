@@ -205,3 +205,5 @@ main {
   background-color: #d4edda;
   color: #155724;
 }
+.card-swapped{border-color:#818cf8;box-shadow:0 6px 18px rgba(67,56,202,.14);}
+.card-swapped h3{color:#312e81;}

@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Saturday — Sprints & Core — Monikita’s Fitness App</title>
+  <title>Saturday — Monikita’s Fitness App</title>
   <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
 </head>
-<body>
+<body data-day-slot="saturday">
   <header>
     <h1>Monikita’s Fitness App 💪</h1>
     <nav>
@@ -16,86 +16,20 @@
     </nav>
   </header>
   <main>
-    <h2>Saturday — Sprints & Core</h2>
-    <p>Get your conditioning work in with sprint intervals and finish with a core circuit.</p>
-    <!-- Move workout section -->
+    <h2>Saturday</h2>
+    <p id="workout-subtitle"></p>
+    <div id="active-workout-label" class="day-top-note"></div>
     <div class="move-workout">
-      <label for="move-saturday">Move this workout to:</label>
-      <select id="move-saturday" onchange="moveWorkout(this)">
-        <option value="">--Select--</option>
-        <option value="monday.html">Monday (Lower A)</option>
-        <option value="tuesday.html">Tuesday (Upper Push)</option>
-        <option value="wednesday.html">Wednesday (Recovery)</option>
-        <option value="thursday.html">Thursday (Lower B)</option>
-        <option value="friday.html">Friday (Upper Pull)</option>
-        <option value="shoulders-triceps.html">Shoulders & Triceps</option>
-        <option value="featured.html">Featured Workouts</option>
-      </select>
-    </div>
-    <!-- Exercises -->
-    <div class="exercise">
-      <h4>Dead Hang (30&nbsp;sec)</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="sat-deadhang-complete"> Completed</label>
-        <label>Time (sec): <input type="number" data-key="sat-deadhang-time"></label>
-        <label>Energy (1–10): <input type="number" data-key="sat-deadhang-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="sat-deadhang-effort" data-type="effort" min="1" max="10"></label>
+      <label for="swap-select">Do this workout instead today</label>
+      <select id="swap-select"></select>
+      <div class="move-workout-actions">
+        <button type="button" id="open-selection-btn">Open selection</button>
+        <button type="button" id="save-choice-btn">Save my choice</button>
+        <button type="button" id="clear-choice-btn">Clear saved choice</button>
       </div>
-      <a href="https://www.youtube.com/results?search_query=dead+hang+exercise" target="_blank">🎥 Video</a>
-      <a href="https://www.youtube.com/results?search_query=dead+hang+exercise&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-      <a href="https://www.google.com/search?tbm=isch&q=dead+hang+exercise" target="_blank">🖼️ Images</a>
     </div>
-    <div class="exercise">
-      <h4>Sprints (30&nbsp;sec on / 90&nbsp;sec off × 5–6)</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="sat-sprint-complete"> Completed</label>
-        <label>Intervals completed: <input type="number" data-key="sat-sprint-intervals"></label>
-        <label>Energy (1–10): <input type="number" data-key="sat-sprint-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="sat-sprint-effort" data-type="effort" min="1" max="10"></label>
-      </div>
-      <a href="https://www.youtube.com/results?search_query=treadmill+sprint+interval+workout" target="_blank">🎥 Video</a>
-      <a href="https://www.youtube.com/results?search_query=treadmill+sprint+interval+workout&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-      <a href="https://www.google.com/search?tbm=isch&q=treadmill+sprint+workout" target="_blank">🖼️ Images</a>
-    </div>
-    <div class="exercise">
-      <h4>Plank Variations</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="sat-plank-complete"> Completed</label>
-        <label>Time (sec): <input type="number" data-key="sat-plank-time"></label>
-        <label>Energy (1–10): <input type="number" data-key="sat-plank-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="sat-plank-effort" data-type="effort" min="1" max="10"></label>
-      </div>
-      <a href="https://www.youtube.com/results?search_query=plank+variations" target="_blank">🎥 Video</a>
-      <a href="https://www.youtube.com/results?search_query=plank+variations&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-      <a href="https://www.google.com/search?tbm=isch&q=plank+variations" target="_blank">🖼️ Images</a>
-    </div>
-    <div class="exercise">
-      <h4>Hanging Knee Raise</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="sat-knee-complete"> Completed</label>
-        <label>Reps: <input type="number" data-key="sat-knee-reps"></label>
-        <label>Energy (1–10): <input type="number" data-key="sat-knee-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="sat-knee-effort" data-type="effort" min="1" max="10"></label>
-      </div>
-      <a href="https://www.youtube.com/results?search_query=hanging+knee+raise" target="_blank">🎥 Video</a>
-      <a href="https://www.youtube.com/results?search_query=hanging+knee+raise&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-      <a href="https://www.google.com/search?tbm=isch&q=hanging+knee+raise" target="_blank">🖼️ Images</a>
-    </div>
-    <div class="exercise">
-      <h4>Cable Crunch or Reverse Crunch</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="sat-crunch-complete"> Completed</label>
-        <label>Reps: <input type="number" data-key="sat-crunch-reps"></label>
-        <label>Weight (lbs): <input type="number" data-key="sat-crunch-weight"></label>
-        <label>Energy (1–10): <input type="number" data-key="sat-crunch-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="sat-crunch-effort" data-type="effort" min="1" max="10"></label>
-      </div>
-      <a href="https://www.youtube.com/results?search_query=cable+crunch+exercise" target="_blank">🎥 Video</a>
-      <a href="https://www.youtube.com/results?search_query=cable+crunch+exercise&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-      <a href="https://www.google.com/search?tbm=isch&q=cable+crunch" target="_blank">🖼️ Images</a>
-    </div>
-    <!-- Summary -->
     <div id="daily-summary" class="summary"></div>
+    <div id="workout-container"></div>
   </main>
 </body>
 </html>

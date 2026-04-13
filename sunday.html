@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sunday — Rest — Monikita’s Fitness App</title>
+  <title>Sunday — Monikita’s Fitness App</title>
   <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
 </head>
-<body>
+<body data-day-slot="sunday">
   <header>
     <h1>Monikita’s Fitness App 💪</h1>
     <nav>
@@ -16,50 +16,20 @@
     </nav>
   </header>
   <main>
-    <h2>Sunday — Rest Day</h2>
-    <p>Use this day for complete rest or gentle movement like a walk or stretching. Focus on recovery: sleep, nutrition and mental relaxation.</p>
-    <!-- Move workout section -->
+    <h2>Sunday</h2>
+    <p id="workout-subtitle"></p>
+    <div id="active-workout-label" class="day-top-note"></div>
     <div class="move-workout">
-      <label for="move-sunday">Move this session to:</label>
-      <select id="move-sunday" onchange="moveWorkout(this)">
-        <option value="">--Select--</option>
-        <option value="monday.html">Monday (Lower A)</option>
-        <option value="tuesday.html">Tuesday (Upper Push)</option>
-        <option value="wednesday.html">Wednesday (Recovery)</option>
-        <option value="thursday.html">Thursday (Lower B)</option>
-        <option value="friday.html">Friday (Upper Pull)</option>
-        <option value="saturday.html">Saturday (Sprints & Core)</option>
-        <option value="shoulders-triceps.html">Shoulders & Triceps</option>
-        <option value="featured.html">Featured Workouts</option>
-      </select>
-    </div>
-    <!-- Optional activities -->
-    <div class="exercise">
-      <h4>Gentle Walk</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="sun-walk-complete"> Completed</label>
-        <label>Duration (min): <input type="number" data-key="sun-walk-duration"></label>
-        <label>Energy (1–10): <input type="number" data-key="sun-walk-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="sun-walk-effort" data-type="effort" min="1" max="10"></label>
+      <label for="swap-select">Do this workout instead today</label>
+      <select id="swap-select"></select>
+      <div class="move-workout-actions">
+        <button type="button" id="open-selection-btn">Open selection</button>
+        <button type="button" id="save-choice-btn">Save my choice</button>
+        <button type="button" id="clear-choice-btn">Clear saved choice</button>
       </div>
-      <a href="https://www.youtube.com/results?search_query=benefits+of+walking" target="_blank">🎥 Video</a>
-      <a href="https://www.youtube.com/results?search_query=benefits+of+walking&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-      <a href="https://www.google.com/search?tbm=isch&q=walking+exercise" target="_blank">🖼️ Images</a>
     </div>
-    <div class="exercise">
-      <h4>Stretching & Mobility</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="sun-stretch-complete"> Completed</label>
-        <label>Duration (min): <input type="number" data-key="sun-stretch-duration"></label>
-        <label>Energy (1–10): <input type="number" data-key="sun-stretch-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="sun-stretch-effort" data-type="effort" min="1" max="10"></label>
-      </div>
-      <a href="https://www.youtube.com/results?search_query=full+body+stretch+routine" target="_blank">🎥 Video</a>
-      <a href="https://www.youtube.com/results?search_query=full+body+stretch+routine&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-      <a href="https://www.google.com/search?tbm=isch&q=stretching+routine" target="_blank">🖼️ Images</a>
-    </div>
-    <!-- Summary -->
     <div id="daily-summary" class="summary"></div>
+    <div id="workout-container"></div>
   </main>
 </body>
 </html>

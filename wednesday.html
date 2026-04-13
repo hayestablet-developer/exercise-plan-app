@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wednesday — Recovery & Mobility — Monikita’s Fitness App</title>
+  <title>Wednesday — Monikita’s Fitness App</title>
   <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
 </head>
-<body>
+<body data-day-slot="wednesday">
   <header>
     <h1>Monikita’s Fitness App 💪</h1>
     <nav>
@@ -16,73 +16,20 @@
     </nav>
   </header>
   <main>
-    <h2>Wednesday — Recovery & Mobility</h2>
-    <p>Take an active recovery day to support your nervous system. Incorporate walking, gentle mobility and Pilates.</p>
-    <!-- Move workout section -->
+    <h2>Wednesday</h2>
+    <p id="workout-subtitle"></p>
+    <div id="active-workout-label" class="day-top-note"></div>
     <div class="move-workout">
-      <label for="move-wednesday">Move this session to:</label>
-      <select id="move-wednesday" onchange="moveWorkout(this)">
-        <option value="">--Select--</option>
-        <option value="monday.html">Monday (Lower A)</option>
-        <option value="tuesday.html">Tuesday (Upper Push)</option>
-        <option value="thursday.html">Thursday (Lower B)</option>
-        <option value="friday.html">Friday (Upper Pull)</option>
-        <option value="saturday.html">Saturday (Sprints & Core)</option>
-        <option value="shoulders-triceps.html">Shoulders & Triceps</option>
-        <option value="featured-pilates.html">Pilates Core & Mobility</option>
-      </select>
-    </div>
-    <!-- Exercises -->
-    <div class="exercise">
-      <h4>Dead Hang (30&nbsp;sec)</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="wed-deadhang-complete"> Completed</label>
-        <label>Time (sec): <input type="number" data-key="wed-deadhang-time"></label>
-        <label>Energy (1–10): <input type="number" data-key="wed-deadhang-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="wed-deadhang-effort" data-type="effort" min="1" max="10"></label>
+      <label for="swap-select">Do this workout instead today</label>
+      <select id="swap-select"></select>
+      <div class="move-workout-actions">
+        <button type="button" id="open-selection-btn">Open selection</button>
+        <button type="button" id="save-choice-btn">Save my choice</button>
+        <button type="button" id="clear-choice-btn">Clear saved choice</button>
       </div>
-      <a href="https://www.youtube.com/results?search_query=dead+hang+exercise" target="_blank">🎥 Video</a>
-      <a href="https://www.youtube.com/results?search_query=dead+hang+exercise&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-      <a href="https://www.google.com/search?tbm=isch&q=dead+hang" target="_blank">🖼️ Images</a>
     </div>
-    <div class="exercise">
-      <h4>Walk (20–30&nbsp;min)</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="wed-walk-complete"> Completed</label>
-        <label>Duration (min): <input type="number" data-key="wed-walk-duration"></label>
-        <label>Energy (1–10): <input type="number" data-key="wed-walk-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="wed-walk-effort" data-type="effort" min="1" max="10"></label>
-      </div>
-      <a href="https://www.youtube.com/results?search_query=brisk+walking+benefits" target="_blank">🎥 Video</a>
-      <a href="https://www.youtube.com/results?search_query=brisk+walking+benefits&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-      <a href="https://www.google.com/search?tbm=isch&q=walking+exercise" target="_blank">🖼️ Images</a>
-    </div>
-    <div class="exercise">
-      <h4>Pilates Mobility Flow</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="wed-pilates-complete"> Completed</label>
-        <label>Duration (min): <input type="number" data-key="wed-pilates-duration"></label>
-        <label>Energy (1–10): <input type="number" data-key="wed-pilates-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="wed-pilates-effort" data-type="effort" min="1" max="10"></label>
-      </div>
-      <a href="https://www.youtube.com/results?search_query=pilates+mobility+routine" target="_blank">🎥 Video</a>
-      <a href="https://www.youtube.com/results?search_query=pilates+mobility+routine&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-      <a href="https://www.google.com/search?tbm=isch&q=pilates+mobility" target="_blank">🖼️ Images</a>
-    </div>
-    <div class="exercise">
-      <h4>Breathwork/Meditation</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="wed-breath-complete"> Completed</label>
-        <label>Duration (min): <input type="number" data-key="wed-breath-duration"></label>
-        <label>Energy (1–10): <input type="number" data-key="wed-breath-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="wed-breath-effort" data-type="effort" min="1" max="10"></label>
-      </div>
-      <a href="https://www.youtube.com/results?search_query=guided+breathwork" target="_blank">🎥 Video</a>
-      <a href="https://www.youtube.com/results?search_query=guided+breathwork&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-      <a href="https://www.google.com/search?tbm=isch&q=breathwork" target="_blank">🖼️ Images</a>
-    </div>
-    <!-- Summary -->
     <div id="daily-summary" class="summary"></div>
+    <div id="workout-container"></div>
   </main>
 </body>
 </html>
