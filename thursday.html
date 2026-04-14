@@ -17,19 +17,91 @@
   </header>
   <main>
     <h2>Thursday</h2>
-    <p id="workout-subtitle"></p>
-    <div id="active-workout-label" class="day-top-note"></div>
+    <p id="workout-subtitle">Quad and glute focus</p>
+    <div id="active-workout-label" class="day-top-note">Currently showing: Lower Body B + Sprint</div>
+
     <div class="move-workout">
       <label for="swap-select">Do this workout instead today</label>
-      <select id="swap-select"></select>
+      <select id="swap-select"><option value="monday">Lower Body A + Sprint</option><option value="tuesday">Upper Push + Pull-Up Work</option><option value="wednesday">Recovery &amp; Mobility</option><option value="thursday">Lower Body B + Sprint</option><option value="friday">Upper Pull + Shoulders &amp; Triceps</option><option value="saturday">Sprints &amp; Core</option><option value="sunday">Rest Day</option><option value="shoulders-triceps">Shoulders &amp; Triceps</option></select>
       <div class="move-workout-actions">
         <button type="button" id="open-selection-btn">Open selection</button>
         <button type="button" id="save-choice-btn">Save my choice</button>
         <button type="button" id="clear-choice-btn">Clear saved choice</button>
       </div>
     </div>
-    <div id="daily-summary" class="summary"></div>
-    <div id="workout-container"></div>
+
+    <div id="daily-summary" class="summary">
+      <div class="summary-box"><strong>Completed</strong><div>0 / 6</div></div>
+      <div class="summary-box"><strong>Avg effort</strong><div>N/A</div></div>
+      <div class="summary-box"><strong>Avg energy</strong><div>N/A</div></div>
+    </div>
+    <div id="workout-container">
+    <div class="exercise">
+      <h4>Dead Hang</h4>
+      <div class="exercise-meta">30 seconds</div>
+      <div class="fields">
+        <label><input type="checkbox" data-field="complete" data-exercise="dead-hang"> Completed</label>
+        <label>Time (sec): <input type="number" data-field="time" data-exercise="dead-hang"></label><label>Energy (1–10): <input type="number" data-field="energy" data-exercise="dead-hang" data-type="energy"></label><label>Effort (1–10): <input type="number" data-field="effort" data-exercise="dead-hang" data-type="effort"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=dead+hang+exercise" target="_blank" rel="noopener">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=dead+hang+exercise&amp;sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&amp;q=dead+hang" target="_blank" rel="noopener">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Goblet Squat</h4>
+      <div class="exercise-meta">3 sets • 8–12 reps</div>
+      <div class="fields">
+        <label><input type="checkbox" data-field="complete" data-exercise="goblet-squat"> Completed</label>
+        <label>Reps: <input type="number" data-field="reps" data-exercise="goblet-squat"></label><label>Weight (lbs): <input type="number" data-field="weight" data-exercise="goblet-squat"></label><label>Energy (1–10): <input type="number" data-field="energy" data-exercise="goblet-squat" data-type="energy"></label><label>Effort (1–10): <input type="number" data-field="effort" data-exercise="goblet-squat" data-type="effort"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=goblet+squat+form" target="_blank" rel="noopener">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=goblet+squat+form&amp;sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&amp;q=goblet+squat+form" target="_blank" rel="noopener">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Reverse Lunge or Split Squat</h4>
+      <div class="exercise-meta">3 sets/side • 8–10 reps</div>
+      <div class="fields">
+        <label><input type="checkbox" data-field="complete" data-exercise="reverse-lunge"> Completed</label>
+        <label>Reps (per leg): <input type="number" data-field="reps" data-exercise="reverse-lunge"></label><label>Weight (lbs): <input type="number" data-field="weight" data-exercise="reverse-lunge"></label><label>Energy (1–10): <input type="number" data-field="energy" data-exercise="reverse-lunge" data-type="energy"></label><label>Effort (1–10): <input type="number" data-field="effort" data-exercise="reverse-lunge" data-type="effort"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=reverse+lunge+split+squat" target="_blank" rel="noopener">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=reverse+lunge+split+squat&amp;sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&amp;q=reverse+lunge+split+squat" target="_blank" rel="noopener">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Glute Bridges</h4>
+      <div class="exercise-meta">3 sets • 12–20 reps</div>
+      <div class="fields">
+        <label><input type="checkbox" data-field="complete" data-exercise="glute-bridges"> Completed</label>
+        <label>Reps: <input type="number" data-field="reps" data-exercise="glute-bridges"></label><label>Weight (lbs): <input type="number" data-field="weight" data-exercise="glute-bridges"></label><label>Energy (1–10): <input type="number" data-field="energy" data-exercise="glute-bridges" data-type="energy"></label><label>Effort (1–10): <input type="number" data-field="effort" data-exercise="glute-bridges" data-type="effort"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=glute+bridge" target="_blank" rel="noopener">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=glute+bridge&amp;sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&amp;q=glute+bridge" target="_blank" rel="noopener">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Bodyweight Glute Bridge Burnout</h4>
+      <div class="exercise-meta">2 sets • near failure</div>
+      <div class="fields">
+        <label><input type="checkbox" data-field="complete" data-exercise="bodyweight-glute-bridge"> Completed</label>
+        <label>Reps: <input type="number" data-field="reps" data-exercise="bodyweight-glute-bridge"></label><label>Energy (1–10): <input type="number" data-field="energy" data-exercise="bodyweight-glute-bridge" data-type="energy"></label><label>Effort (1–10): <input type="number" data-field="effort" data-exercise="bodyweight-glute-bridge" data-type="effort"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=bodyweight+glute+bridge" target="_blank" rel="noopener">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=bodyweight+glute+bridge&amp;sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&amp;q=bodyweight+glute+bridge" target="_blank" rel="noopener">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Sprints</h4>
+      <div class="exercise-meta">30 sec on / 90 sec off × 5</div>
+      <div class="fields">
+        <label><input type="checkbox" data-field="complete" data-exercise="sprints"> Completed</label>
+        <label>Intervals completed: <input type="number" data-field="reps" data-exercise="sprints"></label><label>Energy (1–10): <input type="number" data-field="energy" data-exercise="sprints" data-type="energy"></label><label>Effort (1–10): <input type="number" data-field="effort" data-exercise="sprints" data-type="effort"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=treadmill+sprint+interval+workout" target="_blank" rel="noopener">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=treadmill+sprint+interval+workout&amp;sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&amp;q=treadmill+sprint+workout" target="_blank" rel="noopener">🖼️ Images</a>
+    </div></div>
   </main>
 </body>
 </html>

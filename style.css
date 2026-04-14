@@ -207,3 +207,55 @@ main {
 }
 .card-swapped{border-color:#818cf8;box-shadow:0 6px 18px rgba(67,56,202,.14);}
 .card-swapped h3{color:#312e81;}
+
+
+.day-top-note{
+  display:inline-block;
+  margin:0.5rem 0 1rem;
+  padding:0.55rem 0.9rem;
+  border-radius:999px;
+  background:#eef2ff;
+  color:#4338ca;
+  font-weight:700;
+}
+.exercise-meta{color:#475569;margin-bottom:0.5rem;}
+.move-workout select{
+  display:block;
+  width:100%;
+  margin-top:0.5rem;
+  margin-bottom:0.75rem;
+}
+.move-workout-actions{
+  display:flex;
+  gap:0.5rem;
+  flex-wrap:wrap;
+}
+.move-workout button{
+  margin-left:0;
+}
+.summary{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1rem;
+  margin-top:1rem;
+  padding:0;
+  border:none;
+  background:transparent;
+  color:inherit;
+}
+.summary-box{
+  background:#fff3cd;
+  color:#856404;
+  border:1px solid #ddd;
+  border-radius:8px;
+  padding:0.75rem;
+}
+.card-swapped{
+  border-color:#818cf8;
+  box-shadow:0 6px 18px rgba(67,56,202,.14);
+}
+.card-swapped h3{color:#312e81;}
+@media (max-width:700px){
+  .summary{grid-template-columns:1fr;}
+  .move-workout-actions button{width:100%;}
+}

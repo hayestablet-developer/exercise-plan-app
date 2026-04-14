@@ -17,19 +17,47 @@
   </header>
   <main>
     <h2>Sunday</h2>
-    <p id="workout-subtitle"></p>
-    <div id="active-workout-label" class="day-top-note"></div>
+    <p id="workout-subtitle">Recovery matters</p>
+    <div id="active-workout-label" class="day-top-note">Currently showing: Rest Day</div>
+
     <div class="move-workout">
       <label for="swap-select">Do this workout instead today</label>
-      <select id="swap-select"></select>
+      <select id="swap-select"><option value="monday">Lower Body A + Sprint</option><option value="tuesday">Upper Push + Pull-Up Work</option><option value="wednesday">Recovery &amp; Mobility</option><option value="thursday">Lower Body B + Sprint</option><option value="friday">Upper Pull + Shoulders &amp; Triceps</option><option value="saturday">Sprints &amp; Core</option><option value="sunday">Rest Day</option><option value="shoulders-triceps">Shoulders &amp; Triceps</option></select>
       <div class="move-workout-actions">
         <button type="button" id="open-selection-btn">Open selection</button>
         <button type="button" id="save-choice-btn">Save my choice</button>
         <button type="button" id="clear-choice-btn">Clear saved choice</button>
       </div>
     </div>
-    <div id="daily-summary" class="summary"></div>
-    <div id="workout-container"></div>
+
+    <div id="daily-summary" class="summary">
+      <div class="summary-box"><strong>Completed</strong><div>0 / 2</div></div>
+      <div class="summary-box"><strong>Avg effort</strong><div>N/A</div></div>
+      <div class="summary-box"><strong>Avg energy</strong><div>N/A</div></div>
+    </div>
+    <div id="workout-container">
+    <div class="exercise">
+      <h4>Gentle Walk</h4>
+      <div class="exercise-meta">Optional • 10–30 minutes</div>
+      <div class="fields">
+        <label><input type="checkbox" data-field="complete" data-exercise="gentle-walk"> Completed</label>
+        <label>Duration (min): <input type="number" data-field="time" data-exercise="gentle-walk"></label><label>Energy (1–10): <input type="number" data-field="energy" data-exercise="gentle-walk" data-type="energy"></label><label>Effort (1–10): <input type="number" data-field="effort" data-exercise="gentle-walk" data-type="effort"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=benefits+of+walking" target="_blank" rel="noopener">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=benefits+of+walking&amp;sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&amp;q=walking+exercise" target="_blank" rel="noopener">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Stretching &amp; Mobility</h4>
+      <div class="exercise-meta">Optional • 10–20 minutes</div>
+      <div class="fields">
+        <label><input type="checkbox" data-field="complete" data-exercise="stretching"> Completed</label>
+        <label>Duration (min): <input type="number" data-field="time" data-exercise="stretching"></label><label>Energy (1–10): <input type="number" data-field="energy" data-exercise="stretching" data-type="energy"></label><label>Effort (1–10): <input type="number" data-field="effort" data-exercise="stretching" data-type="effort"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=full+body+stretch+routine" target="_blank" rel="noopener">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=full+body+stretch+routine&amp;sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&amp;q=stretching+routine" target="_blank" rel="noopener">🖼️ Images</a>
+    </div></div>
   </main>
 </body>
 </html>

@@ -17,19 +17,80 @@
   </header>
   <main>
     <h2>Saturday</h2>
-    <p id="workout-subtitle"></p>
-    <div id="active-workout-label" class="day-top-note"></div>
+    <p id="workout-subtitle">Conditioning and trunk work</p>
+    <div id="active-workout-label" class="day-top-note">Currently showing: Sprints &amp; Core</div>
+
     <div class="move-workout">
       <label for="swap-select">Do this workout instead today</label>
-      <select id="swap-select"></select>
+      <select id="swap-select"><option value="monday">Lower Body A + Sprint</option><option value="tuesday">Upper Push + Pull-Up Work</option><option value="wednesday">Recovery &amp; Mobility</option><option value="thursday">Lower Body B + Sprint</option><option value="friday">Upper Pull + Shoulders &amp; Triceps</option><option value="saturday">Sprints &amp; Core</option><option value="sunday">Rest Day</option><option value="shoulders-triceps">Shoulders &amp; Triceps</option></select>
       <div class="move-workout-actions">
         <button type="button" id="open-selection-btn">Open selection</button>
         <button type="button" id="save-choice-btn">Save my choice</button>
         <button type="button" id="clear-choice-btn">Clear saved choice</button>
       </div>
     </div>
-    <div id="daily-summary" class="summary"></div>
-    <div id="workout-container"></div>
+
+    <div id="daily-summary" class="summary">
+      <div class="summary-box"><strong>Completed</strong><div>0 / 5</div></div>
+      <div class="summary-box"><strong>Avg effort</strong><div>N/A</div></div>
+      <div class="summary-box"><strong>Avg energy</strong><div>N/A</div></div>
+    </div>
+    <div id="workout-container">
+    <div class="exercise">
+      <h4>Dead Hang</h4>
+      <div class="exercise-meta">30 seconds</div>
+      <div class="fields">
+        <label><input type="checkbox" data-field="complete" data-exercise="dead-hang"> Completed</label>
+        <label>Time (sec): <input type="number" data-field="time" data-exercise="dead-hang"></label><label>Energy (1–10): <input type="number" data-field="energy" data-exercise="dead-hang" data-type="energy"></label><label>Effort (1–10): <input type="number" data-field="effort" data-exercise="dead-hang" data-type="effort"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=dead+hang+exercise" target="_blank" rel="noopener">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=dead+hang+exercise&amp;sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&amp;q=dead+hang+exercise" target="_blank" rel="noopener">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Sprints</h4>
+      <div class="exercise-meta">30 sec on / 90 sec off × 5–6</div>
+      <div class="fields">
+        <label><input type="checkbox" data-field="complete" data-exercise="sprints"> Completed</label>
+        <label>Intervals completed: <input type="number" data-field="reps" data-exercise="sprints"></label><label>Energy (1–10): <input type="number" data-field="energy" data-exercise="sprints" data-type="energy"></label><label>Effort (1–10): <input type="number" data-field="effort" data-exercise="sprints" data-type="effort"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=treadmill+sprint+interval+workout" target="_blank" rel="noopener">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=treadmill+sprint+interval+workout&amp;sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&amp;q=treadmill+sprint+workout" target="_blank" rel="noopener">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Plank Variations</h4>
+      <div class="exercise-meta">3 rounds</div>
+      <div class="fields">
+        <label><input type="checkbox" data-field="complete" data-exercise="planks"> Completed</label>
+        <label>Time (sec): <input type="number" data-field="time" data-exercise="planks"></label><label>Energy (1–10): <input type="number" data-field="energy" data-exercise="planks" data-type="energy"></label><label>Effort (1–10): <input type="number" data-field="effort" data-exercise="planks" data-type="effort"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=plank+variations" target="_blank" rel="noopener">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=plank+variations&amp;sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&amp;q=plank+variations" target="_blank" rel="noopener">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Hanging Knee Raise</h4>
+      <div class="exercise-meta">3 sets • 10–15 reps</div>
+      <div class="fields">
+        <label><input type="checkbox" data-field="complete" data-exercise="hanging-knee-raise"> Completed</label>
+        <label>Reps: <input type="number" data-field="reps" data-exercise="hanging-knee-raise"></label><label>Energy (1–10): <input type="number" data-field="energy" data-exercise="hanging-knee-raise" data-type="energy"></label><label>Effort (1–10): <input type="number" data-field="effort" data-exercise="hanging-knee-raise" data-type="effort"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=hanging+knee+raise" target="_blank" rel="noopener">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=hanging+knee+raise&amp;sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&amp;q=hanging+knee+raise" target="_blank" rel="noopener">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Cable Crunch or Reverse Crunch</h4>
+      <div class="exercise-meta">3 sets • 12–20 reps</div>
+      <div class="fields">
+        <label><input type="checkbox" data-field="complete" data-exercise="cable-crunch"> Completed</label>
+        <label>Reps: <input type="number" data-field="reps" data-exercise="cable-crunch"></label><label>Weight (lbs): <input type="number" data-field="weight" data-exercise="cable-crunch"></label><label>Energy (1–10): <input type="number" data-field="energy" data-exercise="cable-crunch" data-type="energy"></label><label>Effort (1–10): <input type="number" data-field="effort" data-exercise="cable-crunch" data-type="effort"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=cable+crunch+exercise" target="_blank" rel="noopener">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=cable+crunch+exercise&amp;sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&amp;q=cable+crunch" target="_blank" rel="noopener">🖼️ Images</a>
+    </div></div>
   </main>
 </body>
 </html>

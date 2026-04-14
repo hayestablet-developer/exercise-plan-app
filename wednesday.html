@@ -17,19 +17,69 @@
   </header>
   <main>
     <h2>Wednesday</h2>
-    <p id="workout-subtitle"></p>
-    <div id="active-workout-label" class="day-top-note"></div>
+    <p id="workout-subtitle">Reset day</p>
+    <div id="active-workout-label" class="day-top-note">Currently showing: Recovery &amp; Mobility</div>
+
     <div class="move-workout">
       <label for="swap-select">Do this workout instead today</label>
-      <select id="swap-select"></select>
+      <select id="swap-select"><option value="monday">Lower Body A + Sprint</option><option value="tuesday">Upper Push + Pull-Up Work</option><option value="wednesday">Recovery &amp; Mobility</option><option value="thursday">Lower Body B + Sprint</option><option value="friday">Upper Pull + Shoulders &amp; Triceps</option><option value="saturday">Sprints &amp; Core</option><option value="sunday">Rest Day</option><option value="shoulders-triceps">Shoulders &amp; Triceps</option></select>
       <div class="move-workout-actions">
         <button type="button" id="open-selection-btn">Open selection</button>
         <button type="button" id="save-choice-btn">Save my choice</button>
         <button type="button" id="clear-choice-btn">Clear saved choice</button>
       </div>
     </div>
-    <div id="daily-summary" class="summary"></div>
-    <div id="workout-container"></div>
+
+    <div id="daily-summary" class="summary">
+      <div class="summary-box"><strong>Completed</strong><div>0 / 4</div></div>
+      <div class="summary-box"><strong>Avg effort</strong><div>N/A</div></div>
+      <div class="summary-box"><strong>Avg energy</strong><div>N/A</div></div>
+    </div>
+    <div id="workout-container">
+    <div class="exercise">
+      <h4>Dead Hang</h4>
+      <div class="exercise-meta">30 seconds</div>
+      <div class="fields">
+        <label><input type="checkbox" data-field="complete" data-exercise="dead-hang"> Completed</label>
+        <label>Time (sec): <input type="number" data-field="time" data-exercise="dead-hang"></label><label>Energy (1–10): <input type="number" data-field="energy" data-exercise="dead-hang" data-type="energy"></label><label>Effort (1–10): <input type="number" data-field="effort" data-exercise="dead-hang" data-type="effort"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=dead+hang+exercise" target="_blank" rel="noopener">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=dead+hang+exercise&amp;sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&amp;q=dead+hang" target="_blank" rel="noopener">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Walk</h4>
+      <div class="exercise-meta">20–30 minutes</div>
+      <div class="fields">
+        <label><input type="checkbox" data-field="complete" data-exercise="walk"> Completed</label>
+        <label>Duration (min): <input type="number" data-field="time" data-exercise="walk"></label><label>Energy (1–10): <input type="number" data-field="energy" data-exercise="walk" data-type="energy"></label><label>Effort (1–10): <input type="number" data-field="effort" data-exercise="walk" data-type="effort"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=brisk+walking+benefits" target="_blank" rel="noopener">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=brisk+walking+benefits&amp;sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&amp;q=walking+exercise" target="_blank" rel="noopener">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Pilates Mobility Flow</h4>
+      <div class="exercise-meta">15–25 minutes</div>
+      <div class="fields">
+        <label><input type="checkbox" data-field="complete" data-exercise="pilates-mobility-flow"> Completed</label>
+        <label>Duration (min): <input type="number" data-field="time" data-exercise="pilates-mobility-flow"></label><label>Energy (1–10): <input type="number" data-field="energy" data-exercise="pilates-mobility-flow" data-type="energy"></label><label>Effort (1–10): <input type="number" data-field="effort" data-exercise="pilates-mobility-flow" data-type="effort"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=pilates+mobility+routine" target="_blank" rel="noopener">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=pilates+mobility+routine&amp;sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&amp;q=pilates+mobility" target="_blank" rel="noopener">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Breathwork / Meditation</h4>
+      <div class="exercise-meta">5–10 minutes</div>
+      <div class="fields">
+        <label><input type="checkbox" data-field="complete" data-exercise="breathwork"> Completed</label>
+        <label>Duration (min): <input type="number" data-field="time" data-exercise="breathwork"></label><label>Energy (1–10): <input type="number" data-field="energy" data-exercise="breathwork" data-type="energy"></label><label>Effort (1–10): <input type="number" data-field="effort" data-exercise="breathwork" data-type="effort"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=guided+breathwork" target="_blank" rel="noopener">🎥 Video</a>
+      <a href="https://www.youtube.com/results?search_query=guided+breathwork&amp;sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+      <a href="https://www.google.com/search?tbm=isch&amp;q=breathwork" target="_blank" rel="noopener">🖼️ Images</a>
+    </div></div>
   </main>
 </body>
 </html>
