@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise Library — Monikita’s Fitness App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+  <script defer>
+    function updateLibraryProgress() {
+      const checks = Array.from(document.querySelectorAll('.library-check'));
+      const overall = document.getElementById('library-overall-progress');
+      const done = checks.filter(cb => cb.checked).length;
+      if (overall) overall.textContent = `${done} / ${checks.length} exercises checked off`;
+
+      const groups = {"lower-body-push": 5, "lower-body-pull": 5, "upper-body-push": 6, "upper-body-pull": 7, "core": 5, "mobility": 5, "stretching": 5};
+      Object.keys(groups).forEach(groupId => {
+        const groupChecks = checks.filter(cb => cb.dataset.group === groupId);
+        const groupDone = groupChecks.filter(cb => cb.checked).length;
+        const node = document.getElementById(`progress-${groupId}`);
+        if (node) node.textContent = `${groupDone} / ${groups[groupId]} complete`;
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const checks = document.querySelectorAll('.library-check');
+      checks.forEach(cb => {
+        cb.addEventListener('change', updateLibraryProgress);
+      });
+      updateLibraryProgress();
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Monikita’s Fitness App 💪</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="advisor.html">What should I do today?</a>
+      <a href="exercises-library.html">Exercise Library</a>
+    </nav>
+  </header>
+  <main>
+    <div class="library-hero">
+      <h2>Exercise Library</h2>
+      <p>All your main exercises grouped by movement pattern. Tap a Shorts link for a quick demo and check off exercises you want to focus on.</p>
+      <div class="library-overall" id="library-overall-progress">0 / 0 exercises checked off</div>
+    </div>
+    
+    <section class="library-group" data-group-section="lower-body-push">
+      <div class="library-group-head">
+        <h3>Lower Body Push</h3>
+        <div class="library-group-progress" id="progress-lower-body-push">0 / 5 complete</div>
+      </div>
+      
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__lower-body-push__1" data-group="lower-body-push">
+              <span>Goblet Squat</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=goblet+squat+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Quad and glute strength</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__lower-body-push__2" data-group="lower-body-push">
+              <span>Reverse Lunge</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=reverse+lunge+exercise+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Single-leg push pattern</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__lower-body-push__3" data-group="lower-body-push">
+              <span>Split Squat</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=split+squat+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Lower body push and balance</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__lower-body-push__4" data-group="lower-body-push">
+              <span>Step-Ups</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=step+ups+exercise+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Glute and quad drive</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__lower-body-push__5" data-group="lower-body-push">
+              <span>Glute Bridges</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=glute+bridge+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Bridge pattern for glutes</p>
+        </div>
+        
+    </section>
+    
+    <section class="library-group" data-group-section="lower-body-pull">
+      <div class="library-group-head">
+        <h3>Lower Body Pull</h3>
+        <div class="library-group-progress" id="progress-lower-body-pull">0 / 5 complete</div>
+      </div>
+      
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__lower-body-pull__1" data-group="lower-body-pull">
+              <span>Romanian Deadlift</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=romanian+deadlift+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Hamstrings and glute hinge</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__lower-body-pull__2" data-group="lower-body-pull">
+              <span>Hip Thrust</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=hip+thrust+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Heavy glute focus</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__lower-body-pull__3" data-group="lower-body-pull">
+              <span>Cable Kickbacks</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=cable+kickbacks+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Glute isolation</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__lower-body-pull__4" data-group="lower-body-pull">
+              <span>Abductor Machine</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=abductor+machine+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Glute med / outer glutes</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__lower-body-pull__5" data-group="lower-body-pull">
+              <span>Bodyweight Glute Bridge Burnout</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=bodyweight+glute+bridge+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Glute finisher</p>
+        </div>
+        
+    </section>
+    
+    <section class="library-group" data-group-section="upper-body-push">
+      <div class="library-group-head">
+        <h3>Upper Body Push</h3>
+        <div class="library-group-progress" id="progress-upper-body-push">0 / 6 complete</div>
+      </div>
+      
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__upper-body-push__1" data-group="upper-body-push">
+              <span>Incline Dumbbell Press</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=incline+dumbbell+press+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Upper chest press</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__upper-body-push__2" data-group="upper-body-push">
+              <span>Dumbbell Shoulder Press</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=dumbbell+shoulder+press+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Shoulder strength</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__upper-body-push__3" data-group="upper-body-push">
+              <span>Lateral Raise</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=lateral+raise+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Side delt isolation</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__upper-body-push__4" data-group="upper-body-push">
+              <span>Triceps Pushdown</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=triceps+pushdown+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Triceps cable work</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__upper-body-push__5" data-group="upper-body-push">
+              <span>Overhead Triceps Extension</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=overhead+triceps+extension+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Long-head triceps focus</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__upper-body-push__6" data-group="upper-body-push">
+              <span>Close-Grip Push-Up</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=close+grip+push+up+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Bodyweight triceps push</p>
+        </div>
+        
+    </section>
+    
+    <section class="library-group" data-group-section="upper-body-pull">
+      <div class="library-group-head">
+        <h3>Upper Body Pull</h3>
+        <div class="library-group-progress" id="progress-upper-body-pull">0 / 7 complete</div>
+      </div>
+      
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__upper-body-pull__1" data-group="upper-body-pull">
+              <span>Dead Hang</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=dead+hang+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Grip and pull-up progress</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__upper-body-pull__2" data-group="upper-body-pull">
+              <span>Band-Assisted Pull-Up</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=band+assisted+pull+up+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Pull-up progression</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__upper-body-pull__3" data-group="upper-body-pull">
+              <span>Assisted Pull-Up Machine</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=assisted+pull+up+machine+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Back and pull-up strength</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__upper-body-pull__4" data-group="upper-body-pull">
+              <span>Scapular Pull-Up</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=scapular+pull+up+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Shoulder blade control</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__upper-body-pull__5" data-group="upper-body-pull">
+              <span>Seated Cable Row</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=seated+cable+row+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Mid-back pull</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__upper-body-pull__6" data-group="upper-body-pull">
+              <span>Single Arm Dumbbell Row</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=single+arm+dumbbell+row+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Unilateral back work</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__upper-body-pull__7" data-group="upper-body-pull">
+              <span>Hammer Curl</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=hammer+curl+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Biceps and brachialis</p>
+        </div>
+        
+    </section>
+    
+    <section class="library-group" data-group-section="core">
+      <div class="library-group-head">
+        <h3>Core</h3>
+        <div class="library-group-progress" id="progress-core">0 / 5 complete</div>
+      </div>
+      
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__core__1" data-group="core">
+              <span>Plank Variations</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=plank+variations+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Brace and anti-extension</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__core__2" data-group="core">
+              <span>Hanging Knee Raise</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=hanging+knee+raise+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Lower abs and grip</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__core__3" data-group="core">
+              <span>Cable Crunch</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=cable+crunch+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Weighted ab flexion</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__core__4" data-group="core">
+              <span>Reverse Crunch</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=reverse+crunch+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Lower-ab control</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__core__5" data-group="core">
+              <span>Dead Bug</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=dead+bug+exercise+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Deep core stability</p>
+        </div>
+        
+    </section>
+    
+    <section class="library-group" data-group-section="mobility">
+      <div class="library-group-head">
+        <h3>Mobility</h3>
+        <div class="library-group-progress" id="progress-mobility">0 / 5 complete</div>
+      </div>
+      
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__mobility__1" data-group="mobility">
+              <span>Pilates Mobility Flow</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=pilates+mobility+flow+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Controlled movement flow</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__mobility__2" data-group="mobility">
+              <span>Thoracic Rotation</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=thoracic+rotation+stretch+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Upper back mobility</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__mobility__3" data-group="mobility">
+              <span>90/90 Hip Mobility</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=90+90+hip+mobility+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Hip capsule mobility</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__mobility__4" data-group="mobility">
+              <span>Cat-Cow</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=cat+cow+exercise+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Spinal mobility</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__mobility__5" data-group="mobility">
+              <span>Walk</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=walking+warm+up+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Low-stress recovery</p>
+        </div>
+        
+    </section>
+    
+    <section class="library-group" data-group-section="stretching">
+      <div class="library-group-head">
+        <h3>Stretching</h3>
+        <div class="library-group-progress" id="progress-stretching">0 / 5 complete</div>
+      </div>
+      
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__stretching__1" data-group="stretching">
+              <span>Hamstring Stretch</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=hamstring+stretch+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Backside length</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__stretching__2" data-group="stretching">
+              <span>Hip Flexor Stretch</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=hip+flexor+stretch+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Front-hip opening</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__stretching__3" data-group="stretching">
+              <span>Figure-4 Glute Stretch</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=figure+4+glute+stretch+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Glute / piriformis stretch</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__stretching__4" data-group="stretching">
+              <span>Lat Stretch</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=lat+stretch+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Upper-body opening</p>
+        </div>
+        
+        <div class="library-exercise">
+          <div class="library-ex-header">
+            <label class="library-check-wrap">
+              <input class="library-check" type="checkbox" data-key="library__stretching__5" data-group="stretching">
+              <span>Chest Opener Stretch</span>
+            </label>
+            <a class="library-short-link" href="https://www.youtube.com/results?search_query=chest+opener+stretch+shorts&sp=EgIYAQ%253D%253D" target="_blank" rel="noopener">📱 Shorts</a>
+          </div>
+          <p>Posture reset</p>
+        </div>
+        
+    </section>
+    
+  </main>
+</body>
+</html>

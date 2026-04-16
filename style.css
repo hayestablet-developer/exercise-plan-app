@@ -246,3 +246,88 @@ main {
 .add-set-btn:hover {
   background: #e0e7ff;
 }
+
+/* Exercise library */
+.library-hero{
+  background:#ffffff;
+  border:1px solid #ddd;
+  border-radius:12px;
+  padding:1rem;
+  margin-bottom:1rem;
+}
+.library-overall{
+  display:inline-block;
+  margin-top:0.5rem;
+  background:#eef2ff;
+  color:#4338ca;
+  font-weight:700;
+  padding:0.55rem 0.9rem;
+  border-radius:999px;
+}
+.library-group{
+  background:#fff;
+  border:1px solid #ddd;
+  border-radius:12px;
+  padding:1rem;
+  margin-bottom:1rem;
+}
+.library-group-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:1rem;
+  flex-wrap:wrap;
+  margin-bottom:0.75rem;
+}
+.library-group-head h3{
+  margin:0;
+}
+.library-group-progress{
+  background:#fff3cd;
+  color:#856404;
+  border-radius:999px;
+  padding:0.4rem 0.8rem;
+  font-weight:700;
+  font-size:0.9rem;
+}
+.library-exercise{
+  border-top:1px solid #eee;
+  padding:0.8rem 0;
+}
+.library-exercise:first-of-type{
+  border-top:none;
+  padding-top:0;
+}
+.library-ex-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:0.75rem;
+  flex-wrap:wrap;
+}
+.library-check-wrap{
+  display:flex;
+  align-items:center;
+  gap:0.6rem;
+  font-weight:700;
+}
+.library-check{
+  width:18px;
+  height:18px;
+}
+.library-short-link{
+  display:inline-block;
+  padding:0.45rem 0.8rem;
+  background:#0d6efd;
+  color:#fff;
+  border-radius:6px;
+  text-decoration:none;
+  font-size:0.9rem;
+}
+.library-short-link:hover{
+  background:#0b5ed7;
+}
+.library-exercise p{
+  margin:0.45rem 0 0;
+  color:#555;
+}
