@@ -1,63 +1,45 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>12‑3‑30 Incline Walk — Monikita’s Fitness App</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="app.js" defer></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>12‑3‑30 Incline Walk — Monikita’s Fitness App</title>
+<link href="style.css" rel="stylesheet"/>
+<script defer="" src="app.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Monikita’s Fitness App 💪</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="advisor.html">What should I do today?</a>
-      <a href="featured.html">Featured</a>
-    </nav>
-  </header>
-  <main>
-    <h2>12‑3‑30 Incline Walk</h2>
-    <p>This viral zone‑2 cardio workout involves walking on a treadmill at a <strong>12% incline</strong> and <strong>3&nbsp;mph</strong> speed for <strong>30&nbsp;minutes</strong>. Research suggests that the simple formula burns calories effectively and promotes sustainable fat loss while being knee‑friendly【903621024685883†L763-L870】.</p>
-    <div class="exercise">
-      <h4>Warm‑up: Easy walk or dynamic stretch (5&nbsp;min)</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="featured12-warmup-complete"> Completed</label>
-        <label>Notes: <input type="text" data-key="featured12-warmup-notes"></label>
-        <label>Energy (1–10): <input type="number" data-key="featured12-warmup-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="featured12-warmup-effort" data-type="effort" min="1" max="10"></label>
-      </div>
-      <a href="https://www.youtube.com/results?search_query=dynamic+warm+up+treadmill" target="_blank">🎥 Video</a>
-      <a href="https://www.youtube.com/results?search_query=dynamic+warm+up+treadmill&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-      <a href="https://www.google.com/search?tbm=isch&q=dynamic%20warm%20up%20treadmill" target="_blank">🖼️ Images</a>
-    </div>
-    <div class="exercise">
-      <h4>Main: 30&nbsp;min incline walk (12% incline / 3&nbsp;mph)</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="featured12-main-complete"> Completed</label>
-        <label>Duration (min): <input type="number" data-key="featured12-main-duration"></label>
-        <label>Weighted vest (lbs): <input type="number" data-key="featured12-main-weight"></label>
-        <label>Energy (1–10): <input type="number" data-key="featured12-main-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="featured12-main-effort" data-type="effort" min="1" max="10"></label>
-      </div>
-      <a href="https://www.youtube.com/results?search_query=12+3+30+treadmill+workout" target="_blank">🎥 Video</a>
-      <a href="https://www.youtube.com/results?search_query=12+3+30+treadmill+workout&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-      <a href="https://www.google.com/search?tbm=isch&q=12+3+30+treadmill+workout" target="_blank">🖼️ Images</a>
-    </div>
-    <div class="exercise">
-      <h4>Cooldown: Stretching or walk (5&nbsp;min)</h4>
-      <div class="fields">
-        <label><input type="checkbox" data-key="featured12-cooldown-complete"> Completed</label>
-        <label>Notes: <input type="text" data-key="featured12-cooldown-notes"></label>
-        <label>Energy (1–10): <input type="number" data-key="featured12-cooldown-energy" data-type="energy" min="1" max="10"></label>
-        <label>Effort (1–10): <input type="number" data-key="featured12-cooldown-effort" data-type="effort" min="1" max="10"></label>
-      </div>
-      <a href="https://www.youtube.com/results?search_query=post+treadmill+stretch+routine" target="_blank">🎥 Video</a>
-      <a href="https://www.youtube.com/results?search_query=post+treadmill+stretch+routine&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-      <a href="https://www.google.com/search?tbm=isch&q=post%20treadmill%20stretch" target="_blank">🖼️ Images</a>
-    </div>
-    <!-- Summary -->
-    <div id="daily-summary" class="summary"></div>
-  </main>
+<header>
+<h1>Monikita’s Fitness App 💪</h1>
+<nav>
+<a href="index.html">Home</a>
+<a href="advisor.html">What should I do today?</a>
+<a href="featured.html">Featured</a>
+</nav>
+</header>
+<main>
+<h2>12‑3‑30 Incline Walk</h2>
+<p>This viral zone‑2 cardio workout involves walking on a treadmill at a <strong>12% incline</strong> and <strong>3 mph</strong> speed for <strong>30 minutes</strong>. Research suggests that the simple formula burns calories effectively and promotes sustainable fat loss while being knee‑friendly【903621024685883†L763-L870】.</p>
+<div class="exercise">
+<h4>Warm‑up: Easy walk or dynamic stretch (5 min)</h4>
+<div class="fields"><label><input data-key="featured12-warmup-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Notes</div><div class="set-grid"><label class="set-field">Set 1<input data-key="featured12-warmup-notes-1" type="text"/></label><label class="set-field">Set 2<input data-key="featured12-warmup-notes-2" type="text"/></label><label class="set-field">Set 3<input data-key="featured12-warmup-notes-3" type="text"/></label><label class="set-field optional-set" data-optional-group="featured12-warmup-notes">Set 4<input data-key="featured12-warmup-notes-4" type="text"/></label></div><button class="add-set-btn" data-target="featured12-warmup-notes" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="featured12-warmup-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="featured12-warmup-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
+<a href="https://www.youtube.com/results?search_query=dynamic+warm+up+treadmill" target="_blank">🎥 Video</a>
+<a href="https://www.google.com/search?tbm=isch&amp;q=dynamic%20warm%20up%20treadmill" target="_blank">🖼️ Images</a>
+</div>
+<div class="exercise">
+<h4>Main: 30 min incline walk (12% incline / 3 mph)</h4>
+<div class="fields"><label><input data-key="featured12-main-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Duration (min)</div><div class="set-grid"><label class="set-field">Set 1<input data-key="featured12-main-duration-1" type="number"/></label><label class="set-field">Set 2<input data-key="featured12-main-duration-2" type="number"/></label><label class="set-field">Set 3<input data-key="featured12-main-duration-3" type="number"/></label><label class="set-field optional-set" data-optional-group="featured12-main-duration">Set 4<input data-key="featured12-main-duration-4" type="number"/></label></div><button class="add-set-btn" data-target="featured12-main-duration" type="button">+ Add set 4</button></div><div class="set-group"><div class="set-group-title">Weighted vest (lbs)</div><div class="set-grid"><label class="set-field">Set 1<input data-key="featured12-main-weight-1" type="number"/></label><label class="set-field">Set 2<input data-key="featured12-main-weight-2" type="number"/></label><label class="set-field">Set 3<input data-key="featured12-main-weight-3" type="number"/></label><label class="set-field optional-set" data-optional-group="featured12-main-weight">Set 4<input data-key="featured12-main-weight-4" type="number"/></label></div><button class="add-set-btn" data-target="featured12-main-weight" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="featured12-main-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="featured12-main-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
+<a href="https://www.youtube.com/results?search_query=12+3+30+treadmill+workout" target="_blank">🎥 Video</a>
+<a href="https://www.google.com/search?tbm=isch&amp;q=12+3+30+treadmill+workout" target="_blank">🖼️ Images</a>
+</div>
+<div class="exercise">
+<h4>Cooldown: Stretching or walk (5 min)</h4>
+<div class="fields"><label><input data-key="featured12-cooldown-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Notes</div><div class="set-grid"><label class="set-field">Set 1<input data-key="featured12-cooldown-notes-1" type="text"/></label><label class="set-field">Set 2<input data-key="featured12-cooldown-notes-2" type="text"/></label><label class="set-field">Set 3<input data-key="featured12-cooldown-notes-3" type="text"/></label><label class="set-field optional-set" data-optional-group="featured12-cooldown-notes">Set 4<input data-key="featured12-cooldown-notes-4" type="text"/></label></div><button class="add-set-btn" data-target="featured12-cooldown-notes" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="featured12-cooldown-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="featured12-cooldown-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
+<a href="https://www.youtube.com/results?search_query=post+treadmill+stretch+routine" target="_blank">🎥 Video</a>
+<a href="https://www.google.com/search?tbm=isch&amp;q=post%20treadmill%20stretch" target="_blank">🖼️ Images</a>
+</div>
+<!-- Summary -->
+<div class="summary" id="daily-summary"></div>
+</main>
 </body>
 </html>
