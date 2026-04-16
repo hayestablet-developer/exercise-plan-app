@@ -23,7 +23,30 @@
       });
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
+    
+function applyLibraryFilters() {
+  const search = (document.getElementById('library-search')?.value || '').toLowerCase().trim();
+  const activeChip = document.querySelector('.library-chip.is-active');
+  const activeFilter = activeChip ? activeChip.dataset.filter : 'all';
+
+  document.querySelectorAll('.library-group').forEach(group => {
+    const groupId = group.dataset.groupSection;
+    let anyVisible = false;
+
+    group.querySelectorAll('.library-exercise').forEach(ex => {
+      const text = ex.textContent.toLowerCase();
+      const matchesSearch = !search || text.includes(search);
+      const matchesGroup = activeFilter === 'all' || activeFilter === groupId;
+      const show = matchesSearch && matchesGroup;
+      ex.classList.toggle('library-hidden', !show);
+      if (show) anyVisible = true;
+    });
+
+    group.classList.toggle('library-hidden', !anyVisible);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
       const checks = document.querySelectorAll('.library-check');
       checks.forEach((cb, idx) => {
         const key = `monikita-library-${idx}`;
@@ -35,6 +58,19 @@
         });
       });
       updateLibraryProgress();
+
+      const search = document.getElementById('library-search');
+      if (search) {
+        search.addEventListener('input', applyLibraryFilters);
+      }
+      document.querySelectorAll('.library-chip').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.library-chip').forEach(node => node.classList.remove('is-active'));
+          btn.classList.add('is-active');
+          applyLibraryFilters();
+        });
+      });
+      applyLibraryFilters();
     });
   </script>
 
@@ -42,11 +78,7 @@
 <body>
   <header>
     <h1>Monikita’s Fitness App 💪</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="advisor.html">What should I do today?</a>
-      <a href="exercises-library.html">Exercise Library</a>
-    </nav>
+    <nav><a href="index.html">Home</a><a href="advisor.html">Coach</a><a href="exercises-library.html">Library</a><a href="featured.html">Featured</a></nav>
   </header>
   <main>
     <div class="library-hero">
@@ -54,7 +86,21 @@
       <p>All your main exercises grouped by movement pattern. Tap a Shorts link for a quick demo and check off exercises you want to focus on.</p>
       <div class="library-overall" id="library-overall-progress">0 / 0 exercises checked off</div>
     </div>
-    
+
+    <div class="library-tools">
+      <input id="library-search" type="text" placeholder="Search exercises, like glute, pull-up, plank, shoulder..." />
+      <div class="library-chip-row">
+        <button class="library-chip is-active" type="button" data-filter="all">All</button>
+        <button class="library-chip" type="button" data-filter="lower-body-push">Lower Push</button>
+        <button class="library-chip" type="button" data-filter="lower-body-pull">Lower Pull</button>
+        <button class="library-chip" type="button" data-filter="upper-body-push">Upper Push</button>
+        <button class="library-chip" type="button" data-filter="upper-body-pull">Upper Pull</button>
+        <button class="library-chip" type="button" data-filter="core">Core</button>
+        <button class="library-chip" type="button" data-filter="mobility">Mobility</button>
+        <button class="library-chip" type="button" data-filter="stretching">Stretching</button>
+      </div>
+    </div>
+
     <section class="library-group" data-group-section="lower-body-push">
       <div class="library-group-head">
         <h3>Lower Body Push</h3>
