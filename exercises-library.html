@@ -6,6 +6,7 @@
   <title>Exercise Library — Monikita’s Fitness App</title>
   <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
+  
   <script defer>
     function updateLibraryProgress() {
       const checks = Array.from(document.querySelectorAll('.library-check'));
@@ -24,12 +25,19 @@
 
     document.addEventListener('DOMContentLoaded', function() {
       const checks = document.querySelectorAll('.library-check');
-      checks.forEach(cb => {
-        cb.addEventListener('change', updateLibraryProgress);
+      checks.forEach((cb, idx) => {
+        const key = `monikita-library-${idx}`;
+        const saved = localStorage.getItem(key);
+        if (saved === 'true') cb.checked = true;
+        cb.addEventListener('change', function() {
+          localStorage.setItem(key, cb.checked ? 'true' : 'false');
+          updateLibraryProgress();
+        });
       });
       updateLibraryProgress();
     });
   </script>
+
 </head>
 <body>
   <header>
