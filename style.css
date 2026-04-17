@@ -59,14 +59,18 @@ header h1{
   line-height:1.02;
   letter-spacing:-.04em;
   color:white;
-  max-width:320px;
+  max-width:none;
 }
 nav{
   display:flex;
   gap:10px;
-  flex-wrap:wrap;
+  flex-wrap:nowrap;
   justify-content:flex-end;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
 }
+nav::-webkit-scrollbar{display:none;}
 nav a{
   text-decoration:none;
   color:white;
@@ -555,7 +559,8 @@ main > p:first-of-type{
 
 @media (max-width:960px){
   header{flex-direction:column; align-items:flex-start}
-  nav{justify-content:flex-start}
+  nav{justify-content:flex-start; width:100%;}
+  nav a{white-space:nowrap; flex:0 0 auto;}
   .hero-panel{grid-template-columns:1fr}
   .quick-strip,
   .advisor-grid,
