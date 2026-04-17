@@ -38,7 +38,7 @@ header{
   display:flex;
   flex-direction:column;
   gap:14px;
-  align-items:flex-start;
+  align-items:center;
   background:linear-gradient(145deg, rgba(31,56,91,.95), rgba(49,87,138,.88));
   backdrop-filter:blur(14px);
   border-bottom:1px solid rgba(255,255,255,.12);
@@ -46,6 +46,8 @@ header{
 }
 header h1{
   margin:0;
+  text-align:center;
+  width:100%;
   color:#fff;
   font-size:clamp(1.8rem,5vw,3rem);
   line-height:1.02;
@@ -56,6 +58,7 @@ nav{
   gap:10px;
   overflow-x:auto;
   width:100%;
+  justify-content:center;
   padding-bottom:2px;
   scrollbar-width:none;
 }
@@ -100,6 +103,8 @@ main{
   font-size:clamp(2rem,4.4vw,3.6rem);
   line-height:1.02;
   letter-spacing:-.04em;
+
+  color:#fff;
 }
 .hero-copy p{
   margin:0 0 22px;
@@ -413,7 +418,9 @@ h2{
 }
 @media (max-width:700px){
   nav a{padding:10px 14px;font-size:.95rem}
-  .hero-copy h2{font-size:2.2rem}
+  .hero-copy h2{font-size:2.2rem
+  color:#fff;
+}
   .summary{grid-template-columns:1fr}
   .move-workout-actions button{width:100%}
   .hero-stat-grid{grid-template-columns:1fr}
