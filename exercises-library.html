@@ -6,7 +6,6 @@
   <title>Exercise Library — Monikita’s Fitness App</title>
   <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
-  
   <script defer>
     function updateLibraryProgress() {
       const checks = Array.from(document.querySelectorAll('.library-check'));
@@ -23,57 +22,14 @@
       });
     }
 
-    
-function applyLibraryFilters() {
-  const search = (document.getElementById('library-search')?.value || '').toLowerCase().trim();
-  const activeChip = document.querySelector('.library-chip.is-active');
-  const activeFilter = activeChip ? activeChip.dataset.filter : 'all';
-
-  document.querySelectorAll('.library-group').forEach(group => {
-    const groupId = group.dataset.groupSection;
-    let anyVisible = false;
-
-    group.querySelectorAll('.library-exercise').forEach(ex => {
-      const text = ex.textContent.toLowerCase();
-      const matchesSearch = !search || text.includes(search);
-      const matchesGroup = activeFilter === 'all' || activeFilter === groupId;
-      const show = matchesSearch && matchesGroup;
-      ex.classList.toggle('library-hidden', !show);
-      if (show) anyVisible = true;
-    });
-
-    group.classList.toggle('library-hidden', !anyVisible);
-  });
-}
-
-document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
       const checks = document.querySelectorAll('.library-check');
-      checks.forEach((cb, idx) => {
-        const key = `monikita-library-${idx}`;
-        const saved = localStorage.getItem(key);
-        if (saved === 'true') cb.checked = true;
-        cb.addEventListener('change', function() {
-          localStorage.setItem(key, cb.checked ? 'true' : 'false');
-          updateLibraryProgress();
-        });
+      checks.forEach(cb => {
+        cb.addEventListener('change', updateLibraryProgress);
       });
       updateLibraryProgress();
-
-      const search = document.getElementById('library-search');
-      if (search) {
-        search.addEventListener('input', applyLibraryFilters);
-      }
-      document.querySelectorAll('.library-chip').forEach(btn => {
-        btn.addEventListener('click', function() {
-          document.querySelectorAll('.library-chip').forEach(node => node.classList.remove('is-active'));
-          btn.classList.add('is-active');
-          applyLibraryFilters();
-        });
-      });
-      applyLibraryFilters();
     });
   </script>
-
 </head>
 <body>
   <header>
@@ -86,21 +42,17 @@ document.addEventListener('DOMContentLoaded', function() {
       <p>All your main exercises grouped by movement pattern. Tap a Shorts link for a quick demo and check off exercises you want to focus on.</p>
       <div class="library-overall" id="library-overall-progress">0 / 0 exercises checked off</div>
     </div>
-
-    <div class="library-tools">
-      <input id="library-search" type="text" placeholder="Search exercises, like glute, pull-up, plank, shoulder..." />
-      <div class="library-chip-row">
-        <button class="library-chip is-active" type="button" data-filter="all">All</button>
-        <button class="library-chip" type="button" data-filter="lower-body-push">Lower Push</button>
-        <button class="library-chip" type="button" data-filter="lower-body-pull">Lower Pull</button>
-        <button class="library-chip" type="button" data-filter="upper-body-push">Upper Push</button>
-        <button class="library-chip" type="button" data-filter="upper-body-pull">Upper Pull</button>
-        <button class="library-chip" type="button" data-filter="core">Core</button>
-        <button class="library-chip" type="button" data-filter="mobility">Mobility</button>
-        <button class="library-chip" type="button" data-filter="stretching">Stretching</button>
+      <div class="library-toolbar">
+        <input id="library-search" class="library-search" type="text" placeholder="Search exercises, body parts, or cues">
+        <button class="filter-chip active" type="button" data-filter="all">All</button>
+        <button class="filter-chip" type="button" data-filter="lower-body-push">Lower Push</button>
+        <button class="filter-chip" type="button" data-filter="lower-body-pull">Lower Pull</button>
+        <button class="filter-chip" type="button" data-filter="upper-body-push">Upper Push</button>
+        <button class="filter-chip" type="button" data-filter="upper-body-pull">Upper Pull</button>
+        <button class="filter-chip" type="button" data-filter="core">Core</button>
+        <button class="filter-chip" type="button" data-filter="mobility">Mobility</button>
+        <button class="filter-chip" type="button" data-filter="stretching">Stretching</button>
       </div>
-    </div>
-
     <section class="library-group" data-group-section="lower-body-push">
       <div class="library-group-head">
         <h3>Lower Body Push</h3>

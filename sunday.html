@@ -8,45 +8,44 @@
 <link href="style.css" rel="stylesheet"/>
 <script defer="" src="app.js"></script>
 </head>
-<body>
+<body data-day-slot="sunday">
 <header>
 <h1>Monikita’s Fitness App 💪</h1>
 <nav><a href="index.html">Home</a><a href="advisor.html">Coach</a><a href="exercises-library.html">Library</a><a href="featured.html">Featured</a></nav>
 </header>
 <main>
-<section class="page-hero"><span class="page-chip">Workout page</span><h2>Sunday — Rest Day</h2><p>Use this day for complete rest or gentle movement like a walk or stretching. Focus on recovery: sleep, nutrition and mental relaxation.</p></section>
+<h2>Sunday</h2>
+<p id="workout-subtitle" class="day-subtitle">Use this day for complete rest or gentle movement like a walk or stretching. Focus on recovery: sleep, nutrition and mental relaxation.</p>
+<div id="active-workout-label" class="day-top-note">Currently showing: Rest</div>
 <!-- Move workout section -->
 <div class="move-workout">
-<label for="move-sunday">Move this session to:</label>
-<select id="move-sunday" onchange="moveWorkout(this)">
-<option value="">--Select--</option>
-<option value="monday.html">Monday (Lower A)</option>
-<option value="tuesday.html">Tuesday (Upper Push)</option>
-<option value="wednesday.html">Wednesday (Recovery)</option>
-<option value="thursday.html">Thursday (Lower B)</option>
-<option value="friday.html">Friday (Upper Pull)</option>
-<option value="saturday.html">Saturday (Sprints &amp; Core)</option>
-<option value="shoulders-triceps.html">Shoulders &amp; Triceps</option>
-<option value="featured.html">Featured Workouts</option>
-</select>
+<label for="swap-select">Do this workout instead today</label>
+<select id="swap-select"></select>
+<div class="move-workout-actions">
+<button id="open-selection-btn" type="button">Open selection</button>
+<button id="save-choice-btn" type="button">Save my choice</button>
+<button id="clear-choice-btn" type="button">Clear saved choice</button>
+</div>
 </div>
 <!-- Optional activities -->
 <div class="exercise">
 <h4>Gentle Walk</h4>
 <div class="fields"><label><input data-key="sun-walk-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Duration (min)</div><div class="set-grid"><label class="set-field">Set 1<input data-key="sun-walk-duration-1" type="number"/></label><label class="set-field">Set 2<input data-key="sun-walk-duration-2" type="number"/></label><label class="set-field">Set 3<input data-key="sun-walk-duration-3" type="number"/></label><label class="set-field optional-set" data-optional-group="sun-walk-duration">Set 4<input data-key="sun-walk-duration-4" type="number"/></label></div><button class="add-set-btn" data-target="sun-walk-duration" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="sun-walk-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="sun-walk-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
-<a href="https://www.youtube.com/results?search_query=benefits+of+walking" target="_blank">🎥 Video</a>
+<div class="media-links"><a href="https://www.youtube.com/results?search_query=benefits+of+walking" target="_blank">🎥 Video</a>
           <a href="https://www.youtube.com/results?search_query=benefits+of+walking&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-<a href="https://www.google.com/search?tbm=isch&amp;q=walking+exercise" target="_blank">🖼️ Images</a>
+<a href="https://www.google.com/search?tbm=isch&amp;q=walking+exercise" target="_blank">🖼️ Images</a></div>
 </div>
 <div class="exercise">
 <h4>Stretching &amp; Mobility</h4>
 <div class="fields"><label><input data-key="sun-stretch-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Duration (min)</div><div class="set-grid"><label class="set-field">Set 1<input data-key="sun-stretch-duration-1" type="number"/></label><label class="set-field">Set 2<input data-key="sun-stretch-duration-2" type="number"/></label><label class="set-field">Set 3<input data-key="sun-stretch-duration-3" type="number"/></label><label class="set-field optional-set" data-optional-group="sun-stretch-duration">Set 4<input data-key="sun-stretch-duration-4" type="number"/></label></div><button class="add-set-btn" data-target="sun-stretch-duration" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="sun-stretch-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="sun-stretch-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
-<a href="https://www.youtube.com/results?search_query=full+body+stretch+routine" target="_blank">🎥 Video</a>
+<div class="media-links"><a href="https://www.youtube.com/results?search_query=full+body+stretch+routine" target="_blank">🎥 Video</a>
           <a href="https://www.youtube.com/results?search_query=full+body+stretch+routine&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-<a href="https://www.google.com/search?tbm=isch&amp;q=stretching+routine" target="_blank">🖼️ Images</a>
+<a href="https://www.google.com/search?tbm=isch&amp;q=stretching+routine" target="_blank">🖼️ Images</a></div>
 </div>
 <!-- Summary -->
 <div class="summary" id="daily-summary"></div>
+<div id="workout-content">
+</div>
 </main>
 </body>
 </html>

@@ -8,79 +8,79 @@
 <link href="style.css" rel="stylesheet"/>
 <script defer="" src="app.js"></script>
 </head>
-<body>
+<body data-day-slot="tuesday">
 <header>
 <h1>Monikita’s Fitness App 💪</h1>
 <nav><a href="index.html">Home</a><a href="advisor.html">Coach</a><a href="exercises-library.html">Library</a><a href="featured.html">Featured</a></nav>
 </header>
 <main>
-<section class="page-hero"><span class="page-chip">Workout page</span><h2>Tuesday — Upper Push + Pull‑Up Work</h2><p>Strengthen chest, shoulders and triceps while working towards your first pull‑up.</p></section>
+<h2>Tuesday</h2>
+<p id="workout-subtitle" class="day-subtitle">Strengthen chest, shoulders and triceps while working towards your first pull‑up.</p>
+<div id="active-workout-label" class="day-top-note">Currently showing: Upper Push</div>
 <!-- Move workout section -->
 <div class="move-workout">
-<label for="move-tuesday">Move this workout to:</label>
-<select id="move-tuesday" onchange="moveWorkout(this)">
-<option value="">--Select--</option>
-<option value="monday.html">Monday (Lower A)</option>
-<option value="wednesday.html">Wednesday (Recovery)</option>
-<option value="thursday.html">Thursday (Lower B)</option>
-<option value="friday.html">Friday (Upper Pull)</option>
-<option value="saturday.html">Saturday (Sprints &amp; Core)</option>
-<option value="shoulders-triceps.html">Shoulders &amp; Triceps</option>
-<option value="featured.html">Featured Workouts</option>
-</select>
+<label for="swap-select">Do this workout instead today</label>
+<select id="swap-select"></select>
+<div class="move-workout-actions">
+<button id="open-selection-btn" type="button">Open selection</button>
+<button id="save-choice-btn" type="button">Save my choice</button>
+<button id="clear-choice-btn" type="button">Clear saved choice</button>
+</div>
 </div>
 <!-- Exercises -->
 <div class="exercise">
 <h4>Dead Hang (30 sec)</h4>
 <div class="fields"><label><input data-key="tue-deadhang-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Time (sec)</div><div class="set-grid"><label class="set-field">Set 1<input data-key="tue-deadhang-time-1" type="number"/></label><label class="set-field">Set 2<input data-key="tue-deadhang-time-2" type="number"/></label><label class="set-field">Set 3<input data-key="tue-deadhang-time-3" type="number"/></label><label class="set-field optional-set" data-optional-group="tue-deadhang-time">Set 4<input data-key="tue-deadhang-time-4" type="number"/></label></div><button class="add-set-btn" data-target="tue-deadhang-time" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="tue-deadhang-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="tue-deadhang-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
-<a href="https://www.youtube.com/results?search_query=dead+hang+exercise" target="_blank">🎥 Video</a>
+<div class="media-links"><a href="https://www.youtube.com/results?search_query=dead+hang+exercise" target="_blank">🎥 Video</a>
           <a href="https://www.youtube.com/results?search_query=dead+hang+exercise&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-<a href="https://www.google.com/search?tbm=isch&amp;q=dead+hang" target="_blank">🖼️ Images</a>
+<a href="https://www.google.com/search?tbm=isch&amp;q=dead+hang" target="_blank">🖼️ Images</a></div>
 </div>
 <div class="exercise">
 <h4>Band‑Assisted Pull‑Up</h4>
 <div class="fields"><label><input data-key="tue-assist-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Reps</div><div class="set-grid"><label class="set-field">Set 1<input data-key="tue-assist-reps-1" type="number"/></label><label class="set-field">Set 2<input data-key="tue-assist-reps-2" type="number"/></label><label class="set-field">Set 3<input data-key="tue-assist-reps-3" type="number"/></label><label class="set-field optional-set" data-optional-group="tue-assist-reps">Set 4<input data-key="tue-assist-reps-4" type="number"/></label></div><button class="add-set-btn" data-target="tue-assist-reps" type="button">+ Add set 4</button></div><div class="set-group"><div class="set-group-title">Band colour/level</div><div class="set-grid"><label class="set-field">Set 1<input data-key="tue-assist-band-1" type="text"/></label><label class="set-field">Set 2<input data-key="tue-assist-band-2" type="text"/></label><label class="set-field">Set 3<input data-key="tue-assist-band-3" type="text"/></label><label class="set-field optional-set" data-optional-group="tue-assist-band">Set 4<input data-key="tue-assist-band-4" type="text"/></label></div><button class="add-set-btn" data-target="tue-assist-band" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="tue-assist-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="tue-assist-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
-<a href="https://www.youtube.com/results?search_query=band+assisted+pull+up" target="_blank">🎥 Video</a>
+<div class="media-links"><a href="https://www.youtube.com/results?search_query=band+assisted+pull+up" target="_blank">🎥 Video</a>
           <a href="https://www.youtube.com/results?search_query=band+assisted+pull+up&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-<a href="https://www.google.com/search?tbm=isch&amp;q=band+assisted+pull+up" target="_blank">🖼️ Images</a>
+<a href="https://www.google.com/search?tbm=isch&amp;q=band+assisted+pull+up" target="_blank">🖼️ Images</a></div>
 </div>
 <div class="exercise">
 <h4>Scapular Pull‑Up</h4>
 <div class="fields"><label><input data-key="tue-scap-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Reps</div><div class="set-grid"><label class="set-field">Set 1<input data-key="tue-scap-reps-1" type="number"/></label><label class="set-field">Set 2<input data-key="tue-scap-reps-2" type="number"/></label><label class="set-field">Set 3<input data-key="tue-scap-reps-3" type="number"/></label><label class="set-field optional-set" data-optional-group="tue-scap-reps">Set 4<input data-key="tue-scap-reps-4" type="number"/></label></div><button class="add-set-btn" data-target="tue-scap-reps" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="tue-scap-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="tue-scap-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
-<a href="https://www.youtube.com/results?search_query=scapular+pull+up" target="_blank">🎥 Video</a>
+<div class="media-links"><a href="https://www.youtube.com/results?search_query=scapular+pull+up" target="_blank">🎥 Video</a>
           <a href="https://www.youtube.com/results?search_query=scapular+pull+up&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-<a href="https://www.google.com/search?tbm=isch&amp;q=scapular+pull+up" target="_blank">🖼️ Images</a>
+<a href="https://www.google.com/search?tbm=isch&amp;q=scapular+pull+up" target="_blank">🖼️ Images</a></div>
 </div>
 <div class="exercise">
 <h4>Incline Dumbbell Press</h4>
 <div class="fields"><label><input data-key="tue-press-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Reps</div><div class="set-grid"><label class="set-field">Set 1<input data-key="tue-press-reps-1" type="number"/></label><label class="set-field">Set 2<input data-key="tue-press-reps-2" type="number"/></label><label class="set-field">Set 3<input data-key="tue-press-reps-3" type="number"/></label><label class="set-field optional-set" data-optional-group="tue-press-reps">Set 4<input data-key="tue-press-reps-4" type="number"/></label></div><button class="add-set-btn" data-target="tue-press-reps" type="button">+ Add set 4</button></div><div class="set-group"><div class="set-group-title">Weight (lbs)</div><div class="set-grid"><label class="set-field">Set 1<input data-key="tue-press-weight-1" type="number"/></label><label class="set-field">Set 2<input data-key="tue-press-weight-2" type="number"/></label><label class="set-field">Set 3<input data-key="tue-press-weight-3" type="number"/></label><label class="set-field optional-set" data-optional-group="tue-press-weight">Set 4<input data-key="tue-press-weight-4" type="number"/></label></div><button class="add-set-btn" data-target="tue-press-weight" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="tue-press-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="tue-press-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
-<a href="https://www.youtube.com/results?search_query=incline+dumbbell+press" target="_blank">🎥 Video</a>
+<div class="media-links"><a href="https://www.youtube.com/results?search_query=incline+dumbbell+press" target="_blank">🎥 Video</a>
           <a href="https://www.youtube.com/results?search_query=incline+dumbbell+press&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-<a href="https://www.google.com/search?tbm=isch&amp;q=incline+dumbbell+press" target="_blank">🖼️ Images</a>
+<a href="https://www.google.com/search?tbm=isch&amp;q=incline+dumbbell+press" target="_blank">🖼️ Images</a></div>
 </div>
 <div class="exercise">
 <h4>Dumbbell Shoulder Press</h4>
 <div class="fields"><label><input data-key="tue-shoulderpress-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Reps</div><div class="set-grid"><label class="set-field">Set 1<input data-key="tue-shoulderpress-reps-1" type="number"/></label><label class="set-field">Set 2<input data-key="tue-shoulderpress-reps-2" type="number"/></label><label class="set-field">Set 3<input data-key="tue-shoulderpress-reps-3" type="number"/></label><label class="set-field optional-set" data-optional-group="tue-shoulderpress-reps">Set 4<input data-key="tue-shoulderpress-reps-4" type="number"/></label></div><button class="add-set-btn" data-target="tue-shoulderpress-reps" type="button">+ Add set 4</button></div><div class="set-group"><div class="set-group-title">Weight (lbs)</div><div class="set-grid"><label class="set-field">Set 1<input data-key="tue-shoulderpress-weight-1" type="number"/></label><label class="set-field">Set 2<input data-key="tue-shoulderpress-weight-2" type="number"/></label><label class="set-field">Set 3<input data-key="tue-shoulderpress-weight-3" type="number"/></label><label class="set-field optional-set" data-optional-group="tue-shoulderpress-weight">Set 4<input data-key="tue-shoulderpress-weight-4" type="number"/></label></div><button class="add-set-btn" data-target="tue-shoulderpress-weight" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="tue-shoulderpress-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="tue-shoulderpress-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
-<a href="https://www.youtube.com/results?search_query=dumbbell+shoulder+press" target="_blank">🎥 Video</a>
+<div class="media-links"><a href="https://www.youtube.com/results?search_query=dumbbell+shoulder+press" target="_blank">🎥 Video</a>
           <a href="https://www.youtube.com/results?search_query=dumbbell+shoulder+press&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-<a href="https://www.google.com/search?tbm=isch&amp;q=dumbbell+shoulder+press" target="_blank">🖼️ Images</a>
+<a href="https://www.google.com/search?tbm=isch&amp;q=dumbbell+shoulder+press" target="_blank">🖼️ Images</a></div>
 </div>
 <div class="exercise">
 <h4>Lateral Raise</h4>
 <div class="fields"><label><input data-key="tue-lateral-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Reps</div><div class="set-grid"><label class="set-field">Set 1<input data-key="tue-lateral-reps-1" type="number"/></label><label class="set-field">Set 2<input data-key="tue-lateral-reps-2" type="number"/></label><label class="set-field">Set 3<input data-key="tue-lateral-reps-3" type="number"/></label><label class="set-field optional-set" data-optional-group="tue-lateral-reps">Set 4<input data-key="tue-lateral-reps-4" type="number"/></label></div><button class="add-set-btn" data-target="tue-lateral-reps" type="button">+ Add set 4</button></div><div class="set-group"><div class="set-group-title">Weight (lbs)</div><div class="set-grid"><label class="set-field">Set 1<input data-key="tue-lateral-weight-1" type="number"/></label><label class="set-field">Set 2<input data-key="tue-lateral-weight-2" type="number"/></label><label class="set-field">Set 3<input data-key="tue-lateral-weight-3" type="number"/></label><label class="set-field optional-set" data-optional-group="tue-lateral-weight">Set 4<input data-key="tue-lateral-weight-4" type="number"/></label></div><button class="add-set-btn" data-target="tue-lateral-weight" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="tue-lateral-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="tue-lateral-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
-<a href="https://www.youtube.com/results?search_query=lateral+raise+exercise" target="_blank">🎥 Video</a>
+<div class="media-links"><a href="https://www.youtube.com/results?search_query=lateral+raise+exercise" target="_blank">🎥 Video</a>
           <a href="https://www.youtube.com/results?search_query=lateral+raise+exercise&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-<a href="https://www.google.com/search?tbm=isch&amp;q=lateral+raise+exercise" target="_blank">🖼️ Images</a>
+<a href="https://www.google.com/search?tbm=isch&amp;q=lateral+raise+exercise" target="_blank">🖼️ Images</a></div>
 </div>
 <div class="exercise">
 <h4>Triceps Pushdown</h4>
 <div class="fields"><label><input data-key="tue-tricep-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Reps</div><div class="set-grid"><label class="set-field">Set 1<input data-key="tue-tricep-reps-1" type="number"/></label><label class="set-field">Set 2<input data-key="tue-tricep-reps-2" type="number"/></label><label class="set-field">Set 3<input data-key="tue-tricep-reps-3" type="number"/></label><label class="set-field optional-set" data-optional-group="tue-tricep-reps">Set 4<input data-key="tue-tricep-reps-4" type="number"/></label></div><button class="add-set-btn" data-target="tue-tricep-reps" type="button">+ Add set 4</button></div><div class="set-group"><div class="set-group-title">Weight (lbs)</div><div class="set-grid"><label class="set-field">Set 1<input data-key="tue-tricep-weight-1" type="number"/></label><label class="set-field">Set 2<input data-key="tue-tricep-weight-2" type="number"/></label><label class="set-field">Set 3<input data-key="tue-tricep-weight-3" type="number"/></label><label class="set-field optional-set" data-optional-group="tue-tricep-weight">Set 4<input data-key="tue-tricep-weight-4" type="number"/></label></div><button class="add-set-btn" data-target="tue-tricep-weight" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="tue-tricep-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="tue-tricep-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
-<a href="https://www.youtube.com/results?search_query=triceps+pushdown" target="_blank">🎥 Video</a>
+<div class="media-links"><a href="https://www.youtube.com/results?search_query=triceps+pushdown" target="_blank">🎥 Video</a>
           <a href="https://www.youtube.com/results?search_query=triceps+pushdown&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-<a href="https://www.google.com/search?tbm=isch&amp;q=triceps+pushdown" target="_blank">🖼️ Images</a>
+<a href="https://www.google.com/search?tbm=isch&amp;q=triceps+pushdown" target="_blank">🖼️ Images</a></div>
 </div>
 <!-- Summary -->
 <div class="summary" id="daily-summary"></div>
+<div id="workout-content">
+</div>
 </main>
 </body>
 </html>

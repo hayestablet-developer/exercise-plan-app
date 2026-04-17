@@ -8,79 +8,79 @@
 <link href="style.css" rel="stylesheet"/>
 <script defer="" src="app.js"></script>
 </head>
-<body>
+<body data-day-slot="monday">
 <header>
 <h1>Monikita’s Fitness App 💪</h1>
 <nav><a href="index.html">Home</a><a href="advisor.html">Coach</a><a href="exercises-library.html">Library</a><a href="featured.html">Featured</a></nav>
 </header>
 <main>
-<section class="page-hero"><span class="page-chip">Workout page</span><h2>Monday — Lower Body A + Sprint</h2><p>Focus on glutes and hamstrings with heavy hip hinge movements and finish with sprints.</p></section>
+<h2>Monday</h2>
+<p id="workout-subtitle" class="day-subtitle">Focus on glutes and hamstrings with heavy hip hinge movements and finish with sprints.</p>
+<div id="active-workout-label" class="day-top-note">Currently showing: Lower Body A + Sprint</div>
 <!-- Move workout section -->
 <div class="move-workout">
-<label for="move-monday">Move this workout to:</label>
-<select id="move-monday" onchange="moveWorkout(this)">
-<option value="">--Select--</option>
-<option value="tuesday.html">Tuesday (Upper Push)</option>
-<option value="wednesday.html">Wednesday (Recovery)</option>
-<option value="thursday.html">Thursday (Lower B)</option>
-<option value="friday.html">Friday (Upper Pull)</option>
-<option value="saturday.html">Saturday (Sprints &amp; Core)</option>
-<option value="shoulders-triceps.html">Shoulders &amp; Triceps</option>
-<option value="featured.html">Featured Workouts</option>
-</select>
+<label for="swap-select">Do this workout instead today</label>
+<select id="swap-select"></select>
+<div class="move-workout-actions">
+<button id="open-selection-btn" type="button">Open selection</button>
+<button id="save-choice-btn" type="button">Save my choice</button>
+<button id="clear-choice-btn" type="button">Clear saved choice</button>
+</div>
 </div>
 <!-- Exercises -->
 <div class="exercise">
 <h4>Dead Hang (30 sec)</h4>
 <div class="fields"><label><input data-key="mon-mon-deadhang-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Time (sec)</div><div class="set-grid"><label class="set-field">Set 1<input data-key="mon-mon-deadhang-time-1" type="number"/></label><label class="set-field">Set 2<input data-key="mon-mon-deadhang-time-2" type="number"/></label><label class="set-field">Set 3<input data-key="mon-mon-deadhang-time-3" type="number"/></label><label class="set-field optional-set" data-optional-group="mon-mon-deadhang-time">Set 4<input data-key="mon-mon-deadhang-time-4" type="number"/></label></div><button class="add-set-btn" data-target="mon-mon-deadhang-time" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="mon-mon-deadhang-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="mon-mon-deadhang-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
-<a href="https://www.youtube.com/results?search_query=dead+hang+exercise" target="_blank">🎥 Video</a>
+<div class="media-links"><a href="https://www.youtube.com/results?search_query=dead+hang+exercise" target="_blank">🎥 Video</a>
           <a href="https://www.youtube.com/results?search_query=dead+hang+exercise&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-<a href="https://www.google.com/search?tbm=isch&amp;q=dead+hang+exercise" target="_blank">🖼️ Images</a>
+<a href="https://www.google.com/search?tbm=isch&amp;q=dead+hang+exercise" target="_blank">🖼️ Images</a></div>
 </div>
 <div class="exercise">
 <h4>Romanian Deadlift</h4>
 <div class="fields"><label><input data-key="mon-rdl-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Reps</div><div class="set-grid"><label class="set-field">Set 1<input data-key="mon-rdl-reps-1" type="number"/></label><label class="set-field">Set 2<input data-key="mon-rdl-reps-2" type="number"/></label><label class="set-field">Set 3<input data-key="mon-rdl-reps-3" type="number"/></label><label class="set-field optional-set" data-optional-group="mon-rdl-reps">Set 4<input data-key="mon-rdl-reps-4" type="number"/></label></div><button class="add-set-btn" data-target="mon-rdl-reps" type="button">+ Add set 4</button></div><div class="set-group"><div class="set-group-title">Weight (lbs)</div><div class="set-grid"><label class="set-field">Set 1<input data-key="mon-rdl-weight-1" type="number"/></label><label class="set-field">Set 2<input data-key="mon-rdl-weight-2" type="number"/></label><label class="set-field">Set 3<input data-key="mon-rdl-weight-3" type="number"/></label><label class="set-field optional-set" data-optional-group="mon-rdl-weight">Set 4<input data-key="mon-rdl-weight-4" type="number"/></label></div><button class="add-set-btn" data-target="mon-rdl-weight" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="mon-rdl-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="mon-rdl-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
-<a href="https://www.youtube.com/results?search_query=romanian+deadlift+proper+form" target="_blank">🎥 Video</a>
+<div class="media-links"><a href="https://www.youtube.com/results?search_query=romanian+deadlift+proper+form" target="_blank">🎥 Video</a>
           <a href="https://www.youtube.com/results?search_query=romanian+deadlift+proper+form&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-<a href="https://www.google.com/search?tbm=isch&amp;q=romanian+deadlift+form" target="_blank">🖼️ Images</a>
+<a href="https://www.google.com/search?tbm=isch&amp;q=romanian+deadlift+form" target="_blank">🖼️ Images</a></div>
 </div>
 <div class="exercise">
 <h4>Hip Thrust</h4>
 <div class="fields"><label><input data-key="mon-thrust-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Reps</div><div class="set-grid"><label class="set-field">Set 1<input data-key="mon-thrust-reps-1" type="number"/></label><label class="set-field">Set 2<input data-key="mon-thrust-reps-2" type="number"/></label><label class="set-field">Set 3<input data-key="mon-thrust-reps-3" type="number"/></label><label class="set-field optional-set" data-optional-group="mon-thrust-reps">Set 4<input data-key="mon-thrust-reps-4" type="number"/></label></div><button class="add-set-btn" data-target="mon-thrust-reps" type="button">+ Add set 4</button></div><div class="set-group"><div class="set-group-title">Weight (lbs)</div><div class="set-grid"><label class="set-field">Set 1<input data-key="mon-thrust-weight-1" type="number"/></label><label class="set-field">Set 2<input data-key="mon-thrust-weight-2" type="number"/></label><label class="set-field">Set 3<input data-key="mon-thrust-weight-3" type="number"/></label><label class="set-field optional-set" data-optional-group="mon-thrust-weight">Set 4<input data-key="mon-thrust-weight-4" type="number"/></label></div><button class="add-set-btn" data-target="mon-thrust-weight" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="mon-thrust-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="mon-thrust-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
-<a href="https://www.youtube.com/results?search_query=hip+thrust+exercise+form" target="_blank">🎥 Video</a>
+<div class="media-links"><a href="https://www.youtube.com/results?search_query=hip+thrust+exercise+form" target="_blank">🎥 Video</a>
           <a href="https://www.youtube.com/results?search_query=hip+thrust+exercise+form&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-<a href="https://www.google.com/search?tbm=isch&amp;q=hip+thrust+exercise+form" target="_blank">🖼️ Images</a>
+<a href="https://www.google.com/search?tbm=isch&amp;q=hip+thrust+exercise+form" target="_blank">🖼️ Images</a></div>
 </div>
 <div class="exercise">
 <h4>Step‑Ups (per leg)</h4>
 <div class="fields"><label><input data-key="mon-step-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Reps (per leg)</div><div class="set-grid"><label class="set-field">Set 1<input data-key="mon-step-reps-1" type="number"/></label><label class="set-field">Set 2<input data-key="mon-step-reps-2" type="number"/></label><label class="set-field">Set 3<input data-key="mon-step-reps-3" type="number"/></label><label class="set-field optional-set" data-optional-group="mon-step-reps">Set 4<input data-key="mon-step-reps-4" type="number"/></label></div><button class="add-set-btn" data-target="mon-step-reps" type="button">+ Add set 4</button></div><div class="set-group"><div class="set-group-title">Weight (lbs)</div><div class="set-grid"><label class="set-field">Set 1<input data-key="mon-step-weight-1" type="number"/></label><label class="set-field">Set 2<input data-key="mon-step-weight-2" type="number"/></label><label class="set-field">Set 3<input data-key="mon-step-weight-3" type="number"/></label><label class="set-field optional-set" data-optional-group="mon-step-weight">Set 4<input data-key="mon-step-weight-4" type="number"/></label></div><button class="add-set-btn" data-target="mon-step-weight" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="mon-step-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="mon-step-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
-<a href="https://www.youtube.com/results?search_query=step+ups+glute+focus" target="_blank">🎥 Video</a>
+<div class="media-links"><a href="https://www.youtube.com/results?search_query=step+ups+glute+focus" target="_blank">🎥 Video</a>
           <a href="https://www.youtube.com/results?search_query=step+ups+glute+focus&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-<a href="https://www.google.com/search?tbm=isch&amp;q=step+up+glute+focus" target="_blank">🖼️ Images</a>
+<a href="https://www.google.com/search?tbm=isch&amp;q=step+up+glute+focus" target="_blank">🖼️ Images</a></div>
 </div>
 <div class="exercise">
 <h4>Cable Kickbacks (per leg)</h4>
 <div class="fields"><label><input data-key="mon-kick-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Reps (per leg)</div><div class="set-grid"><label class="set-field">Set 1<input data-key="mon-kick-reps-1" type="number"/></label><label class="set-field">Set 2<input data-key="mon-kick-reps-2" type="number"/></label><label class="set-field">Set 3<input data-key="mon-kick-reps-3" type="number"/></label><label class="set-field optional-set" data-optional-group="mon-kick-reps">Set 4<input data-key="mon-kick-reps-4" type="number"/></label></div><button class="add-set-btn" data-target="mon-kick-reps" type="button">+ Add set 4</button></div><div class="set-group"><div class="set-group-title">Weight (lbs)</div><div class="set-grid"><label class="set-field">Set 1<input data-key="mon-kick-weight-1" type="number"/></label><label class="set-field">Set 2<input data-key="mon-kick-weight-2" type="number"/></label><label class="set-field">Set 3<input data-key="mon-kick-weight-3" type="number"/></label><label class="set-field optional-set" data-optional-group="mon-kick-weight">Set 4<input data-key="mon-kick-weight-4" type="number"/></label></div><button class="add-set-btn" data-target="mon-kick-weight" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="mon-kick-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="mon-kick-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
-<a href="https://www.youtube.com/results?search_query=cable+kickback+glute" target="_blank">🎥 Video</a>
+<div class="media-links"><a href="https://www.youtube.com/results?search_query=cable+kickback+glute" target="_blank">🎥 Video</a>
           <a href="https://www.youtube.com/results?search_query=cable+kickback+glute&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-<a href="https://www.google.com/search?tbm=isch&amp;q=cable+kickback+glute" target="_blank">🖼️ Images</a>
+<a href="https://www.google.com/search?tbm=isch&amp;q=cable+kickback+glute" target="_blank">🖼️ Images</a></div>
 </div>
 <div class="exercise">
 <h4>Abductor Machine</h4>
 <div class="fields"><label><input data-key="mon-abduct-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Reps</div><div class="set-grid"><label class="set-field">Set 1<input data-key="mon-abduct-reps-1" type="number"/></label><label class="set-field">Set 2<input data-key="mon-abduct-reps-2" type="number"/></label><label class="set-field">Set 3<input data-key="mon-abduct-reps-3" type="number"/></label><label class="set-field optional-set" data-optional-group="mon-abduct-reps">Set 4<input data-key="mon-abduct-reps-4" type="number"/></label></div><button class="add-set-btn" data-target="mon-abduct-reps" type="button">+ Add set 4</button></div><div class="set-group"><div class="set-group-title">Weight (lbs)</div><div class="set-grid"><label class="set-field">Set 1<input data-key="mon-abduct-weight-1" type="number"/></label><label class="set-field">Set 2<input data-key="mon-abduct-weight-2" type="number"/></label><label class="set-field">Set 3<input data-key="mon-abduct-weight-3" type="number"/></label><label class="set-field optional-set" data-optional-group="mon-abduct-weight">Set 4<input data-key="mon-abduct-weight-4" type="number"/></label></div><button class="add-set-btn" data-target="mon-abduct-weight" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="mon-abduct-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="mon-abduct-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
-<a href="https://www.youtube.com/results?search_query=abductor+machine" target="_blank">🎥 Video</a>
+<div class="media-links"><a href="https://www.youtube.com/results?search_query=abductor+machine" target="_blank">🎥 Video</a>
           <a href="https://www.youtube.com/results?search_query=abductor+machine&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-<a href="https://www.google.com/search?tbm=isch&amp;q=abductor+machine" target="_blank">🖼️ Images</a>
+<a href="https://www.google.com/search?tbm=isch&amp;q=abductor+machine" target="_blank">🖼️ Images</a></div>
 </div>
 <div class="exercise">
 <h4>Sprints (30 sec on / 90 sec off × 5)</h4>
 <div class="fields"><label><input data-key="mon-sprint-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Intervals completed</div><div class="set-grid"><label class="set-field">Set 1<input data-key="mon-sprint-intervals-1" type="number"/></label><label class="set-field">Set 2<input data-key="mon-sprint-intervals-2" type="number"/></label><label class="set-field">Set 3<input data-key="mon-sprint-intervals-3" type="number"/></label><label class="set-field optional-set" data-optional-group="mon-sprint-intervals">Set 4<input data-key="mon-sprint-intervals-4" type="number"/></label></div><button class="add-set-btn" data-target="mon-sprint-intervals" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="mon-sprint-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="mon-sprint-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
-<a href="https://www.youtube.com/results?search_query=treadmill+sprint+interval+workout" target="_blank">🎥 Video</a>
+<div class="media-links"><a href="https://www.youtube.com/results?search_query=treadmill+sprint+interval+workout" target="_blank">🎥 Video</a>
           <a href="https://www.youtube.com/results?search_query=treadmill+sprint+interval+workout&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-<a href="https://www.google.com/search?tbm=isch&amp;q=treadmill+sprint+workout" target="_blank">🖼️ Images</a>
+<a href="https://www.google.com/search?tbm=isch&amp;q=treadmill+sprint+workout" target="_blank">🖼️ Images</a></div>
 </div>
 <!-- Summary -->
 <div class="summary" id="daily-summary"></div>
+<div id="workout-content">
+</div>
 </main>
 </body>
 </html>

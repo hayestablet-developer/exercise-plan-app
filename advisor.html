@@ -12,62 +12,42 @@
     <h1>Monikita’s Fitness App 💪</h1>
     <nav><a href="index.html">Home</a><a href="advisor.html">Coach</a><a href="exercises-library.html">Library</a><a href="featured.html">Featured</a></nav>
   </header>
-  <main>
-    <section class="page-hero">
-      <span class="page-chip">Coach mode</span>
-      <h2>What should I do today?</h2>
-      <p>Use this page when the week gets messy, you miss a session, or your body is clearly asking for a different move. The goal is not perfection. The goal is smart consistency.</p>
-    </section>
+  <main><div class="advisor-layout"><section class="advisor-panel">
+    <h2>What Should I Do Today?</h2>
+    <p>Use this advisor to select the best workout based on your recent activity, energy and recovery.</p>
+    <div class="advisor-form">
+      <label for="advisor-today">Today is (e.g. Monday, Tuesday):</label>
+      <input type="text" id="advisor-today" placeholder="Day of week">
 
-    <div class="advisor-shell">
-      <div class="advisor-grid">
-        <section class="advisor-panel">
-          <h3>1. Today’s reality</h3>
-          <div class="advisor-form">
-            <label for="advisor-today">Today is</label>
-            <input type="text" id="advisor-today" placeholder="e.g. Monday">
+      <label for="advisor-last">Last workout (name or day):</label>
+      <input type="text" id="advisor-last" placeholder="e.g. Lower A, Upper Push">
 
-            <label for="advisor-time">Time available (minutes)</label>
-            <input type="number" id="advisor-time" placeholder="30">
+      <label for="advisor-missed">Missed workouts this week:</label>
+      <input type="text" id="advisor-missed" placeholder="e.g. Friday, Sprint session">
 
-            <label for="advisor-energy">Current energy (1–10)</label>
-            <input type="number" id="advisor-energy" min="1" max="10" value="5">
+      <label for="advisor-time">Time available today (minutes):</label>
+      <input type="number" id="advisor-time" placeholder="30">
 
-            <label for="advisor-effort">Desired effort (1–10)</label>
-            <input type="number" id="advisor-effort" min="1" max="10" value="6">
-          </div>
-        </section>
+      <label for="advisor-energy">Current energy (1–10):</label>
+      <input type="number" id="advisor-energy" min="1" max="10" value="5">
 
-        <section class="advisor-panel">
-          <h3>2. Recovery check</h3>
-          <div class="advisor-form">
-            <label for="advisor-last">Last workout</label>
-            <input type="text" id="advisor-last" placeholder="e.g. Lower A, Upper Push">
+      <label for="advisor-effort">Desired effort (1–10):</label>
+      <input type="number" id="advisor-effort" min="1" max="10" value="6">
 
-            <label for="advisor-missed">Missed workouts this week</label>
-            <input type="text" id="advisor-missed" placeholder="e.g. Friday, Sprint session">
+      <label for="advisor-sick">Are you feeling sick or run down?</label>
+      <select id="advisor-sick">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
 
-            <label for="advisor-sick">Feeling sick or run down?</label>
-            <select id="advisor-sick">
-              <option value="no">No</option>
-              <option value="yes">Yes</option>
-            </select>
-
-            <label for="advisor-fresh">What feels fresher?</label>
-            <select id="advisor-fresh">
-              <option value="upper">Upper body</option>
-              <option value="lower">Lower body</option>
-            </select>
-          </div>
-        </section>
-      </div>
-
-      <div class="hero-actions" style="margin-top:18px">
-        <button type="button" onclick="recommendWorkout()">Get recommendation</button>
-        <a class="button-link" href="featured.html">Browse featured workouts</a>
-      </div>
-      <div id="advisor-result" class="advisor-result" style="display:none;"></div>
+      <label for="advisor-fresh">Which feels fresher?</label>
+      <select id="advisor-fresh">
+        <option value="upper">Upper body</option>
+        <option value="lower">Lower body</option>
+      </select>
+      
+      <button type="button" onclick="recommendWorkout()">Get Recommendation</button>
     </div>
-  </main>
+    </section><aside class="advisor-panel"><h2>Coach notes</h2><p class="day-subtitle">Tell the coach what you trained last, how you feel, and what still feels fresh. It will point you to the smartest next session.</p><div id="advisor-result" class="advisor-result" style="display:none;"></div></aside></div></main>
 </body>
 </html>
