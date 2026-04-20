@@ -95,9 +95,10 @@ function saveAccounts(accounts) {
 }
 
 function ensureProtectedPage() {
-  const onLoginPage = window.location.pathname.endsWith("login.html");
+  const path = window.location.pathname;
+  const onAuthPage = path.endsWith("login.html") || path.endsWith("create-account.html");
   const session = getSession();
-  if (!onLoginPage && !session) {
+  if (!onAuthPage && !session) {
     const target = encodeURIComponent(window.location.pathname.split("/").pop() || "index.html");
     window.location.href = "login.html?next=" + target;
     return false;
@@ -111,7 +112,9 @@ function getNextUrl() {
 }
 
 function initLoginPage() {
-  if (!window.location.pathname.endsWith("login.html")) return;
+  const isLogin = window.location.pathname.endsWith("login.html");
+  const isCreate = window.location.pathname.endsWith("create-account.html");
+  if (!isLogin && !isCreate) return;
   const createForm = document.getElementById("create-account-form");
   const loginForm = document.getElementById("login-form");
   const guestBtn = document.getElementById("guest-login-btn");
@@ -141,8 +144,13 @@ function initLoginPage() {
       accounts[userId] = { password: password, createdAt: new Date().toISOString() };
       saveAccounts(accounts);
       createForm.reset();
-      if (loginIdInput) loginIdInput.value = userId;
-      showMessage("Account created. Now sign in with your new user ID and password.", true);
+      if (isCreate) {
+        showMessage("Account created. Redirecting to sign in...", true);
+        setTimeout(function(){ window.location.href = "login.html?next=" + encodeURIComponent(getNextUrl()); }, 700);
+      } else {
+        if (loginIdInput) loginIdInput.value = userId;
+        showMessage("Account created. Now sign in with your new user ID and password.", true);
+      }
     });
   }
 
@@ -170,7 +178,7 @@ function initLoginPage() {
 }
 
 function injectAuthStrip() {
-  if (window.location.pathname.endsWith("login.html")) return;
+  if (window.location.pathname.endsWith("login.html") || window.location.pathname.endsWith("create-account.html")) return;
   const main = document.querySelector("main");
   const header = document.querySelector("header");
   if (!main || !header) return;

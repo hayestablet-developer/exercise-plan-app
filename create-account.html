@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account — Monikita’s Fitness App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body class="login-page">
+  <main class="login-shell">
+    <section class="login-hero-card">
+      <div class="login-badge">Monikita’s Fitness App 💪</div>
+      <h1>Create your account</h1>
+      <p>Set up a user ID and password so your workouts, day swaps, sets, reps, and energy entries save to your own profile.</p>
+      <div id="login-message" class="login-message"></div>
+
+      <div class="login-grid single-column">
+        <form id="create-account-form" class="login-card">
+          <h2>Create account</h2>
+          <label>User ID
+            <input id="create-user-id" type="text" placeholder="Choose a user ID" autocomplete="username">
+          </label>
+          <label>Password
+            <input id="create-password" type="password" placeholder="Create a password" autocomplete="new-password">
+          </label>
+          <button type="submit" class="button-link">Create account</button>
+          <a class="button-link secondary full-width center-link" href="login.html">Already have an account? Sign in</a>
+          <a class="button-link ghost full-width center-link" href="index.html">Back to home</a>
+        </form>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -11,23 +11,12 @@
   <main class="login-shell">
     <section class="login-hero-card">
       <div class="login-badge">Monikita’s Fitness App 💪</div>
-      <h1>Welcome back</h1>
-      <p>Create an account to save your workouts, day assignments, sets, reps, and energy. Or jump in as a guest if you only want to browse.</p>
+      <h1>Sign in</h1>
+      <p>Log in to save your workouts, day assignments, sets, reps, and energy. Need a profile first? Create one from the home page or use the button below.</p>
       <div id="login-message" class="login-message"></div>
-      <div class="login-grid">
-        <form id="create-account-form" class="login-card">
-          <h2>Create account</h2>
-          <label>User ID
-            <input id="create-user-id" type="text" placeholder="Choose a user ID" autocomplete="username">
-          </label>
-          <label>Password
-            <input id="create-password" type="password" placeholder="Create a password" autocomplete="new-password">
-          </label>
-          <button type="submit" class="button-link">Create account</button>
-        </form>
-
+      <div class="login-grid single-column">
         <form id="login-form" class="login-card">
-          <h2>Sign in</h2>
+          <h2>Welcome back</h2>
           <label>User ID
             <input id="login-user-id" type="text" placeholder="Your user ID" autocomplete="username">
           </label>
@@ -35,7 +24,8 @@
             <input id="login-password" type="password" placeholder="Your password" autocomplete="current-password">
           </label>
           <button type="submit" class="button-link">Sign in</button>
-          <button type="button" id="guest-login-btn" class="button-link secondary full-width">Continue as guest</button>
+          <a class="button-link secondary full-width center-link" href="create-account.html">Create account</a>
+          <button type="button" id="guest-login-btn" class="button-link ghost full-width">Continue as guest</button>
           <p class="login-helper">Guest mode works, but no workout data is saved.</p>
         </form>
       </div>

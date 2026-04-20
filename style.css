@@ -627,3 +627,24 @@ nav a{
     grid-template-columns:1fr;
   }
 }
+
+
+.single-column{
+  grid-template-columns:minmax(0,560px);
+  justify-content:center;
+}
+.center-link{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.button-link.ghost{
+  background:rgba(255,255,255,.12);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.18);
+}
+.login-card .button-link.ghost{
+  background:rgba(17,37,63,.06);
+  color:var(--ink);
+  border:1px solid rgba(17,37,63,.12);
+}
