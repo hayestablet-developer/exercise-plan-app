@@ -710,3 +710,5 @@ nav a{
   background:rgba(255,255,255,.76);
   border:1px solid var(--line);
 }
+
+.login-message:empty{display:none;}

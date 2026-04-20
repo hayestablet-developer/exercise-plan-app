@@ -4,6 +4,51 @@ const APP_ACCOUNTS_KEY = "fitnessAccounts";
 const APP_NAMESPACE_PREFIX = "fitnessUser:";
 const ASSIGNMENTS_KEY = "dayAssignments";
 const EXERCISE_LOG_KEY = "exerciseLog";
+const LAST_USER_ID_KEY = "fitnessLastUserId";
+
+
+function normalizeUserId(userId) {
+  return String(userId || "").trim().toLowerCase();
+}
+
+function rememberLastUserId(userId) {
+  if (!userId) return;
+  localStorage.setItem(LAST_USER_ID_KEY, userId);
+}
+
+function getLastUserId() {
+  return localStorage.getItem(LAST_USER_ID_KEY) || "";
+}
+
+function migrateAccounts() {
+  const raw = localStorage.getItem(APP_ACCOUNTS_KEY);
+  if (!raw) return {};
+  let accounts;
+  try {
+    accounts = JSON.parse(raw) || {};
+  } catch (e) {
+    return {};
+  }
+  const migrated = {};
+  Object.keys(accounts).forEach(function(key){
+    const account = accounts[key] || {};
+    const normalized = normalizeUserId(key);
+    if (!normalized) return;
+    if (!migrated[normalized]) {
+      migrated[normalized] = {
+        password: account.password || "",
+        createdAt: account.createdAt || new Date().toISOString(),
+        updatedAt: account.updatedAt || "",
+        displayUserId: account.displayUserId || key
+      };
+    }
+  });
+  if (JSON.stringify(accounts) !== JSON.stringify(migrated)) {
+    localStorage.setItem(APP_ACCOUNTS_KEY, JSON.stringify(migrated));
+  }
+  return migrated;
+}
+
 
 const DAY_CONFIG = {
   "monday": { label: "Lower Body A + Sprint", subtitle: "Focus on glutes and hamstrings with heavy hip hinge movements and finish with sprints."},
@@ -41,7 +86,9 @@ function getUserNamespace() {
   const session = getSession();
   if (!session) return null;
   if (session.mode === "guest") return null;
-  return APP_NAMESPACE_PREFIX + session.userId + ":";
+  const userKey = session.userKey || normalizeUserId(session.userId);
+  if (!userKey) return null;
+  return APP_NAMESPACE_PREFIX + userKey + ":";
 }
 
 function getTrackedKey(key) {
@@ -83,11 +130,7 @@ function trackedSetJson(key, value) {
 }
 
 function getAccounts() {
-  try {
-    return JSON.parse(localStorage.getItem(APP_ACCOUNTS_KEY) || "{}");
-  } catch (e) {
-    return {};
-  }
+  return migrateAccounts();
 }
 
 function saveAccounts(accounts) {
@@ -111,60 +154,91 @@ function getNextUrl() {
   return params.get("next") || "index.html";
 }
 
+
 function initLoginPage() {
   const isLogin = window.location.pathname.endsWith("login.html");
   const isCreate = window.location.pathname.endsWith("create-account.html");
   if (!isLogin && !isCreate) return;
+
   const createForm = document.getElementById("create-account-form");
   const loginForm = document.getElementById("login-form");
   const guestBtn = document.getElementById("guest-login-btn");
   const msg = document.getElementById("login-message");
   const loginIdInput = document.getElementById("login-user-id");
 
+  if (loginIdInput && !loginIdInput.value) {
+    loginIdInput.value = getLastUserId();
+  }
+
   function showMessage(text, ok) {
     if (!msg) return;
-    msg.textContent = text;
-    msg.className = ok ? "login-message ok" : "login-message error";
+    msg.textContent = text || "";
+    msg.className = text ? (ok ? "login-message ok" : "login-message error") : "login-message";
+    msg.style.display = text ? "block" : "none";
   }
+
+  showMessage("", false);
 
   if (createForm) {
     createForm.addEventListener("submit", function(e){
       e.preventDefault();
-      const userId = (document.getElementById("create-user-id").value || "").trim();
+      const rawUserId = (document.getElementById("create-user-id").value || "").trim();
+      const normalizedUserId = normalizeUserId(rawUserId);
       const password = (document.getElementById("create-password").value || "").trim();
-      if (!userId || !password) {
+
+      if (!normalizedUserId || !password) {
         showMessage("Enter a user ID and password to create your account.", false);
         return;
       }
+      if (password.length < 4) {
+        showMessage("Use a password with at least 4 characters.", false);
+        return;
+      }
+
       const accounts = getAccounts();
-      if (accounts[userId]) {
+      if (accounts[normalizedUserId]) {
         showMessage("That user ID already exists. Try signing in instead.", false);
         return;
       }
-      accounts[userId] = { password: password, createdAt: new Date().toISOString() };
+
+      accounts[normalizedUserId] = {
+        password: password,
+        createdAt: new Date().toISOString(),
+        displayUserId: rawUserId
+      };
       saveAccounts(accounts);
+      rememberLastUserId(rawUserId);
       createForm.reset();
-      if (isCreate) {
-        showMessage("Account created. Redirecting to sign in...", true);
-        setTimeout(function(){ window.location.href = "login.html?next=" + encodeURIComponent(getNextUrl()); }, 700);
-      } else {
-        if (loginIdInput) loginIdInput.value = userId;
-        showMessage("Account created. Now sign in with your new user ID and password.", true);
-      }
+
+      showMessage("Account created. Redirecting to sign in...", true);
+      setTimeout(function(){
+        window.location.href = "login.html?next=" + encodeURIComponent(getNextUrl());
+      }, 500);
     });
   }
 
   if (loginForm) {
     loginForm.addEventListener("submit", function(e){
       e.preventDefault();
-      const userId = (document.getElementById("login-user-id").value || "").trim();
+      const rawUserId = (document.getElementById("login-user-id").value || "").trim();
+      const normalizedUserId = normalizeUserId(rawUserId);
       const password = (document.getElementById("login-password").value || "").trim();
       const accounts = getAccounts();
-      if (!accounts[userId] || accounts[userId].password !== password) {
+      const account = accounts[normalizedUserId];
+
+      if (!account || account.password !== password) {
         showMessage("Wrong user ID or password.", false);
         return;
       }
-      setSession({ mode: "user", userId: userId, signedInAt: new Date().toISOString() });
+
+      const displayUserId = account.displayUserId || rawUserId || normalizedUserId;
+      rememberLastUserId(displayUserId);
+      setSession({
+        mode: "user",
+        userId: displayUserId,
+        userKey: normalizedUserId,
+        signedInAt: new Date().toISOString()
+      });
       window.location.href = getNextUrl();
     });
   }
@@ -176,6 +250,7 @@ function initLoginPage() {
     });
   }
 }
+
 
 function injectAuthStrip() {
   if (window.location.pathname.endsWith("login.html") || window.location.pathname.endsWith("create-account.html")) return;
@@ -544,7 +619,7 @@ function initAccountPage() {
     return;
   }
 
-  if (userIdEl) userIdEl.textContent = session.userId || "—";
+  if (userIdEl) userIdEl.textContent = session.userId || getLastUserId() || "—";
   if (modeEl) modeEl.textContent = isGuestSession() ? "Guest" : "Signed in";
 
   if (isGuestSession()) {
@@ -560,13 +635,13 @@ function initAccountPage() {
     const newPassword = (document.getElementById("new-password").value || "").trim();
     const confirmPassword = (document.getElementById("confirm-password").value || "").trim();
     const accounts = getAccounts();
-    const userId = session.userId;
+    const userKey = session.userKey || normalizeUserId(session.userId);
 
-    if (!accounts[userId]) {
+    if (!accounts[userKey]) {
       showMessage("We could not find your account.", false);
       return;
     }
-    if (accounts[userId].password !== currentPassword) {
+    if (accounts[userKey].password !== currentPassword) {
       showMessage("Current password is incorrect.", false);
       return;
     }
@@ -579,8 +654,8 @@ function initAccountPage() {
       return;
     }
 
-    accounts[userId].password = newPassword;
-    accounts[userId].updatedAt = new Date().toISOString();
+    accounts[userKey].password = newPassword;
+    accounts[userKey].updatedAt = new Date().toISOString();
     saveAccounts(accounts);
     form.reset();
     showMessage("Password updated.", true);
