@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile — Monikita’s Fitness App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Monikita’s Fitness App 💪</h1>
+    <nav><a href="index.html">Home</a><a href="advisor.html">Coach</a><a href="exercises-library.html">Library</a><a href="featured.html">Featured</a></nav>
+  </header>
+  <main>
+    <section class="profile-shell">
+      <div class="profile-card">
+        <div class="profile-badge">Account</div>
+        <h2>My profile</h2>
+        <p class="profile-sub">View your user ID and update your password.</p>
+
+        <div id="account-message" class="login-message"></div>
+
+        <div class="profile-panel">
+          <div class="profile-row">
+            <span class="profile-label">User ID</span>
+            <strong id="profile-user-id">—</strong>
+          </div>
+          <div class="profile-row">
+            <span class="profile-label">Mode</span>
+            <strong id="profile-mode">—</strong>
+          </div>
+        </div>
+
+        <form id="reset-password-form" class="login-card profile-form">
+          <h3>Reset password</h3>
+          <label>Current password
+            <input id="current-password" type="password" placeholder="Enter current password" autocomplete="current-password">
+          </label>
+          <label>New password
+            <input id="new-password" type="password" placeholder="Enter new password" autocomplete="new-password">
+          </label>
+          <label>Confirm new password
+            <input id="confirm-password" type="password" placeholder="Confirm new password" autocomplete="new-password">
+          </label>
+          <button type="submit" class="button-link">Save new password</button>
+          <a class="button-link secondary full-width center-link" href="index.html">Back to dashboard</a>
+        </form>
+
+        <div id="guest-account-note" class="guest-account-note" style="display:none;">
+          <p>You are in guest mode, so there is no saved user ID or password to manage.</p>
+          <a class="button-link" href="login.html">Sign in / Create account</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

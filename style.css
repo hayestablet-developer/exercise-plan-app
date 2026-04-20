@@ -648,3 +648,65 @@ nav a{
   color:var(--ink);
   border:1px solid rgba(17,37,63,.12);
 }
+
+
+.profile-shell{
+  max-width:780px;
+  margin:0 auto;
+}
+.profile-card{
+  background:linear-gradient(145deg, rgba(255,255,255,.78), rgba(255,255,255,.52));
+  border:1px solid rgba(255,255,255,.5);
+  box-shadow:var(--shadow);
+  border-radius:34px;
+  padding:28px;
+}
+.profile-badge{
+  display:inline-flex;
+  padding:10px 16px;
+  border-radius:999px;
+  background:rgba(17,37,63,.08);
+  color:var(--navy);
+  font-weight:800;
+  margin-bottom:10px;
+}
+.profile-card h2{
+  margin:0 0 8px;
+  font-size:clamp(2rem,4vw,3rem);
+  color:var(--navy);
+}
+.profile-sub{
+  margin:0 0 18px;
+  color:var(--muted);
+  font-size:1.05rem;
+}
+.profile-panel{
+  display:grid;
+  gap:12px;
+  margin-bottom:18px;
+}
+.profile-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:16px 18px;
+  border-radius:18px;
+  background:rgba(255,255,255,.76);
+  border:1px solid var(--line);
+}
+.profile-label{
+  color:var(--muted);
+  font-weight:700;
+}
+.profile-form h3{
+  margin-top:0;
+  color:var(--navy);
+}
+.guest-account-note{
+  margin-top:18px;
+  padding:18px;
+  border-radius:20px;
+  background:rgba(255,255,255,.76);
+  border:1px solid var(--line);
+}

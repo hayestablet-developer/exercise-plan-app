@@ -194,7 +194,7 @@ function injectAuthStrip() {
       <span>${isGuestSession() ? "Progress is not being saved in guest mode." : "Workout progress, sets, reps, and energy are saved to this profile."}</span>
     </div>
     <div class="auth-actions">
-      ${isGuestSession() ? '<a class="small-auth-btn" href="login.html">Create account / Sign in</a>' : ""}
+      ${isGuestSession() ? '<a class="small-auth-btn" href="login.html">Create account / Sign in</a>' : '<a class="small-auth-btn" href="account.html">My profile</a>'}
       <button type="button" id="logout-btn" class="small-auth-btn secondary">Log out</button>
     </div>
   `;
@@ -523,10 +523,76 @@ function recommendWorkout() {
   resultContainer.style.display = "block";
 }
 
+
+function initAccountPage() {
+  if (!window.location.pathname.endsWith("account.html")) return;
+  const session = getSession();
+  const msg = document.getElementById("account-message");
+  const userIdEl = document.getElementById("profile-user-id");
+  const modeEl = document.getElementById("profile-mode");
+  const form = document.getElementById("reset-password-form");
+  const guestNote = document.getElementById("guest-account-note");
+
+  function showMessage(text, ok) {
+    if (!msg) return;
+    msg.textContent = text;
+    msg.className = ok ? "login-message ok" : "login-message error";
+  }
+
+  if (!session) {
+    window.location.href = "login.html?next=account.html";
+    return;
+  }
+
+  if (userIdEl) userIdEl.textContent = session.userId || "—";
+  if (modeEl) modeEl.textContent = isGuestSession() ? "Guest" : "Signed in";
+
+  if (isGuestSession()) {
+    if (form) form.style.display = "none";
+    if (guestNote) guestNote.style.display = "block";
+    return;
+  }
+
+  if (!form) return;
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    const currentPassword = (document.getElementById("current-password").value || "").trim();
+    const newPassword = (document.getElementById("new-password").value || "").trim();
+    const confirmPassword = (document.getElementById("confirm-password").value || "").trim();
+    const accounts = getAccounts();
+    const userId = session.userId;
+
+    if (!accounts[userId]) {
+      showMessage("We could not find your account.", false);
+      return;
+    }
+    if (accounts[userId].password !== currentPassword) {
+      showMessage("Current password is incorrect.", false);
+      return;
+    }
+    if (!newPassword || newPassword.length < 4) {
+      showMessage("Use a new password with at least 4 characters.", false);
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      showMessage("New password and confirmation do not match.", false);
+      return;
+    }
+
+    accounts[userId].password = newPassword;
+    accounts[userId].updatedAt = new Date().toISOString();
+    saveAccounts(accounts);
+    form.reset();
+    showMessage("Password updated.", true);
+  });
+}
+
+
 document.addEventListener("DOMContentLoaded", function(){
   initLoginPage();
   if (!ensureProtectedPage()) return;
   injectAuthStrip();
+  initAccountPage();
   initInputStorage(document);
   initDayPage();
   updateHomeCards();
