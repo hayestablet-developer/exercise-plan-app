@@ -1,54 +1,306 @@
 
+const APP_SESSION_KEY = "fitnessAuthSession";
+const APP_ACCOUNTS_KEY = "fitnessAccounts";
+const APP_NAMESPACE_PREFIX = "fitnessUser:";
+const ASSIGNMENTS_KEY = "dayAssignments";
+const EXERCISE_LOG_KEY = "exerciseLog";
+
+const DAY_CONFIG = {
+  "monday": { label: "Lower Body A + Sprint", subtitle: "Focus on glutes and hamstrings with heavy hip hinge movements and finish with sprints."},
+  "tuesday": { label: "Upper Push", subtitle: "Train chest, shoulders, triceps, and pull-up progress work."},
+  "wednesday": { label: "Recovery & Mobility", subtitle: "Reset day with gentle movement, mobility, and recovery."},
+  "thursday": { label: "Lower Body B + Sprint", subtitle: "Hit quads and glutes and finish with your sprint work."},
+  "friday": { label: "Upper Pull + Shoulders/Triceps", subtitle: "Back, biceps, shoulders, and triceps accessory work."},
+  "saturday": { label: "Sprints & Core", subtitle: "Conditioning and core focus."},
+  "sunday": { label: "Rest", subtitle: "Full rest day with optional gentle recovery work."},
+  "shoulders-triceps": { label: "Shoulders & Triceps", subtitle: "Focused upper-body session for delts and triceps."}
+};
+
+function getSession() {
+  try {
+    return JSON.parse(sessionStorage.getItem(APP_SESSION_KEY) || "null");
+  } catch (e) {
+    return null;
+  }
+}
+
+function setSession(session) {
+  sessionStorage.setItem(APP_SESSION_KEY, JSON.stringify(session));
+}
+
+function clearSession() {
+  sessionStorage.removeItem(APP_SESSION_KEY);
+}
+
+function isGuestSession() {
+  const session = getSession();
+  return !!session && session.mode === "guest";
+}
+
+function getUserNamespace() {
+  const session = getSession();
+  if (!session) return null;
+  if (session.mode === "guest") return null;
+  return APP_NAMESPACE_PREFIX + session.userId + ":";
+}
+
+function getTrackedKey(key) {
+  const ns = getUserNamespace();
+  if (!ns) return null;
+  return ns + key;
+}
+
+function trackedGet(key) {
+  const actual = getTrackedKey(key);
+  if (!actual) return null;
+  return localStorage.getItem(actual);
+}
+
+function trackedSet(key, value) {
+  const actual = getTrackedKey(key);
+  if (!actual) return;
+  localStorage.setItem(actual, value);
+}
+
+function trackedRemove(key) {
+  const actual = getTrackedKey(key);
+  if (!actual) return;
+  localStorage.removeItem(actual);
+}
+
+function trackedGetJson(key, fallback) {
+  const raw = trackedGet(key);
+  if (!raw) return fallback;
+  try {
+    return JSON.parse(raw);
+  } catch (e) {
+    return fallback;
+  }
+}
+
+function trackedSetJson(key, value) {
+  trackedSet(key, JSON.stringify(value));
+}
+
+function getAccounts() {
+  try {
+    return JSON.parse(localStorage.getItem(APP_ACCOUNTS_KEY) || "{}");
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveAccounts(accounts) {
+  localStorage.setItem(APP_ACCOUNTS_KEY, JSON.stringify(accounts));
+}
+
+function ensureProtectedPage() {
+  const onLoginPage = window.location.pathname.endsWith("login.html");
+  const session = getSession();
+  if (!onLoginPage && !session) {
+    const target = encodeURIComponent(window.location.pathname.split("/").pop() || "index.html");
+    window.location.href = "login.html?next=" + target;
+    return false;
+  }
+  return true;
+}
+
+function getNextUrl() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("next") || "index.html";
+}
+
+function initLoginPage() {
+  if (!window.location.pathname.endsWith("login.html")) return;
+  const createForm = document.getElementById("create-account-form");
+  const loginForm = document.getElementById("login-form");
+  const guestBtn = document.getElementById("guest-login-btn");
+  const msg = document.getElementById("login-message");
+  const loginIdInput = document.getElementById("login-user-id");
+
+  function showMessage(text, ok) {
+    if (!msg) return;
+    msg.textContent = text;
+    msg.className = ok ? "login-message ok" : "login-message error";
+  }
+
+  if (createForm) {
+    createForm.addEventListener("submit", function(e){
+      e.preventDefault();
+      const userId = (document.getElementById("create-user-id").value || "").trim();
+      const password = (document.getElementById("create-password").value || "").trim();
+      if (!userId || !password) {
+        showMessage("Enter a user ID and password to create your account.", false);
+        return;
+      }
+      const accounts = getAccounts();
+      if (accounts[userId]) {
+        showMessage("That user ID already exists. Try signing in instead.", false);
+        return;
+      }
+      accounts[userId] = { password: password, createdAt: new Date().toISOString() };
+      saveAccounts(accounts);
+      createForm.reset();
+      if (loginIdInput) loginIdInput.value = userId;
+      showMessage("Account created. Now sign in with your new user ID and password.", true);
+    });
+  }
+
+  if (loginForm) {
+    loginForm.addEventListener("submit", function(e){
+      e.preventDefault();
+      const userId = (document.getElementById("login-user-id").value || "").trim();
+      const password = (document.getElementById("login-password").value || "").trim();
+      const accounts = getAccounts();
+      if (!accounts[userId] || accounts[userId].password !== password) {
+        showMessage("Wrong user ID or password.", false);
+        return;
+      }
+      setSession({ mode: "user", userId: userId, signedInAt: new Date().toISOString() });
+      window.location.href = getNextUrl();
+    });
+  }
+
+  if (guestBtn) {
+    guestBtn.addEventListener("click", function(){
+      setSession({ mode: "guest", userId: "Guest", signedInAt: new Date().toISOString() });
+      window.location.href = getNextUrl();
+    });
+  }
+}
+
+function injectAuthStrip() {
+  if (window.location.pathname.endsWith("login.html")) return;
+  const main = document.querySelector("main");
+  const header = document.querySelector("header");
+  if (!main || !header) return;
+  if (document.getElementById("auth-strip")) return;
+
+  const session = getSession();
+  const strip = document.createElement("div");
+  strip.id = "auth-strip";
+  strip.className = "auth-strip " + (isGuestSession() ? "guest" : "user");
+  strip.innerHTML = `
+    <div class="auth-copy">
+      <strong>${isGuestSession() ? "Guest mode" : "Signed in as " + session.userId}</strong>
+      <span>${isGuestSession() ? "Progress is not being saved in guest mode." : "Workout progress, sets, reps, and energy are saved to this profile."}</span>
+    </div>
+    <div class="auth-actions">
+      ${isGuestSession() ? '<a class="small-auth-btn" href="login.html">Create account / Sign in</a>' : ""}
+      <button type="button" id="logout-btn" class="small-auth-btn secondary">Log out</button>
+    </div>
+  `;
+  header.insertAdjacentElement("afterend", strip);
+
+  const logoutBtn = document.getElementById("logout-btn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", function(){
+      clearSession();
+      window.location.href = "login.html";
+    });
+  }
+}
+
+function getAssignments() {
+  return trackedGetJson(ASSIGNMENTS_KEY, {});
+}
+
+function saveAssignments(map) {
+  trackedSetJson(ASSIGNMENTS_KEY, map);
+}
+
 function toggleOptionalSet(groupKey, forceShow) {
   const optionalFields = document.querySelectorAll('[data-optional-group="' + groupKey + '"]');
   if (!optionalFields.length) return;
-  const storageKey = groupKey + '__show4';
-  const shouldShow = typeof forceShow === 'boolean' ? forceShow : localStorage.getItem(storageKey) === 'true';
-  optionalFields.forEach(function(field){ field.style.display = shouldShow ? 'flex' : 'none'; });
+  const storageKey = groupKey + "__show4";
+  const stored = trackedGet(storageKey) === "true";
+  const shouldShow = typeof forceShow === "boolean" ? forceShow : stored;
+  optionalFields.forEach(function(field){ field.style.display = shouldShow ? "flex" : "none"; });
   const btn = document.querySelector('.add-set-btn[data-target="' + groupKey + '"]');
-  if (btn) btn.textContent = shouldShow ? 'Hide set 4' : '+ Add set 4';
+  if (btn) btn.textContent = shouldShow ? "Hide set 4" : "+ Add set 4";
+}
+
+function syncExerciseLog(input) {
+  if (isGuestSession() || !getUserNamespace()) return;
+  const daySlot = document.body.dataset.daySlot;
+  if (!daySlot) return;
+  const exerciseCard = input.closest(".exercise");
+  if (!exerciseCard) return;
+  const assigned = getAssignments()[daySlot] || daySlot;
+  const exerciseName = (exerciseCard.querySelector("h4") || {}).textContent || "Exercise";
+  const sets = {};
+  exerciseCard.querySelectorAll('input[data-key]').forEach(function(field){
+    const label = field.closest("label");
+    const labelText = label ? label.textContent.trim() : field.dataset.key;
+    if (field.type === "checkbox") return;
+    if (labelText.toLowerCase().indexOf("set") === 0 || field.dataset.type === "energy" || field.dataset.type === "effort") {
+      sets[labelText] = field.value || "";
+    }
+  });
+  const completedBox = exerciseCard.querySelector('input[type="checkbox"][data-key]');
+  const recordKey = daySlot + "|" + assigned + "|" + exerciseName;
+  const log = trackedGetJson(EXERCISE_LOG_KEY, {});
+  log[recordKey] = {
+    updatedAt: new Date().toISOString(),
+    day: daySlot,
+    assignedWorkout: assigned,
+    exercise: exerciseName,
+    completed: completedBox ? completedBox.checked : false,
+    fields: sets
+  };
+  trackedSetJson(EXERCISE_LOG_KEY, log);
 }
 
 function initInputStorage(scope) {
   const root = scope || document;
-  const inputs = root.querySelectorAll('[data-key]');
+  const inputs = root.querySelectorAll("[data-key]");
   inputs.forEach(function(input){
     const key = input.dataset.key;
-    const storedValue = localStorage.getItem(key);
-    if (storedValue !== null) {
-      if (input.type === 'checkbox') input.checked = storedValue === 'true';
-      else input.value = storedValue;
+    if (!isGuestSession()) {
+      const storedValue = trackedGet(key);
+      if (storedValue !== null) {
+        if (input.type === "checkbox") input.checked = storedValue === "true";
+        else input.value = storedValue;
+      }
     }
     if (!input.dataset.boundStorage) {
-      input.addEventListener('change', function(){
-        if (input.type === 'checkbox') localStorage.setItem(key, String(input.checked));
-        else localStorage.setItem(key, input.value);
+      input.addEventListener("change", function(){
+        if (!isGuestSession()) {
+          if (input.type === "checkbox") trackedSet(key, String(input.checked));
+          else trackedSet(key, input.value);
+          syncExerciseLog(input);
+        }
         updateSummary();
         updateLibraryProgress();
       });
-      input.dataset.boundStorage = '1';
+      input.dataset.boundStorage = "1";
     }
   });
 
-  const addSetButtons = root.querySelectorAll('.add-set-btn');
+  const addSetButtons = root.querySelectorAll(".add-set-btn");
   addSetButtons.forEach(function(btn){
     const groupKey = btn.dataset.target;
-    toggleOptionalSet(groupKey, localStorage.getItem(groupKey + '__show4') === 'true');
+    toggleOptionalSet(groupKey, !isGuestSession() && trackedGet(groupKey + "__show4") === "true");
     if (!btn.dataset.boundSet) {
-      btn.addEventListener('click', function(){
-        const storageKey = groupKey + '__show4';
-        const isShowing = localStorage.getItem(storageKey) === 'true';
-        localStorage.setItem(storageKey, String(!isShowing));
+      btn.addEventListener("click", function(){
+        if (isGuestSession()) {
+          const currentlyVisible = btn.textContent.indexOf("Hide") !== -1;
+          toggleOptionalSet(groupKey, !currentlyVisible);
+          return;
+        }
+        const storageKey = groupKey + "__show4";
+        const isShowing = trackedGet(storageKey) === "true";
+        trackedSet(storageKey, String(!isShowing));
         toggleOptionalSet(groupKey, !isShowing);
       });
-      btn.dataset.boundSet = '1';
+      btn.dataset.boundSet = "1";
     }
   });
 }
 
 function updateSummary() {
-  const summaryEl = document.getElementById('daily-summary');
-  const content = document.getElementById('workout-content') || document;
+  const summaryEl = document.getElementById("daily-summary");
+  const content = document.getElementById("workout-content") || document;
   if (!summaryEl) return;
 
   const checkboxInputs = content.querySelectorAll('input[type="checkbox"][data-key]');
@@ -67,89 +319,69 @@ function updateSummary() {
     if (!isNaN(val)) { effortSum += val; effortCount++; }
   });
 
-  const energyAvg = energyCount > 0 ? (energySum / energyCount).toFixed(1) : 'N/A';
-  const effortAvg = effortCount > 0 ? (effortSum / effortCount).toFixed(1) : 'N/A';
+  const energyAvg = energyCount > 0 ? (energySum / energyCount).toFixed(1) : "N/A";
+  const effortAvg = effortCount > 0 ? (effortSum / effortCount).toFixed(1) : "N/A";
   summaryEl.innerHTML = '<div class="summary-box"><strong>Completed</strong><div>' + completed + ' / ' + checkboxInputs.length +
     '</div></div><div class="summary-box"><strong>Avg energy</strong><div>' + energyAvg +
     '</div></div><div class="summary-box"><strong>Avg effort</strong><div>' + effortAvg + '</div></div>';
 }
 
-const DAY_CONFIG = {
-  'monday': { label: 'Lower Body A + Sprint', subtitle: 'Focus on glutes and hamstrings with heavy hip hinge movements and finish with sprints.'},
-  'tuesday': { label: 'Upper Push', subtitle: 'Train chest, shoulders, triceps, and pull-up progress work.'},
-  'wednesday': { label: 'Recovery & Mobility', subtitle: 'Reset day with gentle movement, mobility, and recovery.'},
-  'thursday': { label: 'Lower Body B + Sprint', subtitle: 'Hit quads and glutes and finish with your sprint work.'},
-  'friday': { label: 'Upper Pull + Shoulders/Triceps', subtitle: 'Back, biceps, shoulders, and triceps accessory work.'},
-  'saturday': { label: 'Sprints & Core', subtitle: 'Conditioning and core focus.'},
-  'sunday': { label: 'Rest', subtitle: 'Full rest day with optional gentle recovery work.'},
-  'shoulders-triceps': { label: 'Shoulders & Triceps', subtitle: 'Focused upper-body session for delts and triceps.'}
-};
-
-function getAssignments() {
-  try { return JSON.parse(localStorage.getItem('dayAssignments') || '{}'); }
-  catch (e) { return {}; }
-}
-
-function saveAssignments(map) {
-  localStorage.setItem('dayAssignments', JSON.stringify(map));
-}
-
 function updateHomeCards() {
-  const cards = document.querySelectorAll('[data-slot-card]');
+  const cards = document.querySelectorAll("[data-slot-card]");
   if (!cards.length) return;
   const assignments = getAssignments();
   cards.forEach(function(card){
     const slot = card.dataset.slotCard;
     const assigned = assignments[slot] || slot;
     const cfg = DAY_CONFIG[assigned] || DAY_CONFIG[slot];
-    const title = card.querySelector('[data-slot-label]');
-    const note = card.querySelector('[data-slot-note]');
-    if (title) title.textContent = slot.charAt(0).toUpperCase() + slot.slice(1) + ': ' + cfg.label;
+    const title = card.querySelector("[data-slot-label]");
+    const note = card.querySelector("[data-slot-note]");
+    if (title) title.textContent = slot.charAt(0).toUpperCase() + slot.slice(1) + ": " + cfg.label;
     if (note) note.textContent = cfg.subtitle;
-    if (assigned !== slot) card.classList.add('card-swapped');
-    else card.classList.remove('card-swapped');
+    if (assigned !== slot) card.classList.add("card-swapped");
+    else card.classList.remove("card-swapped");
   });
 }
 
 function renderAssignedWorkout(daySlot, assignedSlot) {
-  const target = document.getElementById('workout-content');
+  const target = document.getElementById("workout-content");
   if (!target) return;
   const cfg = DAY_CONFIG[assignedSlot] || DAY_CONFIG[daySlot];
-  const subtitle = document.getElementById('workout-subtitle');
-  const pill = document.getElementById('active-workout-label');
+  const subtitle = document.getElementById("workout-subtitle");
+  const pill = document.getElementById("active-workout-label");
   if (subtitle) subtitle.textContent = cfg.subtitle;
-  if (pill) pill.textContent = 'Currently showing: ' + cfg.label;
+  if (pill) pill.textContent = "Currently showing: " + cfg.label;
 
-  fetch(assignedSlot + '.html')
+  fetch(assignedSlot + ".html")
     .then(function(resp){ return resp.text(); })
     .then(function(html){
-      const doc = new DOMParser().parseFromString(html, 'text/html');
-      const source = doc.getElementById('workout-content');
+      const doc = new DOMParser().parseFromString(html, "text/html");
+      const source = doc.getElementById("workout-content");
       if (!source) return;
       target.innerHTML = source.innerHTML;
       initInputStorage(target);
       updateSummary();
     })
-    .catch(function(){ /* keep current content if fetch fails */ });
+    .catch(function(){});
 }
 
 function populateSwapSelect(daySlot) {
-  const select = document.getElementById('swap-select');
+  const select = document.getElementById("swap-select");
   if (!select) return;
   const options = [
-    ['monday','Monday / Lower Body A + Sprint'],
-    ['tuesday','Tuesday / Upper Push'],
-    ['wednesday','Wednesday / Recovery & Mobility'],
-    ['thursday','Thursday / Lower Body B + Sprint'],
-    ['friday','Friday / Upper Pull + Shoulders/Triceps'],
-    ['saturday','Saturday / Sprints & Core'],
-    ['sunday','Sunday / Rest'],
-    ['shoulders-triceps','Shoulders & Triceps']
+    ["monday","Monday / Lower Body A + Sprint"],
+    ["tuesday","Tuesday / Upper Push"],
+    ["wednesday","Wednesday / Recovery & Mobility"],
+    ["thursday","Thursday / Lower Body B + Sprint"],
+    ["friday","Friday / Upper Pull + Shoulders/Triceps"],
+    ["saturday","Saturday / Sprints & Core"],
+    ["sunday","Sunday / Rest"],
+    ["shoulders-triceps","Shoulders & Triceps"]
   ];
   select.innerHTML = '<option value="">--Select--</option>' + options.map(function(opt){
     return '<option value="' + opt[0] + '">' + opt[1] + '</option>';
-  }).join('');
-  const assigned = getAssignments()[daySlot] || '';
+  }).join("");
+  const assigned = getAssignments()[daySlot] || "";
   if (assigned) select.value = assigned;
 }
 
@@ -162,19 +394,23 @@ function initDayPage() {
   if (current) renderAssignedWorkout(daySlot, current);
   else updateSummary();
 
-  const openBtn = document.getElementById('open-selection-btn');
-  const saveBtn = document.getElementById('save-choice-btn');
-  const clearBtn = document.getElementById('clear-choice-btn');
-  const select = document.getElementById('swap-select');
+  const openBtn = document.getElementById("open-selection-btn");
+  const saveBtn = document.getElementById("save-choice-btn");
+  const clearBtn = document.getElementById("clear-choice-btn");
+  const select = document.getElementById("swap-select");
 
   if (openBtn && select) {
-    openBtn.addEventListener('click', function(){
-      if (select.value) window.location.href = select.value + '.html';
+    openBtn.addEventListener("click", function(){
+      if (select.value) window.location.href = select.value + ".html";
     });
   }
   if (saveBtn && select) {
-    saveBtn.addEventListener('click', function(){
+    saveBtn.addEventListener("click", function(){
       if (!select.value) return;
+      if (isGuestSession()) {
+        renderAssignedWorkout(daySlot, select.value);
+        return;
+      }
       const map = getAssignments();
       map[daySlot] = select.value;
       saveAssignments(map);
@@ -183,62 +419,66 @@ function initDayPage() {
     });
   }
   if (clearBtn) {
-    clearBtn.addEventListener('click', function(){
+    clearBtn.addEventListener("click", function(){
+      if (isGuestSession()) {
+        window.location.href = daySlot + ".html";
+        return;
+      }
       const map = getAssignments();
       delete map[daySlot];
       saveAssignments(map);
       populateSwapSelect(daySlot);
-      window.location.href = daySlot + '.html';
+      window.location.href = daySlot + ".html";
     });
   }
 }
 
 function updateLibraryProgress() {
-  const checks = Array.from(document.querySelectorAll('.library-check'));
+  const checks = Array.from(document.querySelectorAll(".library-check"));
   if (!checks.length) return;
-  const overall = document.getElementById('library-overall-progress');
+  const overall = document.getElementById("library-overall-progress");
   const done = checks.filter(function(cb){ return cb.checked; }).length;
-  if (overall) overall.textContent = done + ' / ' + checks.length + ' exercises checked off';
+  if (overall) overall.textContent = done + " / " + checks.length + " exercises checked off";
 
   const groups = {};
   checks.forEach(function(cb){
-    const g = cb.dataset.group || 'other';
+    const g = cb.dataset.group || "other";
     groups[g] = groups[g] || { total: 0, done: 0 };
     groups[g].total += 1;
     if (cb.checked) groups[g].done += 1;
   });
   Object.keys(groups).forEach(function(groupId){
-    const node = document.getElementById('progress-' + groupId);
-    if (node) node.textContent = groups[groupId].done + ' / ' + groups[groupId].total + ' complete';
+    const node = document.getElementById("progress-" + groupId);
+    if (node) node.textContent = groups[groupId].done + " / " + groups[groupId].total + " complete";
   });
 }
 
 function setupLibraryFilters() {
-  const search = document.getElementById('library-search');
-  const chips = Array.from(document.querySelectorAll('.filter-chip'));
-  const items = Array.from(document.querySelectorAll('.library-exercise'));
+  const search = document.getElementById("library-search");
+  const chips = Array.from(document.querySelectorAll(".filter-chip"));
+  const items = Array.from(document.querySelectorAll(".library-exercise"));
   if (!search && !chips.length) return;
-  let activeGroup = 'all';
+  let activeGroup = "all";
 
   function apply() {
-    const q = (search ? search.value : '').trim().toLowerCase();
+    const q = (search ? search.value : "").trim().toLowerCase();
     items.forEach(function(item){
       const text = item.textContent.toLowerCase();
-      const group = item.closest('.library-group').dataset.groupSection;
-      const show = (activeGroup === 'all' || activeGroup === group) && (!q || text.indexOf(q) !== -1);
-      item.style.display = show ? '' : 'none';
+      const group = item.closest(".library-group").dataset.groupSection;
+      const show = (activeGroup === "all" || activeGroup === group) && (!q || text.indexOf(q) !== -1);
+      item.style.display = show ? "" : "none";
     });
-    document.querySelectorAll('.library-group').forEach(function(section){
-      const visible = Array.from(section.querySelectorAll('.library-exercise')).some(function(ex){ return ex.style.display !== 'none'; });
-      section.style.display = visible ? '' : 'none';
+    document.querySelectorAll(".library-group").forEach(function(section){
+      const visible = Array.from(section.querySelectorAll(".library-exercise")).some(function(ex){ return ex.style.display !== "none"; });
+      section.style.display = visible ? "" : "none";
     });
   }
 
-  if (search) search.addEventListener('input', apply);
+  if (search) search.addEventListener("input", apply);
   chips.forEach(function(chip){
-    chip.addEventListener('click', function(){
-      chips.forEach(function(c){ c.classList.remove('active'); });
-      chip.classList.add('active');
+    chip.addEventListener("click", function(){
+      chips.forEach(function(c){ c.classList.remove("active"); });
+      chip.classList.add("active");
       activeGroup = chip.dataset.filter;
       apply();
     });
@@ -246,36 +486,39 @@ function setupLibraryFilters() {
 }
 
 function recommendWorkout() {
-  const resultContainer = document.getElementById('advisor-result');
+  const resultContainer = document.getElementById("advisor-result");
   if (!resultContainer) return;
-  const last = document.getElementById('advisor-last').value;
-  const energy = parseInt(document.getElementById('advisor-energy').value, 10);
-  const sick = document.getElementById('advisor-sick').value;
-  const fresh = document.getElementById('advisor-fresh').value;
+  const last = document.getElementById("advisor-last").value;
+  const energy = parseInt(document.getElementById("advisor-energy").value, 10);
+  const sick = document.getElementById("advisor-sick").value;
+  const fresh = document.getElementById("advisor-fresh").value;
 
-  let recommendation = '', page = '', note = '';
-  if (sick === 'yes' || energy <= 4) {
-    recommendation = 'Recovery and Mobility';
-    page = 'wednesday.html';
-    note = 'Because you are sick or low energy, the best move is recovery, mobility, and a light walk.';
-  } else if (last.includes('Lower') || last.includes('Glute')) {
-    recommendation = fresh === 'upper' ? 'Upper Push' : 'Upper Pull + Shoulders/Triceps';
-    page = fresh === 'upper' ? 'tuesday.html' : 'friday.html';
-    note = 'You recently hit lower body, so upper body is the smarter next move.';
-  } else if (last.includes('Upper') || last.includes('Shoulder')) {
-    recommendation = fresh === 'lower' ? 'Lower Body A + Sprint' : 'Lower Body B + Sprint';
-    page = fresh === 'lower' ? 'monday.html' : 'thursday.html';
-    note = 'Your upper body worked recently, so lower body is the better fit.';
+  let recommendation = "", page = "", note = "";
+  if (sick === "yes" || energy <= 4) {
+    recommendation = "Recovery and Mobility";
+    page = "wednesday.html";
+    note = "Because you are sick or low energy, the best move is recovery, mobility, and a light walk.";
+  } else if (last.includes("Lower") || last.includes("Glute")) {
+    recommendation = fresh === "upper" ? "Upper Push" : "Upper Pull + Shoulders/Triceps";
+    page = fresh === "upper" ? "tuesday.html" : "friday.html";
+    note = "You recently hit lower body, so upper body is the smarter next move.";
+  } else if (last.includes("Upper") || last.includes("Shoulder")) {
+    recommendation = fresh === "lower" ? "Lower Body A + Sprint" : "Lower Body B + Sprint";
+    page = fresh === "lower" ? "monday.html" : "thursday.html";
+    note = "Your upper body worked recently, so lower body is the better fit.";
   } else {
-    recommendation = 'Featured Workout';
-    page = 'featured.html';
-    note = 'Plug in a featured workout if the week got messy.';
+    recommendation = "Featured Workout";
+    page = "featured.html";
+    note = "Plug in a featured workout if the week got messy.";
   }
   resultContainer.innerHTML = '<p><strong>Recommended workout:</strong> ' + recommendation + '</p><p>' + note + '</p><p><a href="' + page + '">Open workout</a></p>';
-  resultContainer.style.display = 'block';
+  resultContainer.style.display = "block";
 }
 
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener("DOMContentLoaded", function(){
+  initLoginPage();
+  if (!ensureProtectedPage()) return;
+  injectAuthStrip();
   initInputStorage(document);
   initDayPage();
   updateHomeCards();
