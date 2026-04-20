@@ -31,6 +31,69 @@ function updateHomeCards(){document.querySelectorAll('[data-slot-card]').forEach
 function updateSummary(){const summary=document.getElementById('daily-summary');if(!summary)return;const scope=document.getElementById('workout-content')||document, checks=[...scope.querySelectorAll('input[type="checkbox"][data-key]')], done=checks.filter(i=>i.checked).length, energies=[...scope.querySelectorAll('input[data-type="energy"]')].map(i=>parseFloat(i.value)).filter(v=>!Number.isNaN(v)), efforts=[...scope.querySelectorAll('input[data-type="effort"]')].map(i=>parseFloat(i.value)).filter(v=>!Number.isNaN(v)), eavg=energies.length?(energies.reduce((a,b)=>a+b,0)/energies.length).toFixed(1):'N/A', favg=efforts.length?(efforts.reduce((a,b)=>a+b,0)/efforts.length).toFixed(1):'N/A'; summary.innerHTML=`<div class="summary-box"><strong>Completed</strong><div>${done} / ${checks.length}</div></div><div class="summary-box"><strong>Avg energy</strong><div>${eavg}</div></div><div class="summary-box"><strong>Avg effort</strong><div>${favg}</div></div>`}
 function syncExerciseLog(input){if(isGuestSession()||!getSession())return;const day=document.body.dataset.daySlot;if(!day)return;const card=input.closest('.exercise');if(!card)return;const exercise=card.querySelector('h4')?.textContent||'Exercise', key=day+'|'+exercise, log=trackedGetJson('exerciseLog',{}), fields={};card.querySelectorAll('input[data-key]').forEach(field=>{if(field.type==='checkbox')return;const label=field.closest('label')?.textContent?.trim()||field.dataset.key;fields[label]=field.value||''});log[key]={updatedAt:new Date().toISOString(),day,exercise,completed:card.querySelector('input[type="checkbox"][data-key]')?.checked||false,fields};trackedSetJson('exerciseLog',log)}
 function initInputs(scope=document){scope.querySelectorAll('[data-key]').forEach(input=>{const key=input.dataset.key;if(!isGuestSession()){const stored=trackedGet(key);if(stored!==null){if(input.type==='checkbox') input.checked=stored==='true'; else input.value=stored;}}if(input.dataset.bound)return;input.dataset.bound='1';input.addEventListener('change',()=>{if(!isGuestSession()){if(input.type==='checkbox')trackedSet(key,String(input.checked)); else trackedSet(key,input.value); syncExerciseLog(input)} updateSummary()})});scope.querySelectorAll('.toggle-set4').forEach(btn=>{const target=btn.dataset.target, set4=document.querySelector('[data-optional="'+target+'"]');if(!set4)return;const stored=!isGuestSession()&&trackedGet(target+'__set4')==='true';set4.style.display=stored?'block':'none';btn.textContent=stored?'Hide set 4':'+ Add set 4';if(btn.dataset.bound)return;btn.dataset.bound='1';btn.addEventListener('click',()=>{const current=set4.style.display!=='none', next=!current;set4.style.display=next?'block':'none';btn.textContent=next?'Hide set 4':'+ Add set 4'; if(!isGuestSession()) trackedSet(target+'__set4',String(next))})})}
-function initDayPage(){const slot=document.body.dataset.daySlot;if(!slot)return;const select=document.getElementById('swap-select');if(select){select.innerHTML='<option value="">--Select--</option>'+Object.keys(DAY_CONFIG).map(k=>`<option value="${k}">${k.charAt(0).toUpperCase()+k.slice(1)} / ${DAY_CONFIG[k].label}</option>`).join('');const saved=getAssignments()[slot]; if(saved) select.value=saved; document.getElementById('open-selection-btn')?.addEventListener('click',()=>{if(select.value) location.href=select.value+'.html'}); document.getElementById('save-choice-btn')?.addEventListener('click',()=>{if(!select.value||isGuestSession())return; const map=getAssignments(); map[slot]=select.value; saveAssignments(map); location.reload()}); document.getElementById('clear-choice-btn')?.addEventListener('click',()=>{if(isGuestSession())return; const map=getAssignments(); delete map[slot]; saveAssignments(map); location.reload()})} updateSummary()}
+
+function renderAssignedWorkout(slot, assigned){
+  const target=document.getElementById('workout-content');
+  if(!target) return;
+  const cfg=DAY_CONFIG[assigned]||DAY_CONFIG[slot];
+  const subtitle=document.querySelector('.day-subtitle');
+  const note=document.querySelector('.day-top-note');
+  if(subtitle) subtitle.textContent=cfg.subtitle;
+  if(note) note.textContent='Currently showing: '+cfg.label;
+  fetch(assigned + '.html')
+    .then(r=>r.text())
+    .then(html=>{
+      const doc=new DOMParser().parseFromString(html,'text/html');
+      const src=doc.getElementById('workout-content');
+      if(!src) return;
+      target.innerHTML=src.innerHTML;
+      initInputs(target);
+      updateSummary();
+    })
+    .catch(()=>{});
+}
+
+function initDayPage(){
+  const slot=document.body.dataset.daySlot;
+  if(!slot) return;
+  const select=document.getElementById('swap-select');
+  if(select){
+    select.innerHTML='<option value="">--Select--</option>'+Object.keys(DAY_CONFIG).map(k=>`<option value="${k}">${k.charAt(0).toUpperCase()+k.slice(1)} / ${DAY_CONFIG[k].label}</option>`).join('');
+    const saved=getAssignments()[slot];
+    if(saved) {
+      select.value=saved;
+      if(saved!==slot) renderAssignedWorkout(slot,saved);
+    }
+
+    document.getElementById('open-selection-btn')?.addEventListener('click',()=>{
+      if(select.value) location.href=select.value+'.html';
+    });
+
+    document.getElementById('save-choice-btn')?.addEventListener('click',()=>{
+      if(!select.value) return;
+      if(isGuestSession()){
+        renderAssignedWorkout(slot,select.value);
+        return;
+      }
+      const map=getAssignments();
+      map[slot]=select.value;
+      saveAssignments(map);
+      updateHomeCards();
+      renderAssignedWorkout(slot,select.value);
+    });
+
+    document.getElementById('clear-choice-btn')?.addEventListener('click',()=>{
+      if(isGuestSession()) {
+        location.href=slot+'.html';
+        return;
+      }
+      const map=getAssignments();
+      delete map[slot];
+      saveAssignments(map);
+      location.href=slot+'.html';
+    });
+  }
+  updateSummary();
+}
 function initLibraryPage(){const search=document.getElementById('library-search'); if(!search) return; let filter='all'; const apply=()=>{const q=search.value.trim().toLowerCase(); document.querySelectorAll('.library-group').forEach(group=>{const gid=group.dataset.group; let any=false; group.querySelectorAll('.library-exercise').forEach(item=>{const show=(filter==='all'||filter===gid)&&(!q||item.textContent.toLowerCase().includes(q)); item.style.display=show?'':'none'; if(show) any=true;}); group.style.display=any?'':'none';});}; document.querySelectorAll('.filter-chip').forEach(chip=>chip.addEventListener('click',()=>{document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active')); chip.classList.add('active'); filter=chip.dataset.filter; apply();})); search.addEventListener('input',apply)}
 document.addEventListener('DOMContentLoaded',()=>{initAuthPages(); if(!ensureProtectedPage()) return; injectAuthStrip(); initAccountPage(); initInputs(document); initDayPage(); initLibraryPage(); updateHomeCards(); updateSummary();});
