@@ -1,7 +1,81 @@
-<!DOCTYPE html><html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>Monikita's Fitness App</title><link rel='stylesheet' href='style.css'><script src='app.js' defer></script></head><body><header><h1>Monikita’s Fitness App 💪</h1><nav><a href="index.html">Home</a><a href="advisor.html">Coach</a><a href="exercises-library.html">Library</a><a href="featured.html">Featured</a></nav></header><main><section class='hero'><div class='hero-inner'><h2>Dashboard</h2><div class='hero-actions'><a class='button-link' href='monday.html'>Open today’s plan</a><a class='button-link secondary' href='advisor.html'>Ask the coach</a><a class='button-link secondary' href='account.html'>My profile</a></div></div></section><h2 class='section-title'>Weekly Plan</h2><div class='card-grid'><div class='card' data-slot-card='monday'><h3 data-slot-label>Monday: Lower Body A + Sprint</h3><p data-slot-note>Glutes, hamstrings, hinge work, and sprint finishers.</p><a class='button-link' href='monday.html'>Open</a></div>
-<div class='card' data-slot-card='tuesday'><h3 data-slot-label>Tuesday: Upper Push</h3><p data-slot-note>Chest, shoulders, triceps, plus pull-up progress work.</p><a class='button-link' href='tuesday.html'>Open</a></div>
-<div class='card' data-slot-card='wednesday'><h3 data-slot-label>Wednesday: Recovery & Mobility</h3><p data-slot-note>Reset day with gentle movement, mobility, and recovery.</p><a class='button-link' href='wednesday.html'>Open</a></div>
-<div class='card' data-slot-card='thursday'><h3 data-slot-label>Thursday: Lower Body B + Sprint</h3><p data-slot-note>Quads, glutes, and a second sprint session.</p><a class='button-link' href='thursday.html'>Open</a></div>
-<div class='card' data-slot-card='friday'><h3 data-slot-label>Friday: Upper Pull + Shoulders/Triceps</h3><p data-slot-note>Back, biceps, shoulders, and triceps accessory work.</p><a class='button-link' href='friday.html'>Open</a></div>
-<div class='card' data-slot-card='saturday'><h3 data-slot-label>Saturday: Sprints & Core</h3><p data-slot-note>Conditioning, hanging core, and trunk stability.</p><a class='button-link' href='saturday.html'>Open</a></div>
-<div class='card' data-slot-card='sunday'><h3 data-slot-label>Sunday: Rest</h3><p data-slot-note>Recovery, optional walking, and mobility only.</p><a class='button-link' href='sunday.html'>Open</a></div><div class='card'><h3>Exercise Library</h3><p>Grouped exercises with demo links.</p><a class='button-link' href='exercises-library.html'>Open</a></div><div class='card'><h3>Featured Workouts</h3><p>Trend-based extras without replacing your base split.</p><a class='button-link' href='featured.html'>View</a></div></div></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monikita’s Fitness App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Monikita’s Fitness App 💪</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="advisor.html">Coach</a>
+      <a href="featured.html">Featured</a>
+      <a href="account.html">Account</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Weekly Plan</h2>
+    <div class="card-container">
+      <!-- Daily workouts -->
+      <div class="card">
+        <h3>Monday: Lower A + Sprint</h3>
+        <p>Glutes & Hamstrings</p>
+        <a href="monday.html">Open</a>
+      </div>
+      <div class="card">
+        <h3>Tuesday: Upper Push</h3>
+        <p>Chest, Shoulders & Triceps + Pull‑Up Work</p>
+        <a href="tuesday.html">Open</a>
+      </div>
+      <div class="card">
+        <h3>Wednesday: Recovery & Mobility</h3>
+        <p>Active Recovery & Pilates</p>
+        <a href="wednesday.html">Open</a>
+      </div>
+      <div class="card">
+        <h3>Thursday: Lower B + Sprint</h3>
+        <p>Quads & Glutes</p>
+        <a href="thursday.html">Open</a>
+      </div>
+      <div class="card">
+        <h3>Friday: Upper Pull + Shoulders/Triceps</h3>
+        <p>Back, Biceps & Shoulders</p>
+        <a href="friday.html">Open</a>
+      </div>
+      <div class="card">
+        <h3>Saturday: Sprints & Core</h3>
+        <p>Conditioning & Core</p>
+        <a href="saturday.html">Open</a>
+      </div>
+      <div class="card">
+        <h3>Sunday: Rest</h3>
+        <p>Full rest day</p>
+        <a href="sunday.html">Open</a>
+      </div>
+
+      <div class="card auth-card">
+        <h3>Account</h3>
+        <p>Sign in with Supabase to save your workouts to the cloud.</p>
+        <a href="login.html">Sign In</a>
+      </div>
+      <div class="card auth-card">
+        <h3>Create Account</h3>
+        <p>New user? Create your Supabase-backed account here.</p>
+        <a href="create-account.html">Create</a>
+      </div>
+
+      <!-- Featured workouts section -->
+      <div class="card">
+        <h3>Featured Workouts</h3>
+        <p>Trending fitness sessions for this week</p>
+        <a href="featured.html">View</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

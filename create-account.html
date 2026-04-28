@@ -1,1 +1,35 @@
-<!DOCTYPE html><html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>Create Account</title><link rel='stylesheet' href='style.css'><script src='app.js' defer></script></head><body class='login-page'><main class='login-shell'><section class='login-hero'><div class='profile-badge'>Monikita’s Fitness App 💪</div><h1 style="margin:0 0 10px;font-size:clamp(2rem,8vw,3.6rem)">Create account</h1><p style="max-width:700px;color:rgba(255,255,255,.84)">Set up a user ID and password so your workouts, day swaps, sets, reps, and energy entries save to your own profile.</p><div id='login-message' class='login-message'></div><div class='login-grid'><form id='create-account-form' class='login-card'><h2>Create account</h2><label>User ID<input id='create-user-id' type='text' placeholder='Choose a user ID' autocomplete='username'></label><label>Password<input id='create-password' type='password' placeholder='Create a password' autocomplete='new-password'></label><button type='submit'>Create account</button><a class='button-link secondary' href='login.html' style='margin-top:10px;width:100%'>Already have an account? Sign in</a></form></div></section></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account — Monikita’s Fitness App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js" defer></script>
+</head>
+<body class="auth-page">
+  <header>
+    <h1>Monikita’s Fitness App 💪</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="advisor.html">Coach</a>
+      <a href="featured.html">Featured</a>
+      <a href="account.html">Account</a>
+    </nav>
+  </header>
+  <main class="auth-shell">
+    <section class="auth-panel">
+      <h2>Create account</h2>
+      <p>This creates a real Supabase Auth user, not a browser-only account.</p>
+      <div id="auth-message" class="auth-message"></div>
+      <form id="create-account-form" class="auth-form">
+        <label>Email <input id="create-email" type="email" autocomplete="email" required></label>
+        <label>Password <input id="create-password" type="password" autocomplete="new-password" required minlength="6"></label>
+        <button type="submit">Create account</button>
+        <a class="button-like secondary" href="login.html">Already have an account? Sign in</a>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

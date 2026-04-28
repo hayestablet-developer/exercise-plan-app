@@ -1,1 +1,128 @@
-<!DOCTYPE html><html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>Tuesday</title><link rel='stylesheet' href='style.css'><script src='app.js' defer></script></head><body data-day-slot='tuesday'><header><h1>Monikita’s Fitness App 💪</h1><nav><a href="index.html">Home</a><a href="advisor.html">Coach</a><a href="exercises-library.html">Library</a><a href="featured.html">Featured</a></nav></header><main><h2 class='section-title'>Tuesday</h2><p class='day-subtitle'>Chest, shoulders, triceps, plus pull-up progress work.</p><div class='day-top-note'>Currently showing: Upper Push</div><div class='move-workout'><label for='swap-select'>Do this workout instead today</label><select id='swap-select'></select><div class='move-workout-actions'><button id='open-selection-btn' type='button'>Open selection</button><button id='save-choice-btn' type='button'>Save my choice</button><button id='clear-choice-btn' type='button' class='secondary'>Clear saved choice</button></div></div><div id='daily-summary' class='summary'></div><div id='workout-content'><div class='exercise'><label><input type='checkbox' data-key='tuesday_1_done'> Mark completed</label><h4>Incline Dumbbell Press</h4><div class='exercise-meta'>Upper push</div><div class='set-grid'><label>Set 1<input data-key='tuesday_1_set1' type='text' placeholder='12 / 10 / 8'></label><label>Set 2<input data-key='tuesday_1_set2' type='text' placeholder='12 / 10 / 8'></label><label>Set 3<input data-key='tuesday_1_set3' type='text' placeholder='12 / 10 / 8'></label></div><div data-optional='tuesday_1' class='optional' style='margin-top:10px'><label>Set 4<input data-key='tuesday_1_set4' type='text' placeholder='12 / 10 / 8'></label></div><button type='button' class='small-btn secondary toggle-set4' data-target='tuesday_1' style='margin-top:10px'>+ Add set 4</button><div class='set-grid' style='margin-top:12px'><label>Weight used<input data-key='tuesday_1_weight' type='text' placeholder='50 lb'></label><label>Energy (1–10)<input data-key='tuesday_1_energy' data-type='energy' type='number' min='1' max='10'></label><label>Effort (1–10)<input data-key='tuesday_1_effort' data-type='effort' type='number' min='1' max='10'></label></div><div class='media-links'><a href='https://www.youtube.com/results?search_query=incline+dumbbell+press+exercise' target='_blank'>Video</a><a href='https://www.youtube.com/results?search_query=incline+dumbbell+press+shorts' target='_blank'>Shorts</a><a href='https://www.google.com/search?tbm=isch&q=incline+dumbbell+press+exercise' target='_blank'>Images</a></div></div><div class='exercise'><label><input type='checkbox' data-key='tuesday_2_done'> Mark completed</label><h4>Shoulder Press</h4><div class='exercise-meta'>Delts and triceps</div><div class='set-grid'><label>Set 1<input data-key='tuesday_2_set1' type='text' placeholder='12 / 10 / 8'></label><label>Set 2<input data-key='tuesday_2_set2' type='text' placeholder='12 / 10 / 8'></label><label>Set 3<input data-key='tuesday_2_set3' type='text' placeholder='12 / 10 / 8'></label></div><div data-optional='tuesday_2' class='optional' style='margin-top:10px'><label>Set 4<input data-key='tuesday_2_set4' type='text' placeholder='12 / 10 / 8'></label></div><button type='button' class='small-btn secondary toggle-set4' data-target='tuesday_2' style='margin-top:10px'>+ Add set 4</button><div class='set-grid' style='margin-top:12px'><label>Weight used<input data-key='tuesday_2_weight' type='text' placeholder='50 lb'></label><label>Energy (1–10)<input data-key='tuesday_2_energy' data-type='energy' type='number' min='1' max='10'></label><label>Effort (1–10)<input data-key='tuesday_2_effort' data-type='effort' type='number' min='1' max='10'></label></div><div class='media-links'><a href='https://www.youtube.com/results?search_query=shoulder+press+exercise' target='_blank'>Video</a><a href='https://www.youtube.com/results?search_query=shoulder+press+shorts' target='_blank'>Shorts</a><a href='https://www.google.com/search?tbm=isch&q=shoulder+press+exercise' target='_blank'>Images</a></div></div><div class='exercise'><label><input type='checkbox' data-key='tuesday_3_done'> Mark completed</label><h4>Lat Pulldown</h4><div class='exercise-meta'>Pull-up carryover</div><div class='set-grid'><label>Set 1<input data-key='tuesday_3_set1' type='text' placeholder='12 / 10 / 8'></label><label>Set 2<input data-key='tuesday_3_set2' type='text' placeholder='12 / 10 / 8'></label><label>Set 3<input data-key='tuesday_3_set3' type='text' placeholder='12 / 10 / 8'></label></div><div data-optional='tuesday_3' class='optional' style='margin-top:10px'><label>Set 4<input data-key='tuesday_3_set4' type='text' placeholder='12 / 10 / 8'></label></div><button type='button' class='small-btn secondary toggle-set4' data-target='tuesday_3' style='margin-top:10px'>+ Add set 4</button><div class='set-grid' style='margin-top:12px'><label>Weight used<input data-key='tuesday_3_weight' type='text' placeholder='50 lb'></label><label>Energy (1–10)<input data-key='tuesday_3_energy' data-type='energy' type='number' min='1' max='10'></label><label>Effort (1–10)<input data-key='tuesday_3_effort' data-type='effort' type='number' min='1' max='10'></label></div><div class='media-links'><a href='https://www.youtube.com/results?search_query=lat+pulldown+exercise' target='_blank'>Video</a><a href='https://www.youtube.com/results?search_query=lat+pulldown+shorts' target='_blank'>Shorts</a><a href='https://www.google.com/search?tbm=isch&q=lat+pulldown+exercise' target='_blank'>Images</a></div></div></div></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tuesday — Upper Push — Monikita’s Fitness App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js" defer></script>
+</head>
+<body data-day-slot="tuesday">
+  <header>
+    <h1>Monikita’s Fitness App 💪</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="advisor.html">Coach</a>
+      <a href="featured.html">Featured</a>
+      <a href="account.html">Account</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Tuesday — Upper Push + Pull‑Up Work</h2>
+    <p id="workout-subtitle">Strengthen chest, shoulders and triceps while working towards your first pull‑up.</p>
+<div id="active-workout-label" class="day-top-note">Currently showing: this workout</div>
+    <!-- Move workout section -->
+    <div class="move-workout">
+      <label for="move-tuesday">Move this workout to:</label>
+      <select id="move-tuesday" onchange="moveWorkout(this)">
+        <option value="">--Select--</option>
+        <option value="monday.html">Monday (Lower A)</option>
+        <option value="wednesday.html">Wednesday (Recovery)</option>
+        <option value="thursday.html">Thursday (Lower B)</option>
+        <option value="friday.html">Friday (Upper Pull)</option>
+        <option value="saturday.html">Saturday (Sprints & Core)</option>
+        <option value="shoulders-triceps.html">Shoulders & Triceps</option>
+        <option value="featured.html">Featured Workouts</option>
+      </select>
+    </div>
+    <!-- Exercises -->
+    <div id="workout-content">
+    <div class="exercise">
+      <h4>Dead Hang (30&nbsp;sec)</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="tue-deadhang-complete"> Completed</label>
+        <label>Time (sec): <input type="number" data-key="tue-deadhang-time"></label>
+        <label>Energy (1–10): <input type="number" data-key="tue-deadhang-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="tue-deadhang-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=dead+hang+exercise" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=dead+hang" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Band‑Assisted Pull‑Up</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="tue-assist-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="tue-assist-reps"></label>
+        <label>Band colour/level: <input type="text" data-key="tue-assist-band"></label>
+        <label>Energy (1–10): <input type="number" data-key="tue-assist-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="tue-assist-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=band+assisted+pull+up" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=band+assisted+pull+up" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Scapular Pull‑Up</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="tue-scap-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="tue-scap-reps"></label>
+        <label>Energy (1–10): <input type="number" data-key="tue-scap-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="tue-scap-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=scapular+pull+up" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=scapular+pull+up" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Incline Dumbbell Press</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="tue-press-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="tue-press-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="tue-press-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="tue-press-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="tue-press-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=incline+dumbbell+press" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=incline+dumbbell+press" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Dumbbell Shoulder Press</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="tue-shoulderpress-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="tue-shoulderpress-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="tue-shoulderpress-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="tue-shoulderpress-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="tue-shoulderpress-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=dumbbell+shoulder+press" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=dumbbell+shoulder+press" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Lateral Raise</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="tue-lateral-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="tue-lateral-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="tue-lateral-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="tue-lateral-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="tue-lateral-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=lateral+raise+exercise" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=lateral+raise+exercise" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Triceps Pushdown</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="tue-tricep-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="tue-tricep-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="tue-tricep-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="tue-tricep-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="tue-tricep-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=triceps+pushdown" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=triceps+pushdown" target="_blank">🖼️ Images</a>
+    </div>
+    </div>
+    <!-- Summary -->
+    <div id="daily-summary" class="summary"></div>
+  </main>
+</body>
+</html>

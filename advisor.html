@@ -1,1 +1,60 @@
-<!DOCTYPE html><html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>Coach</title><link rel='stylesheet' href='style.css'><script src='app.js' defer></script></head><body><header><h1>Monikita’s Fitness App 💪</h1><nav><a href="index.html">Home</a><a href="advisor.html">Coach</a><a href="exercises-library.html">Library</a><a href="featured.html">Featured</a></nav></header><main><div class='card'><h2 class='section-title' style='margin-top:0'>What should I do today?</h2><p class='day-subtitle'>Use this when the week gets messy or your body wants something different.</p><label>Last workout<input id='advisor-last' type='text' placeholder='Example: Lower body'></label><label>Energy (1–10)<input id='advisor-energy' type='number' min='1' max='10' value='6'></label><label>Feeling sick?<select id='advisor-sick'><option value='no'>No</option><option value='yes'>Yes</option></select></label><label>What feels fresher?<select id='advisor-fresh'><option value='upper'>Upper body</option><option value='lower'>Lower body</option></select></label><button onclick='(function(){const el=document.getElementById("advisor-result"),last=document.getElementById("advisor-last").value||"",energy=parseInt(document.getElementById("advisor-energy").value||"6",10),sick=document.getElementById("advisor-sick").value,fresh=document.getElementById("advisor-fresh").value;let r="Featured Workout",link="featured.html",note="Plug in a featured workout if the week got messy.";if(sick==="yes"||energy<=4){r="Recovery & Mobility";link="wednesday.html";note="Your body is asking for recovery."}else if(last.toLowerCase().includes("lower")){r=fresh==="upper"?"Upper Push":"Upper Pull + Shoulders/Triceps";link=fresh==="upper"?"tuesday.html":"friday.html";note="You recently hit lower body, so upper body is smarter."}else if(last.toLowerCase().includes("upper")){r=fresh==="lower"?"Lower Body A + Sprint":"Lower Body B + Sprint";link=fresh==="lower"?"monday.html":"thursday.html";note="Your upper body worked recently, so lower body fits better."}el.innerHTML="<p><strong>Recommended workout:</strong> "+r+"</p><p>"+note+"</p><p><a href=\""+link+"\">Open workout</a></p>";el.style.display="block";})()'>Get recommendation</button><div id='advisor-result' class='login-message ok' style='display:none;margin-top:14px'></div></div></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Should I Do Today? — Monikita’s Fitness App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Monikita’s Fitness App 💪</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="advisor.html">Coach</a>
+      <a href="featured.html">Featured</a>
+      <a href="account.html">Account</a>
+    </nav>
+  </header>
+  <main>
+    <h2>What Should I Do Today?</h2>
+    <p>Use this advisor to select the best workout based on your recent activity, energy and recovery.</p>
+    <div class="advisor-form">
+      <label for="advisor-today">Today is (e.g. Monday, Tuesday):</label>
+      <input type="text" id="advisor-today" placeholder="Day of week">
+
+      <label for="advisor-last">Last workout (name or day):</label>
+      <input type="text" id="advisor-last" placeholder="e.g. Lower A, Upper Push">
+
+      <label for="advisor-missed">Missed workouts this week:</label>
+      <input type="text" id="advisor-missed" placeholder="e.g. Friday, Sprint session">
+
+      <label for="advisor-time">Time available today (minutes):</label>
+      <input type="number" id="advisor-time" placeholder="30">
+
+      <label for="advisor-energy">Current energy (1–10):</label>
+      <input type="number" id="advisor-energy" min="1" max="10" value="5">
+
+      <label for="advisor-effort">Desired effort (1–10):</label>
+      <input type="number" id="advisor-effort" min="1" max="10" value="6">
+
+      <label for="advisor-sick">Are you feeling sick or run down?</label>
+      <select id="advisor-sick">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+
+      <label for="advisor-fresh">Which feels fresher?</label>
+      <select id="advisor-fresh">
+        <option value="upper">Upper body</option>
+        <option value="lower">Lower body</option>
+      </select>
+      
+      <button type="button" onclick="recommendWorkout()">Get Recommendation</button>
+    </div>
+    <div id="advisor-result" class="advisor-result" style="display:none;"></div>
+  </main>
+</body>
+</html>

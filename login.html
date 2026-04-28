@@ -1,1 +1,36 @@
-<!DOCTYPE html><html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>Sign In</title><link rel='stylesheet' href='style.css'><script src='app.js' defer></script></head><body class='login-page'><main class='login-shell'><section class='login-hero'><div class='profile-badge'>Monikita’s Fitness App 💪</div><h1 style="margin:0 0 10px;font-size:clamp(2rem,8vw,3.6rem)">Sign in</h1><p style="max-width:700px;color:rgba(255,255,255,.84)">Log in to save your workouts, day assignments, sets, reps, and energy. Need a profile first? Create one using the button below.</p><div id='login-message' class='login-message'></div><div class='login-grid'><form id='login-form' class='login-card'><h2>Welcome back</h2><label>User ID<input id='login-user-id' type='text' placeholder='Your user ID' autocomplete='username'></label><label>Password<input id='login-password' type='password' placeholder='Your password' autocomplete='current-password'></label><button type='submit'>Sign in</button><a class='button-link secondary' href='create-account.html' style='margin-top:10px;width:100%'>Create account</a><button type='button' id='guest-login-btn' class='button-link secondary' style='margin-top:10px;width:100%'>Continue as guest</button><p class='helper'>Guest mode works, but no workout data is saved.</p></form></div></section></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In — Monikita’s Fitness App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js" defer></script>
+</head>
+<body class="auth-page">
+  <header>
+    <h1>Monikita’s Fitness App 💪</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="advisor.html">Coach</a>
+      <a href="featured.html">Featured</a>
+      <a href="account.html">Account</a>
+    </nav>
+  </header>
+  <main class="auth-shell">
+    <section class="auth-panel">
+      <h2>Sign in</h2>
+      <p>Use the email and password connected to your Supabase account. Your workouts save to the cloud.</p>
+      <div id="auth-message" class="auth-message"></div>
+      <form id="login-form" class="auth-form">
+        <label>Email <input id="login-email" type="email" autocomplete="email" required></label>
+        <label>Password <input id="login-password" type="password" autocomplete="current-password" required></label>
+        <button type="submit">Sign in</button>
+        <a class="button-like secondary" href="create-account.html">Create account</a>
+        <button type="button" id="guest-login-btn" class="secondary">Continue as guest</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

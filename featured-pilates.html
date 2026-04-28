@@ -1,52 +1,75 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Pilates Core &amp; Mobility — Monikita’s Fitness App</title>
-<link href="style.css" rel="stylesheet"/>
-<script defer="" src="app.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pilates Core & Mobility — Monikita’s Fitness App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js" defer></script>
 </head>
-<body>
-<header>
-<h1>Monikita’s Fitness App 💪</h1>
-<nav><a href="index.html">Home</a><a href="advisor.html">Coach</a><a href="exercises-library.html">Library</a><a href="featured.html">Featured</a></nav>
-</header>
-<main>
-<h2>Pilates Core &amp; Mobility</h2>
-<p>Pilates‑style core training emphasises controlled movement, balance and flexibility. The American College of Sports Medicine lists balance and core training as one of the top fitness trends for 2026【195468859020706†L84-L168】. This session improves posture, coordination and mental focus.</p>
-<!-- Exercises -->
-<div class="exercise">
-<h4>Hundred (Pilates)</h4>
-<div class="fields"><label><input data-key="pilates-hundred-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Duration (seconds)</div><div class="set-grid"><label class="set-field">Set 1<input data-key="pilates-hundred-duration-1" type="number"/></label><label class="set-field">Set 2<input data-key="pilates-hundred-duration-2" type="number"/></label><label class="set-field">Set 3<input data-key="pilates-hundred-duration-3" type="number"/></label><label class="set-field optional-set" data-optional-group="pilates-hundred-duration">Set 4<input data-key="pilates-hundred-duration-4" type="number"/></label></div><button class="add-set-btn" data-target="pilates-hundred-duration" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="pilates-hundred-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="pilates-hundred-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
-<a href="https://www.youtube.com/results?search_query=pilates+hundred+exercise" target="_blank">🎥 Video</a>
-          <a href="https://www.youtube.com/results?search_query=pilates+hundred+exercise&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-<a href="https://www.google.com/search?tbm=isch&amp;q=pilates+hundred" target="_blank">🖼️ Images</a>
-</div>
-<div class="exercise">
-<h4>Single Leg Stretch</h4>
-<div class="fields"><label><input data-key="pilates-single-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Reps (per side)</div><div class="set-grid"><label class="set-field">Set 1<input data-key="pilates-single-reps-1" type="number"/></label><label class="set-field">Set 2<input data-key="pilates-single-reps-2" type="number"/></label><label class="set-field">Set 3<input data-key="pilates-single-reps-3" type="number"/></label><label class="set-field optional-set" data-optional-group="pilates-single-reps">Set 4<input data-key="pilates-single-reps-4" type="number"/></label></div><button class="add-set-btn" data-target="pilates-single-reps" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="pilates-single-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="pilates-single-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
-<a href="https://www.youtube.com/results?search_query=pilates+single+leg+stretch" target="_blank">🎥 Video</a>
-          <a href="https://www.youtube.com/results?search_query=pilates+single+leg+stretch&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-<a href="https://www.google.com/search?tbm=isch&amp;q=pilates+single+leg+stretch" target="_blank">🖼️ Images</a>
-</div>
-<div class="exercise">
-<h4>Cat‑Cow &amp; Downward Dog Flow</h4>
-<div class="fields"><label><input data-key="pilates-flow-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Reps</div><div class="set-grid"><label class="set-field">Set 1<input data-key="pilates-flow-reps-1" type="number"/></label><label class="set-field">Set 2<input data-key="pilates-flow-reps-2" type="number"/></label><label class="set-field">Set 3<input data-key="pilates-flow-reps-3" type="number"/></label><label class="set-field optional-set" data-optional-group="pilates-flow-reps">Set 4<input data-key="pilates-flow-reps-4" type="number"/></label></div><button class="add-set-btn" data-target="pilates-flow-reps" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="pilates-flow-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="pilates-flow-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
-<a href="https://www.youtube.com/results?search_query=cat+cow+downward+dog+flow" target="_blank">🎥 Video</a>
-          <a href="https://www.youtube.com/results?search_query=cat+cow+downward+dog+flow&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-<a href="https://www.google.com/search?tbm=isch&amp;q=cat+cow+downward+dog" target="_blank">🖼️ Images</a>
-</div>
-<div class="exercise">
-<h4>Swimming (Prone opposite limb lift)</h4>
-<div class="fields"><label><input data-key="pilates-swimming-complete" type="checkbox"/> Completed</label><div class="set-group"><div class="set-group-title">Duration (seconds)</div><div class="set-grid"><label class="set-field">Set 1<input data-key="pilates-swimming-duration-1" type="number"/></label><label class="set-field">Set 2<input data-key="pilates-swimming-duration-2" type="number"/></label><label class="set-field">Set 3<input data-key="pilates-swimming-duration-3" type="number"/></label><label class="set-field optional-set" data-optional-group="pilates-swimming-duration">Set 4<input data-key="pilates-swimming-duration-4" type="number"/></label></div><button class="add-set-btn" data-target="pilates-swimming-duration" type="button">+ Add set 4</button></div><label>Energy (1–10): <input data-key="pilates-swimming-energy" data-type="energy" max="10" min="1" type="number"/></label><label>Effort (1–10): <input data-key="pilates-swimming-effort" data-type="effort" max="10" min="1" type="number"/></label></div>
-<a href="https://www.youtube.com/results?search_query=pilates+swimming+exercise" target="_blank">🎥 Video</a>
-          <a href="https://www.youtube.com/results?search_query=pilates+swimming+exercise&sp=EgIYAQ%253D%253D" target="_blank">📱 Shorts</a>
-<a href="https://www.google.com/search?tbm=isch&amp;q=pilates+swimming" target="_blank">🖼️ Images</a>
-</div>
-<!-- Summary -->
-<div class="summary" id="daily-summary"></div>
-</main>
+<body data-day-slot="featured-pilates">
+  <header>
+    <h1>Monikita’s Fitness App 💪</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="advisor.html">What should I do today?</a>
+      <a href="featured.html">Featured</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Pilates Core & Mobility</h2>
+    <p id="workout-subtitle">Pilates‑style core training emphasises controlled movement, balance and flexibility. The American College of Sports Medicine lists balance and core training as one of the top fitness trends for 2026【195468859020706†L84-L168】. This session improves posture, coordination and mental focus.</p>
+<div id="active-workout-label" class="day-top-note">Currently showing: this workout</div>
+    <!-- Exercises -->
+    <div id="workout-content">
+    <div class="exercise">
+      <h4>Hundred (Pilates)</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="pilates-hundred-complete"> Completed</label>
+        <label>Duration (seconds): <input type="number" data-key="pilates-hundred-duration"></label>
+        <label>Energy (1–10): <input type="number" data-key="pilates-hundred-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="pilates-hundred-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=pilates+hundred+exercise" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=pilates+hundred" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Single Leg Stretch</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="pilates-single-complete"> Completed</label>
+        <label>Reps (per side): <input type="number" data-key="pilates-single-reps"></label>
+        <label>Energy (1–10): <input type="number" data-key="pilates-single-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="pilates-single-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=pilates+single+leg+stretch" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=pilates+single+leg+stretch" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Cat‑Cow & Downward Dog Flow</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="pilates-flow-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="pilates-flow-reps"></label>
+        <label>Energy (1–10): <input type="number" data-key="pilates-flow-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="pilates-flow-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=cat+cow+downward+dog+flow" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=cat+cow+downward+dog" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Swimming (Prone opposite limb lift)</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="pilates-swimming-complete"> Completed</label>
+        <label>Duration (seconds): <input type="number" data-key="pilates-swimming-duration"></label>
+        <label>Energy (1–10): <input type="number" data-key="pilates-swimming-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="pilates-swimming-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=pilates+swimming+exercise" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=pilates+swimming" target="_blank">🖼️ Images</a>
+    </div>
+    </div>
+    <!-- Summary -->
+    <div id="daily-summary" class="summary"></div>
+  </main>
 </body>
 </html>

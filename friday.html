@@ -1,1 +1,152 @@
-<!DOCTYPE html><html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>Friday</title><link rel='stylesheet' href='style.css'><script src='app.js' defer></script></head><body data-day-slot='friday'><header><h1>Monikita’s Fitness App 💪</h1><nav><a href="index.html">Home</a><a href="advisor.html">Coach</a><a href="exercises-library.html">Library</a><a href="featured.html">Featured</a></nav></header><main><h2 class='section-title'>Friday</h2><p class='day-subtitle'>Back, biceps, shoulders, and triceps accessory work.</p><div class='day-top-note'>Currently showing: Upper Pull + Shoulders/Triceps</div><div class='move-workout'><label for='swap-select'>Do this workout instead today</label><select id='swap-select'></select><div class='move-workout-actions'><button id='open-selection-btn' type='button'>Open selection</button><button id='save-choice-btn' type='button'>Save my choice</button><button id='clear-choice-btn' type='button' class='secondary'>Clear saved choice</button></div></div><div id='daily-summary' class='summary'></div><div id='workout-content'><div class='exercise'><label><input type='checkbox' data-key='friday_1_done'> Mark completed</label><h4>Seated Row</h4><div class='exercise-meta'>Upper pull</div><div class='set-grid'><label>Set 1<input data-key='friday_1_set1' type='text' placeholder='12 / 10 / 8'></label><label>Set 2<input data-key='friday_1_set2' type='text' placeholder='12 / 10 / 8'></label><label>Set 3<input data-key='friday_1_set3' type='text' placeholder='12 / 10 / 8'></label></div><div data-optional='friday_1' class='optional' style='margin-top:10px'><label>Set 4<input data-key='friday_1_set4' type='text' placeholder='12 / 10 / 8'></label></div><button type='button' class='small-btn secondary toggle-set4' data-target='friday_1' style='margin-top:10px'>+ Add set 4</button><div class='set-grid' style='margin-top:12px'><label>Weight used<input data-key='friday_1_weight' type='text' placeholder='50 lb'></label><label>Energy (1–10)<input data-key='friday_1_energy' data-type='energy' type='number' min='1' max='10'></label><label>Effort (1–10)<input data-key='friday_1_effort' data-type='effort' type='number' min='1' max='10'></label></div><div class='media-links'><a href='https://www.youtube.com/results?search_query=seated+cable+row+exercise' target='_blank'>Video</a><a href='https://www.youtube.com/results?search_query=seated+cable+row+shorts' target='_blank'>Shorts</a><a href='https://www.google.com/search?tbm=isch&q=seated+cable+row+exercise' target='_blank'>Images</a></div></div><div class='exercise'><label><input type='checkbox' data-key='friday_2_done'> Mark completed</label><h4>Lat Pulldown</h4><div class='exercise-meta'>Back width</div><div class='set-grid'><label>Set 1<input data-key='friday_2_set1' type='text' placeholder='12 / 10 / 8'></label><label>Set 2<input data-key='friday_2_set2' type='text' placeholder='12 / 10 / 8'></label><label>Set 3<input data-key='friday_2_set3' type='text' placeholder='12 / 10 / 8'></label></div><div data-optional='friday_2' class='optional' style='margin-top:10px'><label>Set 4<input data-key='friday_2_set4' type='text' placeholder='12 / 10 / 8'></label></div><button type='button' class='small-btn secondary toggle-set4' data-target='friday_2' style='margin-top:10px'>+ Add set 4</button><div class='set-grid' style='margin-top:12px'><label>Weight used<input data-key='friday_2_weight' type='text' placeholder='50 lb'></label><label>Energy (1–10)<input data-key='friday_2_energy' data-type='energy' type='number' min='1' max='10'></label><label>Effort (1–10)<input data-key='friday_2_effort' data-type='effort' type='number' min='1' max='10'></label></div><div class='media-links'><a href='https://www.youtube.com/results?search_query=lat+pulldown+exercise' target='_blank'>Video</a><a href='https://www.youtube.com/results?search_query=lat+pulldown+shorts' target='_blank'>Shorts</a><a href='https://www.google.com/search?tbm=isch&q=lat+pulldown+exercise' target='_blank'>Images</a></div></div><div class='exercise'><label><input type='checkbox' data-key='friday_3_done'> Mark completed</label><h4>Lateral Raise</h4><div class='exercise-meta'>Delts</div><div class='set-grid'><label>Set 1<input data-key='friday_3_set1' type='text' placeholder='15 / 12 / 12'></label><label>Set 2<input data-key='friday_3_set2' type='text' placeholder='15 / 12 / 12'></label><label>Set 3<input data-key='friday_3_set3' type='text' placeholder='15 / 12 / 12'></label></div><div data-optional='friday_3' class='optional' style='margin-top:10px'><label>Set 4<input data-key='friday_3_set4' type='text' placeholder='15 / 12 / 12'></label></div><button type='button' class='small-btn secondary toggle-set4' data-target='friday_3' style='margin-top:10px'>+ Add set 4</button><div class='set-grid' style='margin-top:12px'><label>Weight used<input data-key='friday_3_weight' type='text' placeholder='50 lb'></label><label>Energy (1–10)<input data-key='friday_3_energy' data-type='energy' type='number' min='1' max='10'></label><label>Effort (1–10)<input data-key='friday_3_effort' data-type='effort' type='number' min='1' max='10'></label></div><div class='media-links'><a href='https://www.youtube.com/results?search_query=lateral+raise+exercise' target='_blank'>Video</a><a href='https://www.youtube.com/results?search_query=lateral+raise+shorts' target='_blank'>Shorts</a><a href='https://www.google.com/search?tbm=isch&q=lateral+raise+exercise' target='_blank'>Images</a></div></div><div class='exercise'><label><input type='checkbox' data-key='friday_4_done'> Mark completed</label><h4>Triceps Pressdown</h4><div class='exercise-meta'>Triceps finisher</div><div class='set-grid'><label>Set 1<input data-key='friday_4_set1' type='text' placeholder='15 / 12 / 12'></label><label>Set 2<input data-key='friday_4_set2' type='text' placeholder='15 / 12 / 12'></label><label>Set 3<input data-key='friday_4_set3' type='text' placeholder='15 / 12 / 12'></label></div><div data-optional='friday_4' class='optional' style='margin-top:10px'><label>Set 4<input data-key='friday_4_set4' type='text' placeholder='15 / 12 / 12'></label></div><button type='button' class='small-btn secondary toggle-set4' data-target='friday_4' style='margin-top:10px'>+ Add set 4</button><div class='set-grid' style='margin-top:12px'><label>Weight used<input data-key='friday_4_weight' type='text' placeholder='50 lb'></label><label>Energy (1–10)<input data-key='friday_4_energy' data-type='energy' type='number' min='1' max='10'></label><label>Effort (1–10)<input data-key='friday_4_effort' data-type='effort' type='number' min='1' max='10'></label></div><div class='media-links'><a href='https://www.youtube.com/results?search_query=triceps+pressdown+exercise' target='_blank'>Video</a><a href='https://www.youtube.com/results?search_query=triceps+pressdown+shorts' target='_blank'>Shorts</a><a href='https://www.google.com/search?tbm=isch&q=triceps+pressdown+exercise' target='_blank'>Images</a></div></div></div></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friday — Upper Pull + Shoulders/Triceps — Monikita’s Fitness App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js" defer></script>
+</head>
+<body data-day-slot="friday">
+  <header>
+    <h1>Monikita’s Fitness App 💪</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="advisor.html">Coach</a>
+      <a href="featured.html">Featured</a>
+      <a href="account.html">Account</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Friday — Upper Pull + Shoulders & Triceps</h2>
+    <p id="workout-subtitle">Train back, biceps and shoulders, with triceps accessory work and pull‑up progressions.</p>
+<div id="active-workout-label" class="day-top-note">Currently showing: this workout</div>
+    <!-- Move workout section -->
+    <div class="move-workout">
+      <label for="move-friday">Move this workout to:</label>
+      <select id="move-friday" onchange="moveWorkout(this)">
+        <option value="">--Select--</option>
+        <option value="monday.html">Monday (Lower A)</option>
+        <option value="tuesday.html">Tuesday (Upper Push)</option>
+        <option value="wednesday.html">Wednesday (Recovery)</option>
+        <option value="thursday.html">Thursday (Lower B)</option>
+        <option value="saturday.html">Saturday (Sprints & Core)</option>
+        <option value="shoulders-triceps.html">Shoulders & Triceps</option>
+        <option value="featured.html">Featured Workouts</option>
+      </select>
+    </div>
+    <!-- Exercises -->
+    <div id="workout-content">
+    <div class="exercise">
+      <h4>Dead Hang (30&nbsp;sec)</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="fri-deadhang-complete"> Completed</label>
+        <label>Time (sec): <input type="number" data-key="fri-deadhang-time"></label>
+        <label>Energy (1–10): <input type="number" data-key="fri-deadhang-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="fri-deadhang-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=dead+hang+exercise" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=dead+hang" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Assisted Pull‑Up Machine</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="fri-assist-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="fri-assist-reps"></label>
+        <label>Assistance (lbs): <input type="number" data-key="fri-assist-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="fri-assist-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="fri-assist-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=assisted+pull+up+machine" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=assisted+pull+up+machine" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Scapular Pull‑Up</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="fri-scap-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="fri-scap-reps"></label>
+        <label>Energy (1–10): <input type="number" data-key="fri-scap-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="fri-scap-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=scapular+pull+up" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=scapular+pull+up" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Seated Cable Row</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="fri-row-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="fri-row-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="fri-row-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="fri-row-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="fri-row-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=seated+cable+row" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=seated+cable+row" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Single Arm Dumbbell Row</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="fri-dumbrow-complete"> Completed</label>
+        <label>Reps (per arm): <input type="number" data-key="fri-dumbrow-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="fri-dumbrow-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="fri-dumbrow-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="fri-dumbrow-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=single+arm+dumbbell+row" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=single+arm+dumbbell+row" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Dumbbell Shoulder Press</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="fri-shoulderpress-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="fri-shoulderpress-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="fri-shoulderpress-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="fri-shoulderpress-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="fri-shoulderpress-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=dumbbell+shoulder+press" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=dumbbell+shoulder+press" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Lateral Raise</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="fri-lateral-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="fri-lateral-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="fri-lateral-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="fri-lateral-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="fri-lateral-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=lateral+raise+exercise" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=lateral+raise" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Hammer Curl</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="fri-hammer-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="fri-hammer-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="fri-hammer-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="fri-hammer-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="fri-hammer-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=hammer+curls" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=hammer+curl" target="_blank">🖼️ Images</a>
+    </div>
+    <div class="exercise">
+      <h4>Overhead Triceps Extension</h4>
+      <div class="fields">
+        <label><input type="checkbox" data-key="fri-overheadtri-complete"> Completed</label>
+        <label>Reps: <input type="number" data-key="fri-overheadtri-reps"></label>
+        <label>Weight (lbs): <input type="number" data-key="fri-overheadtri-weight"></label>
+        <label>Energy (1–10): <input type="number" data-key="fri-overheadtri-energy" data-type="energy" min="1" max="10"></label>
+        <label>Effort (1–10): <input type="number" data-key="fri-overheadtri-effort" data-type="effort" min="1" max="10"></label>
+      </div>
+      <a href="https://www.youtube.com/results?search_query=overhead+tricep+extension" target="_blank">🎥 Video</a>
+      <a href="https://www.google.com/search?tbm=isch&q=overhead+triceps+extension" target="_blank">🖼️ Images</a>
+    </div>
+    </div>
+    <!-- Summary -->
+    <div id="daily-summary" class="summary"></div>
+  </main>
+</body>
+</html>
