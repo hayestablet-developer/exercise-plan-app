@@ -27,8 +27,18 @@
         <label>Email <input id="login-email" type="email" autocomplete="email" required></label>
         <label>Password <input id="login-password" type="password" autocomplete="current-password" required></label>
         <button type="submit">Sign in</button>
-        <a class="button-like secondary" href="create-account.html">Create account</a>
+        <a class="button-like secondary" href="#create-account-panel">Create account</a>
         <button type="button" id="guest-login-btn" class="secondary">Continue as guest</button>
+      </form>
+    </section>
+
+    <section id="create-account-panel" class="auth-panel create-inline-panel">
+      <h2>Create account</h2>
+      <p>Create a real Supabase account. Use an email address, not the old local User ID.</p>
+      <form id="create-account-form" class="auth-form">
+        <label>Email <input id="create-email" type="email" autocomplete="email" required></label>
+        <label>Password <input id="create-password" type="password" autocomplete="new-password" required minlength="6"></label>
+        <button type="submit">Create account</button>
       </form>
     </section>
   </main>

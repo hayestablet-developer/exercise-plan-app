@@ -13,15 +13,15 @@
     <h1>Monikita’s Fitness App 💪</h1>
     <nav>
       <a href="index.html">Home</a>
+      <a href="login.html">Sign in</a>
       <a href="advisor.html">Coach</a>
       <a href="featured.html">Featured</a>
-      <a href="account.html">Account</a>
     </nav>
   </header>
   <main class="auth-shell">
-    <section class="auth-panel">
+    <section id="create-account-panel" class="auth-panel">
       <h2>Create account</h2>
-      <p>This creates a real Supabase Auth user, not a browser-only account.</p>
+      <p>Create a real Supabase account. Use an email address, not the old local User ID.</p>
       <div id="auth-message" class="auth-message"></div>
       <form id="create-account-form" class="auth-form">
         <label>Email <input id="create-email" type="email" autocomplete="email" required></label>
