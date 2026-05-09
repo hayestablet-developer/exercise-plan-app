@@ -280,3 +280,6 @@ main {
 }
 
 .create-inline-panel{margin-top:18px;}#create-account-panel{scroll-margin-top:120px;}
+
+.auth-footnote{color:rgba(255,255,255,.82);font-size:.95rem;margin-top:1rem;}
+.auth-form input[type="email"], .auth-form input[type="password"]{width:100%;box-sizing:border-box;}

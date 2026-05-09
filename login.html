@@ -4,42 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign In — Monikita’s Fitness App</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=email-supabase-20260509">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="app.js" defer></script>
+  <script src="app.js?v=email-supabase-20260509" defer></script>
 </head>
 <body class="auth-page">
   <header>
-    <h1>Monikita’s Fitness App💪</h1>
+    <h1>Monikita’s Fitness App 💪</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="advisor.html">Coach</a>
+      <a href="exercises-library.html">Library</a>
       <a href="featured.html">Featured</a>
       <a href="account.html">Account</a>
     </nav>
   </header>
+
   <main class="auth-shell">
     <section class="auth-panel">
       <h2>Sign in</h2>
-      <p>Use the email and password connected to your Supabase account. Your workouts save to the cloud.</p>
+      <p>Log in with your <strong>email</strong> and password to save workouts, day assignments, sets, reps, and energy to Supabase.</p>
       <div id="auth-message" class="auth-message"></div>
+
       <form id="login-form" class="auth-form">
-        <label>Email  <input id="login-email" type="email" autocomplete="email" required></label>
-        <label>Password <input id="login-password" type="password" autocomplete="current-password" required></label>
+        <label>Email
+          <input id="login-email" name="email" type="email" autocomplete="email" placeholder="Your email" required>
+        </label>
+        <label>Password
+          <input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Your password" required>
+        </label>
         <button type="submit">Sign in</button>
-        <a class="button-like secondary" href="#create-account-panel">Create account</a>
+        <a class="button-like secondary" href="create-account.html">Create account</a>
         <button type="button" id="guest-login-btn" class="secondary">Continue as guest</button>
       </form>
-    </section>
 
-    <section id="create-account-panel" class="auth-panel create-inline-panel">
-      <h2>Create account</h2>
-      <p>Create a real Supabase account. Use an email address, not the old local User ID.</p>
-      <form id="create-account-form" class="auth-form">
-        <label>Email <input id="create-email" type="email" autocomplete="email" required></label>
-        <label>Password <input id="create-password" type="password" autocomplete="new-password" required minlength="6"></label>
-        <button type="submit">Create account</button>
-      </form>
+      <p class="auth-footnote">Guest mode works, but workout data is not saved.</p>
     </section>
   </main>
 </body>

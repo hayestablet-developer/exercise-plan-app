@@ -5,6 +5,7 @@ const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_7J5gBdQDzv_k2vTVVZ1hxw_iEwwzpmo
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
 const AUTH_GUEST_KEY = "monikitaGuestMode";
+const LAST_EMAIL_KEY = "monikitaLastEmail";
 
 const DAY_LABELS = {
   "monday": "Monday",
@@ -70,17 +71,25 @@ async function initAuthPages() {
   const loginForm = document.getElementById("login-form");
   const createForm = document.getElementById("create-account-form");
   const guestBtn = document.getElementById("guest-login-btn");
+  const loginEmailInput = document.getElementById("login-email");
+  if (loginEmailInput && localStorage.getItem(LAST_EMAIL_KEY)) {
+    loginEmailInput.value = localStorage.getItem(LAST_EMAIL_KEY);
+  }
 
   if (createForm) {
     createForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const email = document.getElementById("create-email").value.trim();
+      const email = document.getElementById("create-email").value.trim().toLowerCase();
       const password = document.getElementById("create-password").value.trim();
+      localStorage.setItem(LAST_EMAIL_KEY, email);
       showAuthMessage("Creating account...", "visible");
 
       const { data, error } = await supabaseClient.auth.signUp({ email, password });
       if (error) {
-        showAuthMessage(error.message, "error");
+        const friendly = error.message && error.message.toLowerCase().includes("invalid")
+          ? "Wrong email or password. Check the email address and try again."
+          : error.message;
+        showAuthMessage(friendly, "error");
         return;
       }
 
@@ -99,13 +108,17 @@ async function initAuthPages() {
   if (loginForm) {
     loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const email = document.getElementById("login-email").value.trim();
+      const email = document.getElementById("login-email").value.trim().toLowerCase();
       const password = document.getElementById("login-password").value.trim();
+      localStorage.setItem(LAST_EMAIL_KEY, email);
       showAuthMessage("Signing in...", "visible");
 
       const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
       if (error) {
-        showAuthMessage(error.message, "error");
+        const friendly = error.message && error.message.toLowerCase().includes("invalid")
+          ? "Wrong email or password. Check the email address and try again."
+          : error.message;
+        showAuthMessage(friendly, "error");
         return;
       }
 
